@@ -29,6 +29,12 @@ public class Connexion extends Personne {
 		return (identifiant.equals(idTest) && mdp.equals(mdpTest));
 	}
 
+	/**
+	 * Méthode <b>GET<b> qui permet de retourner le numéro du personnel qui ce
+	 * connectera
+	 * 
+	 * @return <i>numPersonnel</i>, le numéro du personnel
+	 */
 	public int getNumPersonnel() {
 		return numPersonnel;
 	}
