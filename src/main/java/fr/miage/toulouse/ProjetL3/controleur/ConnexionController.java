@@ -1,8 +1,8 @@
-package fr.miage.toulouse.ProjetL3;
+package fr.miage.toulouse.ProjetL3.controleur;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-
+import fr.miage.toulouse.ProjetL3.*;
 public class ConnexionController {
 
 	

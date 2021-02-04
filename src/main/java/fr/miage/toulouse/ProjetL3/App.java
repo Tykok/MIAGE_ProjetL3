@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,12 +18,15 @@ public class App extends Application {
 	private static Scene scene;
 
 	@Override
-    public void start(Stage stage) throws IOException {
-    	// On crée notre fenêtre avec le fichier .fxml nommé primary et on définit la largeur et la hauteur de la fenêtre
-        scene = new Scene(loadFXML("Connexion"), 550, 400);
-        stage.setScene(scene); 
-        stage.show();
-    }
+	public void start(Stage stage) throws IOException {
+		scene = new Scene(loadFXML("Connexion"), 640, 480);
+
+		stage.setScene(scene);
+		stage.setResizable(false);
+		//stage.getIcons().add(new Image("Logo_UT3.jpg"));
+		stage.setTitle("Université");
+		stage.show();
+	}
 
 	/**
 	 * Méthode qui permet de charger l'interface avec un nouveau fichier fxml

@@ -1,4 +1,4 @@
-package classe.metier;
+package fr.miage.toulouse.ProjetL3.Class.metier;
 
 public class Parcours {
 
