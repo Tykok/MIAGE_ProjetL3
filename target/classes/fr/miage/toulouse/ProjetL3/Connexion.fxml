@@ -46,7 +46,7 @@
                   <Font name="Bell MT" size="20.0" />
                </font>
             </Label>
-            <ComboBox layoutX="189.0" layoutY="177.0" prefHeight="25.0" prefWidth="228.0" />
+            <ComboBox fx:id="cmb_droit" layoutX="189.0" layoutY="177.0" prefHeight="25.0" prefWidth="228.0" />
             <PasswordField layoutX="188.0" layoutY="133.0" prefHeight="25.0" prefWidth="228.0" />
             <TextField layoutX="188.0" layoutY="83.0" prefHeight="25.0" prefWidth="228.0" />
          </children>
