@@ -1,40 +1,62 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
+import java.awt.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
+import fr.miage.toulouse.ProjetL3.App;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import fr.miage.toulouse.ProjetL3.*;
+import javafx.scene.text.Text;
 
 public class ConnexionController implements Initializable {
 
-	// Ici l'ensemble l'ensemble des éléments présents sur notre vue Connexion
-	@FXML
+	private TextField txtBMotDePasse;
+	private Text infoConnexion;
 	private ComboBox<String> cmb_droit;
+	private TextField txtBIdentifiant;
 
-	private ObservableList<String> dbTypeList = FXCollections.observableArrayList("Directeur d'étude",
-			"Secréteriat pédagogique", "Bureau des examens");
-
-	/**
-	 * Cette méthode réagit lors du clic sur le bouton "Valider" de la page de
-	 * connexion afin de vérifier si la personne qui ce connecte en as les droits,
-	 * et quels sont ces droits
-	 * 
-	 * @throws IOException
-	 */
-	@FXML
-	private void verifConnexion() throws IOException {
-		App.setRoot("ListeEtudants");// Fait appel à setRoot pour mettre à jour la fenêtre avec le .fxml donné
+	public void verifConnexion() {
+		if (txtBIdentifiant.getText() == null && txtBMotDePasse.getText() == null) {
+			if (txtBIdentifiant.getText().equals("Test") && txtBMotDePasse.getText().equals("Test")) {
+				try {
+					App.setRoot("ListeEtudiants");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				infoConnexion.setVisible(true);
+				infoConnexion.setText("Le mot de passe est incorrect");
+			}
+		} else {
+			infoConnexion.setVisible(true);
+			infoConnexion.setText("Veuillez renseigner l'ensemble des champs");
+		}
 	}
 
+	/**
+	 * Initialise le contrôleur de la classe.
+	 */
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		cmb_droit.setItems(dbTypeList); // On ajoute les éléments de notre Observable à la comboBox
+	public void initialize(URL url, ResourceBundle rb) {
+		// TODO
+	}
+
+	public TextField getTxtBIdentifiant() {
+		return txtBIdentifiant;
+	}
+
+	public void setTxtBIdentifiant(TextField txtBIdentifiant) {
+		this.txtBIdentifiant = txtBIdentifiant;
+	}
+
+	public ComboBox<String> getCmb_droit() {
+		return cmb_droit;
+	}
+
+	public void setCmb_droit(ComboBox<String> cmb_droit) {
+		this.cmb_droit = cmb_droit;
 	}
 
 }

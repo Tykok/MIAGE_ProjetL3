@@ -9,7 +9,6 @@ fr\miage\toulouse\ProjetL3\App.class
 fr\miage\toulouse\ProjetL3\controleur\ListeUEprérequisController.class
 fr\miage\toulouse\ProjetL3\Class\metier\Connexion.class
 fr\miage\toulouse\ProjetL3\Class\metier\Etudiant.class
-fr\miage\toulouse\ProjetL3\controleur\ConnexionController.class
 fr\miage\toulouse\ProjetL3\controleur\ListeUEvalidésController.class
 fr\miage\toulouse\ProjetL3\controleur\UEvalidéController.class
 fr\miage\toulouse\ProjetL3\Main.class

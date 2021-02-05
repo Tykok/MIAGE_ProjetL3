@@ -5,8 +5,11 @@
  */
 package fr.miage.toulouse.ProjetL3.controleur;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import fr.miage.toulouse.ProjetL3.App;
 import javafx.fxml.Initializable;
 
 /**
@@ -16,12 +19,21 @@ import javafx.fxml.Initializable;
  */
 public class ListeEtudiantsController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+	/**
+	 * Cette méthode permet de repartir sur l'écran de connexion
+	 * 
+	 * @throws IOException
+	 */
+	public void switchToConnexion() throws IOException {
+		App.setRoot("Connexion");
+	}
+
+	/**
+	 * Initializes the controller class.
+	 */
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		// TODO
+	}
+
 }
