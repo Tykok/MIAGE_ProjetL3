@@ -23,7 +23,7 @@ public class App extends Application {
 
 		stage.setScene(scene);
 		stage.setResizable(false);
-		//stage.getIcons().add(new Image("Logo_UT3.jpg"));
+		// stage.getIcons().add(new Image("Logo_UT3.jpg"));
 		stage.setTitle("Université");
 		stage.show();
 	}
@@ -46,7 +46,7 @@ public class App extends Application {
 	 * @throws IOException
 	 */
 	private static Parent loadFXML(String fxml) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Interfaces" + fxml + ".fxml"));
 		return fxmlLoader.load();
 	}
 
