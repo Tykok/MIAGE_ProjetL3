@@ -2,7 +2,6 @@ package fr.miage.toulouse.ProjetL3.controleur;
 
 import fr.miage.toulouse.ProjetL3.App;
 import java.awt.TextField;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
