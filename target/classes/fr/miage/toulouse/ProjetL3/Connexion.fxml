@@ -17,11 +17,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgb(221,198,221);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.ProjetL3.controleur.ConnexionController">
+<AnchorPane id="AnchorPane" prefHeight="400.0"
+	prefWidth="600.0" style="-fx-background-color: rgb(221,198,221);"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="fr.miage.toulouse.ProjetL3.controleur.ConnexionController">
 	<children>
-		<AnchorPane layoutX="36.0" layoutY="76.0" prefHeight="308.0" prefWidth="528.0" style="-fx-background-color: white; -fx-background-radius: 15;">
+		<AnchorPane layoutX="36.0" layoutY="76.0"
+			prefHeight="308.0" prefWidth="528.0"
+			style="-fx-background-color: white; -fx-background-radius: 15;">
 			<children>
-				<Label alignment="TOP_LEFT" layoutX="196.0" text="Connexion :" underline="true">
+				<Label alignment="TOP_LEFT" layoutX="196.0" text="Connexion :"
+					underline="true">
 					<font>
 						<Font name="Bell MT" size="27.0" />
 					</font>
@@ -36,7 +42,9 @@
 						<Font name="Bell MT" size="20.0" />
 					</font>
 				</Label>
-				<Button layoutX="373.0" layoutY="242.0" mnemonicParsing="false" onMouseClicked="#verifConnexion" text="Valider">
+				<Button layoutX="373.0" layoutY="242.0"
+					mnemonicParsing="false" onMouseClicked="#verifConnexion"
+					text="Valider">
 					<font>
 						<Font name="Bell MT" size="15.0" />
 					</font>
@@ -46,17 +54,24 @@
 						<Font name="Bell MT" size="20.0" />
 					</font>
 				</Label>
-				<ComboBox fx:id="cmb_droit" layoutX="189.0" layoutY="177.0" prefHeight="25.0" prefWidth="228.0" />
-				<TextField fx:id="txtBUserId" layoutX="188.0" layoutY="83.0" prefHeight="25.0" prefWidth="234.0" />
-				<Text fx:id="infoConnexion" fill="#e10707" layoutX="177.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="249.888671875">
+				<ComboBox fx:id="cmb_droit" layoutX="189.0" layoutY="177.0"
+					prefHeight="25.0" prefWidth="228.0" />
+				<Text fx:id="infoConnexion" fill="#e10707" layoutX="177.0"
+					layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+					textAlignment="CENTER" visible="false"
+					wrappingWidth="249.888671875">
 					<font>
 						<Font name="System Bold" size="13.0" />
 					</font>
 				</Text>
-				<TextField fx:id="txtBMotDePasse" layoutX="190.0" layoutY="131.0" prefHeight="25.0" prefWidth="234.0" />
+				<TextField fx:id="txtBUserId" layoutX="188.0"
+					layoutY="83.0" prefHeight="25.0" prefWidth="234.0" />
+				<TextField fx:id="txtBMotDePasse" layoutX="190.0"
+					layoutY="131.0" prefHeight="25.0" prefWidth="234.0" />
 			</children>
 		</AnchorPane>
-		<ImageView fitHeight="75.0" fitWidth="184.0" layoutX="203.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+		<ImageView fitHeight="75.0" fitWidth="184.0" layoutX="203.0"
+			layoutY="7.0" pickOnBounds="true" preserveRatio="true">
 			<effect>
 				<DropShadow />
 			</effect>
