@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class UE {
 
 	private String codeIdentification;
+	private String nomUE;
 	private int creditECT;
 	private ArrayList<Mention> collectionMention_Prerequis;
 
-	public UE(String codeId, int credit) {
+	public UE(String codeId, String nomUE, int credit) {
 		this.codeIdentification = codeId;
+		this.nomUE = nomUE;
 		this.creditECT = credit;
 		this.collectionMention_Prerequis = new ArrayList<Mention>();
 	}
@@ -48,6 +50,14 @@ public class UE {
 
 	public static void main(String[] args) {
 
+	}
+
+	public String getNomUE() {
+		return nomUE;
+	}
+
+	public void setNomUE(String nomUE) {
+		this.nomUE = nomUE;
 	}
 
 }

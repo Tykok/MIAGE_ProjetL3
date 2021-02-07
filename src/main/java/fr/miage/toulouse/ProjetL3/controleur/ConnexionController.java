@@ -43,16 +43,15 @@ public class ConnexionController implements Initializable {
 		cmb_droit.setItems(listRole);
 	}
 
+	/**
+	 * Méthode
+	 */
 	@FXML
 	private void verifConnexion() {
 		if (txtBUserId.getText().length() > 0 && txtBMotDePasse.getText().length() > 0
 				&& cmb_droit.getValue() != null) {
 			if (txtBUserId.getText().equals("Test") && txtBMotDePasse.getText().equals("Test")) {
-				try {
-					App.setRoot("ListeEtudiants");
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				switchVue(cmb_droit.getValue());
 			} else {
 				infoConnexion.setVisible(true);
 				infoConnexion.setText("Le mot de passe est incorrect");
@@ -60,6 +59,28 @@ public class ConnexionController implements Initializable {
 		} else {
 			infoConnexion.setVisible(true);
 			infoConnexion.setText("Veuillez renseigner l'ensemble des champs");
+		}
+	}
+
+	private void switchVue(String value) {
+		try {
+			switch (value) {
+			case "Directeur d'étude":
+				App.setRoot("ListeEtudiants");
+				break;
+			case "Secréteriat pédagogique":
+				App.setRoot("ListeEtudiants");
+				break;
+			case "Bureau des examens":
+
+				App.setRoot("ListeUEbureauExamen");
+				break;
+			default:
+				infoConnexion.setVisible(true);
+				infoConnexion.setText("Erreur lors du chargement de la vue");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

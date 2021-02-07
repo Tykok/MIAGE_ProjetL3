@@ -10,4 +10,6 @@ module fr.miage.toulouse.ProjetL3 {
     exports fr.miage.toulouse.ProjetL3;
     opens fr.miage.toulouse.ProjetL3.controleur to javafx.fxml;
     exports fr.miage.toulouse.ProjetL3.controleur;
+    opens fr.miage.toulouse.ProjetL3.Class.metier to javafx.fxml;
+    exports fr.miage.toulouse.ProjetL3.Class.metier;
 }
