@@ -1,15 +1,33 @@
 package fr.miage.toulouse.ProjetL3.Class.metier;
 
+/**
+ * Classe Connexion, permet d'instancier les différentes personnes qui auront le
+ * droit de ce connecter à l'application
+ * 
+ * @see Personne
+ * @author ElieTreport
+ *
+ */
 public class Connexion extends Personne {
 
-	private int numPersonnel;
 	private String identifiant;
 	private String mdp;
 	private String droit;
 
-	protected Connexion(String nom, String prenom, int numP, String identifiant, String mdp, String droit) {
-		super(nom, prenom);
-		this.numPersonnel = numP;
+	/**
+	 * Constructeur de la classe Connexion
+	 * 
+	 * @see Personne
+	 * @param num
+	 * @param nom
+	 * @param prenom
+	 * @param numP
+	 * @param identifiant
+	 * @param mdp
+	 * @param droit
+	 */
+	protected Connexion(int num, String nom, String prenom, int numP, String identifiant, String mdp, String droit) {
+		super(num, nom, prenom);
 		this.identifiant = identifiant;
 		this.mdp = mdp;
 		this.droit = droit;
@@ -23,52 +41,64 @@ public class Connexion extends Personne {
 	 * @param mdp         Mot de passe entré par l'utiliser
 	 * @return Une valeur booléenne
 	 */
-	public boolean verifConnexion(String identifiant, String mdp) {
-		String idTest = "Admin";
-		String mdpTest = "Admin";
+	public static boolean verifConnexion(String identifiant, String mdp) {
+		String idTest = "Test";
+		String mdpTest = "Test";
 		return (identifiant.equals(idTest) && mdp.equals(mdpTest));
 	}
 
 	/**
-	 * Méthode <b>GET<b> qui permet de retourner le numéro du personnel qui ce
-	 * connectera
+	 * Fonction Get de l'identifiant
 	 * 
-	 * @return <i>numPersonnel</i>, le numéro du personnel
+	 * @return
 	 */
-	public int getNumPersonnel() {
-		return numPersonnel;
-	}
-
-	public void setNumPersonnel(int numPersonnel) {
-		this.numPersonnel = numPersonnel;
-	}
-
 	public String getIdentifiant() {
 		return identifiant;
 	}
 
+	/**
+	 * Méthode Set de l'identifiant
+	 * 
+	 * @param identifiant
+	 */
 	public void setIdentifiant(String identifiant) {
 		this.identifiant = identifiant;
 	}
 
+	/**
+	 * Fonction Get du Mot de Passe
+	 * 
+	 * @return
+	 */
 	public String getMdp() {
 		return mdp;
 	}
 
+	/**
+	 * Méthode Set du Mot de Passe
+	 * 
+	 * @param mdp
+	 */
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
 
+	/**
+	 * Fonction Get du rôle (droit) de la personne
+	 * 
+	 * @return
+	 */
 	public String getDroit() {
 		return droit;
 	}
 
+	/**
+	 * Méthode Set du rôle (droit) de la personne
+	 * 
+	 * @param droit
+	 */
 	public void setDroit(String droit) {
 		this.droit = droit;
-	}
-
-	public static void main(String[] args) {
-
 	}
 
 }

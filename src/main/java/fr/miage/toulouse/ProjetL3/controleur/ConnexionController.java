@@ -1,6 +1,7 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
 import fr.miage.toulouse.ProjetL3.App;
+import fr.miage.toulouse.ProjetL3.Class.metier.Connexion;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
@@ -44,13 +45,13 @@ public class ConnexionController implements Initializable {
 	}
 
 	/**
-	 * Méthode
+	 * Méthode qui permet de vérifier l'identité de la personne qui ce connecte
 	 */
 	@FXML
 	private void verifConnexion() {
 		if (txtBUserId.getText().length() > 0 && txtBMotDePasse.getText().length() > 0
 				&& cmb_droit.getValue() != null) {
-			if (txtBUserId.getText().equals("Test") && txtBMotDePasse.getText().equals("Test")) {
+			if (Connexion.verifConnexion(txtBUserId.getText(), txtBMotDePasse.getText())) {
 				switchVue(cmb_droit.getValue());
 			} else {
 				infoConnexion.setVisible(true);
