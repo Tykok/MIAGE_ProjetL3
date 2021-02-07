@@ -50,6 +50,11 @@ public class App extends Application {
 		return fxmlLoader.load();
 	}
 
+	/**
+	 * Méthode Main, elle permet de charger l'applicaiton JavaFX
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch();
 	}

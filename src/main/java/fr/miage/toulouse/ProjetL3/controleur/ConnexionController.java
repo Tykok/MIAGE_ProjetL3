@@ -17,7 +17,6 @@ import javafx.scene.text.Text;
 /**
  * FXML Controller class
  *
- * @author ElieTreport
  */
 public class ConnexionController implements Initializable {
 
@@ -34,7 +33,7 @@ public class ConnexionController implements Initializable {
 			"Secréteriat pédagogique", "Bureau des examens");
 
 	/**
-	 * Initializes the controller class.
+	 * Permet d'initialiser le contrôleur de la classe
 	 * 
 	 * @param url
 	 * @param rb
@@ -45,7 +44,8 @@ public class ConnexionController implements Initializable {
 	}
 
 	/**
-	 * Méthode qui permet de vérifier l'identité de la personne qui ce connecte
+	 * Méthode qui permet de vérifier l'identité de la personne qui ce connecte mais
+	 * aussi de vérifier si les champs ont bien été remplis
 	 */
 	@FXML
 	private void verifConnexion() {
@@ -63,6 +63,12 @@ public class ConnexionController implements Initializable {
 		}
 	}
 
+	/**
+	 * Méthode qui permet de changer de vue en fontion du rôle que la personne aura
+	 * choisi
+	 * 
+	 * @param value
+	 */
 	private void switchVue(String value) {
 		try {
 			switch (value) {

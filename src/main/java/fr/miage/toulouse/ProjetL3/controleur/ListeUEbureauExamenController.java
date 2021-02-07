@@ -16,7 +16,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 
+/**
+ * Classe ListeUEbureauExamenController, cette classe est le contrôleur de la
+ * vue ListeUEbureauExamen et appraît une fois que le bureau des examens ce sera
+ * connecté via l'interface de connexion
+ * 
+ * @see ConnexionController
+ * @author ElieTreport
+ *
+ */
 public class ListeUEbureauExamenController implements Initializable {
+
+	// Différents éléments de la vue
 	@FXML
 	private ComboBox<String> cmb_trierPar;
 	@FXML
@@ -32,14 +43,9 @@ public class ListeUEbureauExamenController implements Initializable {
 	private ObservableList<String> listTri = FXCollections.observableArrayList("Code", "Nom", "Credit");
 
 	// Observable permettant de remplir notre tableView
-	private ObservableList<UE> listeUE = FXCollections.observableArrayList(new UE("234", "Amos", 5),
-			new UE("456", "Keep", 5));
-
-	// Event Listener on TableView[#tableView_listeUE].onSort
-	@FXML
-	public void tableView_listeUE() {
-
-	}
+	private ObservableList<UE> listeUE = FXCollections.observableArrayList(new UE("UE1", "Mathématiques", 5),
+			new UE("UE2", "Français", 5), new UE("UE3", "Expression", 5), new UE("UE4", "Applications Objets", 5),
+			new UE("UE5", "Anglais", 5));
 
 	/**
 	 * Cette méthode permet de repartir sur l'écran de connexion
@@ -50,6 +56,10 @@ public class ListeUEbureauExamenController implements Initializable {
 		App.setRoot("Connexion");
 	}
 
+	/**
+	 * Méthode qui permet d'initialiser le contrôleur, et par la même occasion
+	 * d'ajouter des données aux différents éléments de notre vue
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tableView_listeUE.setEditable(true);
