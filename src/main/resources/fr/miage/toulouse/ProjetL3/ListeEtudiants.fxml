@@ -28,7 +28,7 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <Button mnemonicParsing="false" onMouseClicked="#switchToConnexion">
+      <Button fx:id="btn_retour" mnemonicParsing="false" onMouseClicked="#switchToConnexion">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
