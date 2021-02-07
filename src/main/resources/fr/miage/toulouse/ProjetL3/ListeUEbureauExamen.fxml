@@ -29,7 +29,7 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="cmb_trierPar" layoutX="446.0" layoutY="3.0" prefHeight="25.0" prefWidth="106.0" promptText="Trier par" visibleRowCount="12" />
-                  <TableView fx:id="tableView_listeUE" layoutX="14.0" layoutY="40.0" onSort="#tableView_listeUE" prefHeight="245.0" prefWidth="549.0">
+                  <TableView fx:id="tableView_listeUE" layoutX="14.0" layoutY="40.0" onMouseClicked="#voirEtudiantInscritsUE" prefHeight="245.0" prefWidth="549.0">
                     <columns>
                       <TableColumn fx:id="tableColumn_codeUE" prefWidth="75.0" text="Code UE" />
                       <TableColumn fx:id="tableColumn_nomUE" prefWidth="396.0" text="Nom UE" />

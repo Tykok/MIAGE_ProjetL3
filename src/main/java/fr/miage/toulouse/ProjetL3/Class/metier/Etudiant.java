@@ -18,7 +18,7 @@ public class Etudiant extends Personne {
 	 * @param prenom
 	 * @param numE
 	 */
-	public Etudiant(int numEtudiant, String nom, String prenom, String numE) {
+	public Etudiant(String numEtudiant, String nom, String prenom) {
 		super(numEtudiant, nom, prenom);
 	}
 

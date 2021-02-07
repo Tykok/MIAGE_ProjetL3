@@ -10,7 +10,7 @@ package fr.miage.toulouse.ProjetL3.Class.metier;
  */
 public abstract class Personne {
 
-	protected int num;
+	protected String num;
 	protected String nom;
 	protected String prenom;
 
@@ -21,7 +21,7 @@ public abstract class Personne {
 	 * @param nom
 	 * @param prenom
 	 */
-	protected Personne(int num, String nom, String prenom) {
+	protected Personne(String num, String nom, String prenom) {
 		this.num = num;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -32,7 +32,7 @@ public abstract class Personne {
 	 * 
 	 * @return
 	 */
-	protected int getNum() {
+	public String getNum() {
 		return num;
 	}
 
@@ -41,7 +41,7 @@ public abstract class Personne {
 	 * 
 	 * @param num
 	 */
-	protected void setNum(int num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
 
@@ -50,7 +50,7 @@ public abstract class Personne {
 	 * 
 	 * @return
 	 */
-	protected String getNom() {
+	public String getNom() {
 		return nom;
 	}
 
@@ -59,7 +59,7 @@ public abstract class Personne {
 	 * 
 	 * @param nom
 	 */
-	protected void setNom(String nom) {
+	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
@@ -68,7 +68,7 @@ public abstract class Personne {
 	 * 
 	 * @return
 	 */
-	protected String getPrenom() {
+	public String getPrenom() {
 		return prenom;
 	}
 
@@ -77,7 +77,7 @@ public abstract class Personne {
 	 * 
 	 * @param prenom
 	 */
-	protected void setPrenom(String prenom) {
+	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
 

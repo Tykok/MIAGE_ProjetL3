@@ -26,7 +26,7 @@ public class Connexion extends Personne {
 	 * @param mdp
 	 * @param droit
 	 */
-	protected Connexion(int num, String nom, String prenom, int numP, String identifiant, String mdp, String droit) {
+	protected Connexion(String num, String nom, String prenom, int numP, String identifiant, String mdp, String droit) {
 		super(num, nom, prenom);
 		this.identifiant = identifiant;
 		this.mdp = mdp;

@@ -1,5 +1,6 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,12 +9,14 @@ import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 
 /**
@@ -56,13 +59,26 @@ public class ListeUEbureauExamenController implements Initializable {
 		App.setRoot("Connexion");
 	}
 
+	public void voirEtudiantInscritsUE() {
+		try {
+			App.setRoot("ListeUEbureauExamen");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Event Listener on TableView[#tableView_listeUE].onSort
+	@FXML
+	public void tableView_listeUE() {
+
+	}
+
 	/**
 	 * Méthode qui permet d'initialiser le contrôleur, et par la même occasion
 	 * d'ajouter des données aux différents éléments de notre vue
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		tableView_listeUE.setEditable(true);
 		cmb_trierPar.setItems(listTri); // Ajout des données dans la comboBox
 
 		// Définition des attributs qui seront acceuillis dans les colonnes
@@ -71,7 +87,7 @@ public class ListeUEbureauExamenController implements Initializable {
 		tableColumn_nomUE.setCellValueFactory(new PropertyValueFactory<>("nomUE"));
 		tableColumn_creditUE.setCellValueFactory(new PropertyValueFactory<>("creditECT"));
 		tableView_listeUE.setItems(listeUE); // Ajout des données dans la tableView définit dans notre ObservableF
-
+		
 	}
 
 }
