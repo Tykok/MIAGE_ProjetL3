@@ -1,0 +1,28 @@
+{
+    "type": "table",
+    "name": "etudiants",
+    "database": "projetl3",
+    "data": 
+[
+{
+    "numEtudiant": "111",
+    "nom": "Folvert",
+    "prenom": "Kevin"
+},
+{
+    "numEtudiant": "222",
+    "nom": "Monnier",
+    "prenom": "Indira"
+},
+{
+    "numEtudiant": "333",
+    "nom": "Mercier",
+    "prenom": "Aline"
+},
+{
+    "numEtudiant": "444",
+    "nom": "Treport",
+    "prenom": "Elie"
+}
+]
+}

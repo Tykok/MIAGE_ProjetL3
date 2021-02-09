@@ -1,0 +1,13 @@
+,{
+    "type": "table",
+    "name": "prerequis",
+    "database": "projetl3",
+    "data": 
+[
+{
+    "codeUE": "AOC",
+    "codeUE_prerequis": "POO"
+}
+]
+
+}

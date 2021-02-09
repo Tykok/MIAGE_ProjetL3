@@ -1,0 +1,41 @@
+,{
+    "type": "table",
+    "name": "validationue",
+    "database": "projetl3",
+    "data": 
+[
+{
+    "codeUE": "ANG",
+    "numEtudiant": "111",
+    "Annnee": "2020",
+    "Semestre": "1",
+    "Valider": "1",
+    "Moyenne": "18"
+},
+{
+    "codeUE": "ANG",
+    "numEtudiant": "444",
+    "Annnee": "2021",
+    "Semestre": "1",
+    "Valider": "0",
+    "Moyenne": "5"
+},
+{
+    "codeUE": "AOC",
+    "numEtudiant": "222",
+    "Annnee": "2020",
+    "Semestre": "1",
+    "Valider": "1",
+    "Moyenne": "15"
+},
+{
+    "codeUE": "AOC",
+    "numEtudiant": "333",
+    "Annnee": "2021",
+    "Semestre": "2",
+    "Valider": "1",
+    "Moyenne": "16"
+}
+]
+
+}

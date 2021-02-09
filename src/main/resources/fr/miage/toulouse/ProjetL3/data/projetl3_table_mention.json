@@ -1,0 +1,17 @@
+,{
+    "type": "table",
+    "name": "mention",
+    "database": "projetl3",
+    "data": 
+[
+{
+    "nomMention": "MIAGE",
+    "nomParcours": "MIAGE"
+},
+{
+    "nomMention": "MIASH",
+    "nomParcours": "MIAGE"
+}
+]
+
+}

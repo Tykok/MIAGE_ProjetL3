@@ -7,7 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * JavaFX App
@@ -23,7 +27,7 @@ public class App extends Application {
 
 		stage.setScene(scene);
 		stage.setResizable(false);
-		// stage.getIcons().add(new Image("Logo_UT3.jpg"));
+		stage.getIcons().add(new Image(App.class.getResourceAsStream(Main.PATH_IMAGE + "Logo_UT3.jpg")));
 		stage.setTitle("Université");
 		stage.show();
 	}

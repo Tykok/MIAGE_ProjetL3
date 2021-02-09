@@ -1,11 +1,20 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
 import fr.miage.toulouse.ProjetL3.App;
+import fr.miage.toulouse.ProjetL3.Main;
 import fr.miage.toulouse.ProjetL3.Class.metier.Connexion;
 import javafx.scene.control.TextField;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,6 +58,7 @@ public class ConnexionController implements Initializable {
 	 */
 	@FXML
 	private void verifConnexion() {
+		collectionPersonne();
 		if (txtBUserId.getText().length() > 0 && txtBMotDePasse.getText().length() > 0
 				&& cmb_droit.getValue() != null) {
 			if (Connexion.verifConnexion(txtBUserId.getText(), txtBMotDePasse.getText())) {
@@ -89,6 +99,25 @@ public class ConnexionController implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public ArrayList<Connexion> collectionPersonne() {
+		ArrayList<Connexion> returnCol = new ArrayList<Connexion>();
+		final Gson gson = new GsonBuilder().create();
+
+		InputStream JSON = App.class.getResourceAsStream(Main.PATH_DATA + "projetl3_table_connexion.json");
+		BufferedReader in = new BufferedReader(new InputStreamReader(JSON));
+		String thisLine = null;
+		try {
+			while ((thisLine = in.readLine()) != null) {
+				Connexion c = gson.fromJson(thisLine, Connexion.class);
+				returnCol.add(c);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return returnCol;
 	}
 
 }

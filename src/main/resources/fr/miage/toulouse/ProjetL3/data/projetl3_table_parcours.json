@@ -1,0 +1,14 @@
+,{
+    "type": "table",
+    "name": "parcours",
+    "database": "projetl3",
+    "data": 
+[
+{
+    "nomParcours": "MIAGE",
+    "dureeParcours": "5",
+    "niveauParcours": "5"
+}
+]
+
+}

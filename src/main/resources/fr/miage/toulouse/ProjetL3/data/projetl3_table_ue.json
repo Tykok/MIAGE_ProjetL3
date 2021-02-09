@@ -1,0 +1,24 @@
+,{
+    "type": "table",
+    "name": "ue",
+    "database": "projetl3",
+    "data": 
+[
+{
+    "codeUE": "ANG",
+    "nomUE": "Anglais",
+    "creditUE": "1"
+},
+{
+    "codeUE": "AOC",
+    "nomUE": "Applications Objets Concurrentes",
+    "creditUE": "2"
+},
+{
+    "codeUE": "POO",
+    "nomUE": "Programmation Orientée Objet",
+    "creditUE": "2"
+}
+]
+
+}

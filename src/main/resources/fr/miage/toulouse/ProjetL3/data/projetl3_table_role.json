@@ -1,0 +1,17 @@
+,{
+    "type": "table",
+    "name": "role",
+    "database": "projetl3",
+    "data": 
+[
+{
+    "num": "151",
+    "identifiant": "Directeur",
+    "role": "Directeur",
+    "nom": "Admin",
+    "prenom": "Admin",
+    "mdp": "Admin"
+}
+]
+
+}

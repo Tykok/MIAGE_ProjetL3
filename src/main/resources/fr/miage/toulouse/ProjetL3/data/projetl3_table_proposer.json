@@ -1,0 +1,21 @@
+,{
+    "type": "table",
+    "name": "proposer",
+    "database": "projetl3",
+    "data": 
+[
+{
+    "codeUE": "ANG",
+    "nomMention": "MIAGE"
+},
+{
+    "codeUE": "ANG",
+    "nomMention": "MIASH"
+},
+{
+    "codeUE": "AOC",
+    "nomMention": "MIASH"
+}
+]
+
+}
