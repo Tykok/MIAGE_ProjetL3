@@ -12,6 +12,7 @@ public class Etudiant extends Personne {
 
 	/**
 	 * Constructeur de la classe Etudiant
+	 * 
 	 * @see Personne
 	 * @param numEtudiant
 	 * @param nom
