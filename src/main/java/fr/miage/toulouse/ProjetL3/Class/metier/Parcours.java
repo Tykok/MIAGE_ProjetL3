@@ -88,4 +88,14 @@ public class Parcours {
 		CollectionMention = collectionMention;
 	}
 
+	/**
+	 * Cette méthode permet d'ajouter un objet Mention correspondant à une mention à
+	 * notre objet Parcours correspondant à un parcours de l'université
+	 * 
+	 * @param m
+	 */
+	public void addMention(Mention m) {
+		this.CollectionMention.add(m);
+	}
+
 }
