@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.miage.toulouse.ProjetL3.controleur;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author IndiraMonnier
  */
-public class ListeUEprérequisController implements Initializable {
+public class ListeEtudiant_BureauExamController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -23,5 +22,4 @@ public class ListeUEprérequisController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
 }

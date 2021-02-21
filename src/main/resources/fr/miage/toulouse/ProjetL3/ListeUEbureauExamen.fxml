@@ -1,61 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgb(221,198,221);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.ProjetL3.controleur.ListeUEbureauExamenController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="863.0" style="-fx-background-image: url('C:\Users\IndiraMonnier\Documents\NetBeansProjects\Université\src\ImageC:\Users\IndiraMonnier\Documents\NetBeansProjects\Université\src\Images');" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.ConnexionController">
    <children>
-      <SplitPane layoutX="15.0" layoutY="81.0" orientation="VERTICAL" prefHeight="303.0" prefWidth="572.0" style="-fx-background-radius: 15;">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="21.0" prefWidth="570.0" style="-fx-background-color: white;">
-               <children>
-                  <Label alignment="TOP_LEFT" layoutX="7.0" text="Liste des UE :" underline="true">
-                     <font>
-                        <Font name="Bell MT" size="23.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="cmb_trierPar" layoutX="446.0" layoutY="3.0" prefHeight="25.0" prefWidth="106.0" promptText="Trier par" visibleRowCount="12" />
-                  <TableView fx:id="tableView_listeUE" layoutX="14.0" layoutY="40.0" onMouseClicked="#voirEtudiantInscritsUE" prefHeight="245.0" prefWidth="549.0">
-                    <columns>
-                      <TableColumn fx:id="tableColumn_codeUE" prefWidth="75.0" text="Code UE" />
-                      <TableColumn fx:id="tableColumn_nomUE" prefWidth="396.0" text="Nom UE" />
-                        <TableColumn fx:id="tableColumn_creditUE" minWidth="0.0" prefWidth="77.0" text="Crédit UE" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-      <ImageView fitHeight="75.0" fitWidth="184.0" layoutX="203.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="696.0" fitWidth="1251.0" layoutY="-2.0">
          <image>
-            <Image url="@Images/Logo_UT3.jpg" />
+            <Image url="@Images/fondEcran.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="184.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/_logo.png" />
          </image>
          <effect>
             <DropShadow />
          </effect>
       </ImageView>
-      <Button mnemonicParsing="false" onMouseClicked="#switchToConnexion">
-         <graphic>
-            <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/retour.png" />
-               </image>
-            </ImageView>
-         </graphic>
+      <Label alignment="TOP_LEFT" layoutX="210.0" layoutY="16.0" prefHeight="52.0" prefWidth="388.0" text="Bureau des examens" textFill="WHITE" underline="true">
+         <font>
+            <Font name="Bell MT" size="43.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Glow level="0.6" />
+         </effect>
+      </Label>
+      <Button layoutX="1134.0" layoutY="4.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: red;" text="Déconnexion" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
       </Button>
+      <Button layoutX="7.0" layoutY="657.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="195.0" layoutY="122.0" prefHeight="498.0" prefWidth="858.0" style="-fx-background-color: white; -fx-background-radius: 15;">
+         <children>
+            <SplitPane dividerPositions="0.06652806652806653" layoutX="11.0" layoutY="6.0" orientation="VERTICAL" prefHeight="483.0" prefWidth="840.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="64.0" prefWidth="703.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label layoutX="5.0" layoutY="1.0" text="Liste des UE :">
+                           <font>
+                              <Font name="Bell MT" size="22.0" />
+                           </font>
+                        </Label>
+                        <ComboBox layoutX="581.0" layoutY="2.0" prefHeight="25.0" prefWidth="112.0" promptText="Trier par " />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="365.0" prefWidth="650.0">
+                     <children>
+                        <TableView fx:id="tableView_listeUE" layoutY="1.0" onMouseClicked="#voirEtudiantInscritsUE" prefHeight="446.0" prefWidth="838.0">
+                           <columns>
+                              <TableColumn fx:id="tableColumn_codeUE" prefWidth="224.0" text="Code UE" />
+                              <TableColumn fx:id="tableColumn_nomUE" prefWidth="316.0" text="Nom UE" />
+                              <TableColumn fx:id="tableColumn_creditUE" minWidth="0.0" prefWidth="297.0" text="Crédit UE" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
