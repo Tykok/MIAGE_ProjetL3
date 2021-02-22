@@ -5,6 +5,7 @@ module fr.miage.toulouse.ProjetL3 {
 	requires java.desktop;
 	requires javafx.graphics;
     requires java.base;
+	requires opencsv;
 
     opens fr.miage.toulouse.ProjetL3 to javafx.fxml;
     exports fr.miage.toulouse.ProjetL3;

@@ -6,24 +6,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+
+import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
 
+
+
 	// Attribut privé qui définit notre interface (fenêtre)
 	private static Scene scene;
 
 	@Override
 	public void start(Stage stage) throws IOException {
+		
 		scene = new Scene(loadFXML("Connexion"), 640, 480);
 
 		stage.setScene(scene);
 		stage.setResizable(false);
-		// stage.getIcons().add(new Image("Logo_UT3.jpg"));
+		stage.getIcons().add(new Image(App.class.getResourceAsStream(Main.PATH_IMAGE + "Logo_UT3.jpg")));
 		stage.setTitle("Université");
 		stage.show();
 	}
@@ -51,11 +55,10 @@ public class App extends Application {
 	}
 
 	/**
-	 * Méthode Main, elle permet de charger l'applicaiton JavaFX
+	 * Méthode launchApp, elle permet de charger l'applicaiton JavaFX
 	 * 
-	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void launchApp() {
 		launch();
 	}
 

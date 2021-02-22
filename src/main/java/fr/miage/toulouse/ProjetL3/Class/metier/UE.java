@@ -16,7 +16,7 @@ public class UE {
 	private String codeIdentification;
 	private String nomUE;
 	private int creditECT;
-	private ArrayList<Mention> collectionUE_Prerequis;
+	private ArrayList<UE> collectionUE_Prerequis;
 
 	/**
 	 * Constructeur de la classe UE
@@ -29,7 +29,7 @@ public class UE {
 		this.codeIdentification = codeId;
 		this.nomUE = nomUE;
 		this.creditECT = credit;
-		this.collectionUE_Prerequis = new ArrayList<Mention>();
+		this.collectionUE_Prerequis = new ArrayList<UE>();
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class UE {
 	 * @see Etudiant
 	 * @return
 	 */
-	public ArrayList<Mention> getCollectionMention_Prerequis() {
+	public ArrayList<UE> getCollectionUE_Prerequis() {
 		return collectionUE_Prerequis;
 	}
 
@@ -91,10 +91,10 @@ public class UE {
 	 * 
 	 * @see Etudiant
 	 * 
-	 * @param collectionMention_Prerequis
+	 * @param collectionUE_Prerequis
 	 */
-	public void setCollectionMention_Prerequis(ArrayList<Mention> collectionMention_Prerequis) {
-		this.collectionUE_Prerequis = collectionMention_Prerequis;
+	public void setCollectionUE_Prerequis(ArrayList<UE> collectionUE_Prerequis) {
+		this.collectionUE_Prerequis = collectionUE_Prerequis;
 	}
 
 	/**
@@ -102,17 +102,17 @@ public class UE {
 	 * 
 	 * @param m
 	 */
-	public void ajouterUEPrerequis(Mention m) {
+	public void ajouterUEPrerequis(UE m) {
 		this.collectionUE_Prerequis.add(m);
 	}
 
 	/**
-	 * Méthode qui permet d'enlever une Mention qui ne sera plus prérequis pour cet
+	 * Méthode qui permet d'enlever un UE qui ne sera plus prérequis pour cet
 	 * UE
 	 * 
 	 * @param m
 	 */
-	public void enleverUEPrerequis(Mention m) {
+	public void enleverUEPrerequis(UE m) {
 		this.collectionUE_Prerequis.remove(m);
 	}
 
