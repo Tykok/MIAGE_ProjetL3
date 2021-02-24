@@ -36,9 +36,9 @@ public interface chargementCSV {
 
 			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
 				List<String[]> r = reader.readAll();
-				for(String[] a : r) {
+				for (String[] a : r) {
 					tabCsv.add(a);
-				}			
+				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			} catch (CsvException e1) {
@@ -146,7 +146,7 @@ public interface chargementCSV {
 	 * @param collectionParcours
 	 * @throws FileNotFoundException
 	 */
-	private static void addMention_Parcours(ArrayList<Parcours> collectionParcours) throws FileNotFoundException {
+	private static void addMention_Parcours(ArrayList<Parcours> collectionParcours) {
 		boolean firstLine = true;
 		ArrayList<String[]> contenuFichier = returnTabCsv("mention");
 		for (String[] a : contenuFichier) {
@@ -166,7 +166,7 @@ public interface chargementCSV {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-	public static ArrayList<Parcours> collectionParcours() throws FileNotFoundException {
+	public static ArrayList<Parcours> collectionParcours() {
 		ArrayList<Parcours> collectionParcours = new ArrayList<Parcours>();
 		ArrayList<String[]> contenuFichier = returnTabCsv("parcours");
 		boolean firstLine = true;
@@ -177,6 +177,7 @@ public interface chargementCSV {
 				collectionParcours.add(new Parcours(a[0], Integer.valueOf(a[1]), Integer.valueOf(a[2])));
 			}
 		}
+		addMention_Parcours(collectionParcours);
 		return collectionParcours;
 	}
 
@@ -271,35 +272,35 @@ public interface chargementCSV {
 		ArrayList<Etudiant> collectionEtudiant = collectionEtudiant();
 		ArrayList<UE> collectionUE = collectionUE();
 		ArrayList<String[]> contenuFichier = returnTabCsv("validationue");
-				boolean firstLine = true;
-				for (String[] a : contenuFichier) {
-					if (firstLine) {
-						firstLine = !firstLine;
-					} else {
-						Etudiant etudiantValidation = null;
-						UE ueValide = null;
+		boolean firstLine = true;
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				Etudiant etudiantValidation = null;
+				UE ueValide = null;
 
-						// On cherche tout d'abord l'étudiant qui correspond à cette ligne
-						for (Etudiant e : collectionEtudiant) {
-							if (e.getNum().equals(a[1])) {
-								etudiantValidation = e;
-								break;
-							}
-						}
-
-						// Ensuite on recherche l'UE corespondant à cette ligne
-						for (UE u : collectionUE) {
-							if (u.getCodeIdentification().equals(a[0])) {
-								ueValide = u;
-								break;
-							}
-						}
-
-						// On crée enfin notre objet UEValide
-						collectionUEValide.add(new UEValide(Integer.valueOf(a[2]), Boolean.valueOf(a[3]),
-								Boolean.valueOf(a[4]), Double.valueOf(a[5]), ueValide, etudiantValidation));
+				// On cherche tout d'abord l'étudiant qui correspond à cette ligne
+				for (Etudiant e : collectionEtudiant) {
+					if (e.getNum().equals(a[1])) {
+						etudiantValidation = e;
+						break;
 					}
 				}
+
+				// Ensuite on recherche l'UE corespondant à cette ligne
+				for (UE u : collectionUE) {
+					if (u.getCodeIdentification().equals(a[0])) {
+						ueValide = u;
+						break;
+					}
+				}
+
+				// On crée enfin notre objet UEValide
+				collectionUEValide.add(new UEValide(Integer.valueOf(a[2]), Boolean.valueOf(a[3]), Boolean.valueOf(a[4]),
+						Double.valueOf(a[5]), ueValide, etudiantValidation));
+			}
+		}
 		return collectionUEValide;
 	}
 }
