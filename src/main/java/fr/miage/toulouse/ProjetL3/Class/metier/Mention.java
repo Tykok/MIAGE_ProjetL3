@@ -13,15 +13,31 @@ public class Mention {
 
 	private String nomMention;
 	private ArrayList<UE> UEMention;
+	private Parcours parcoursMention;
 
 	/**
 	 * Constructeur de la classe Mention
 	 * 
 	 * @param nom
 	 */
-	public Mention(String nom) {
+	public Mention(String nom, Parcours p) {
 		this.setNomMention(nom);
 		this.setUEMention(new ArrayList<UE>());
+		this.parcoursMention = p;
+	}
+
+	/**
+	 * @return the parcoursMention
+	 */
+	public Parcours getParcoursMention() {
+		return parcoursMention;
+	}
+
+	/**
+	 * @param parcoursMention the parcoursMention to set
+	 */
+	public void setParcoursMention(Parcours parcoursMention) {
+		this.parcoursMention = parcoursMention;
 	}
 
 	/**

@@ -73,14 +73,14 @@ public class ConnexionController implements Initializable {
 		try {
 			switch (value) {
 			case "Directeur d'étude":
-				App.setRoot("ListeEtudiants");
+				App.setRoot("ListeEtudiant_DirecteurEtude");
 				break;
 			case "Secréteriat pédagogique":
-				App.setRoot("ListeEtudiants");
+				App.setRoot("ListeEtudiant_Secreteriat");
 				break;
 			case "Bureau des examens":
 
-				App.setRoot("ListeUEbureauExamen");
+				App.setRoot("ListeUEBureauExam");
 				break;
 			default:
 				infoConnexion.setVisible(true);

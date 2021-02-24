@@ -23,12 +23,12 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 		
-		scene = new Scene(loadFXML("Connexion"), 640, 480);
+		scene = new Scene(loadFXML("ListeEtudiant_Secretariat"));
 
 		stage.setScene(scene);
 		stage.setResizable(false);
-		stage.getIcons().add(new Image(App.class.getResourceAsStream(Main.PATH_IMAGE + "Logo_UT3.jpg")));
-		stage.setTitle("Université");
+		stage.getIcons().add(new Image(App.class.getResourceAsStream(Main.PATH_IMAGE + "_logo.png")));
+		stage.setTitle("Suivi des étudiants");
 		stage.show();
 	}
 

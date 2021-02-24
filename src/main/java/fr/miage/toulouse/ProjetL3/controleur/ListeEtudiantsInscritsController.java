@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
+import fr.miage.toulouse.ProjetL3.Class.technique.chargementCSV;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,9 +38,9 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	private TableColumn<Etudiant, Integer> column_prenomEtudiant;
 
 	// Observable permettant de remplir notre tableView
-	private ObservableList<Etudiant> listeEtudiant = FXCollections.observableArrayList(
+	private ObservableList<Etudiant> listeEtudiant = FXCollections.observableArrayList(/*
 			new Etudiant("111", "Folvert", "Folvert"), new Etudiant("222", "Mercier", "Aline"),
-			new Etudiant("333", "Monnier", "Indira"), new Etudiant("444", "Treport", "Elie"));
+			new Etudiant("333", "Monnier", "Indira"), new Etudiant("444", "Treport", "Elie")*/);
 
 	/**
 	 * Cette méthode permet de repartir sur l'écran de connexion

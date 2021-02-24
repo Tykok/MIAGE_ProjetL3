@@ -22,28 +22,23 @@ import fr.miage.toulouse.ProjetL3.Class.metier.*;
 public interface chargementCSV {
 
 	/**
-	 * Cette méthode permet de charger entièrement une collection des étudiants en
-	 * chargeant les différentes données à partir du fichier CSV
+	 * Cette méthode permet de charger un fichier CSV donné en argument et de
+	 * retourner par la suite une ArrayList contenant chacune des lignes de ce même
+	 * fichier
 	 * 
+	 * @param nomFichier
 	 * @return
-	 * @throws FileNotFoundException
 	 */
-	public static ArrayList<Etudiant> collectionEtudiant() throws FileNotFoundException {
-		ArrayList<Etudiant> collectionEtudiant = null;
+	private static ArrayList<String[]> returnTabCsv(String nomFichier) {
+		ArrayList<String[]> tabCsv = new ArrayList<>();
 		try {
-
-			URL resource = App.class.getResource(Main.PATH_DATA + "etudiants.csv");
+			URL resource = App.class.getResource(Main.PATH_DATA + nomFichier + ".csv");
 
 			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
 				List<String[]> r = reader.readAll();
-				boolean firstLine = true;
-				for (String[] a : r) {
-					if (firstLine) {
-						firstLine = !firstLine;
-					} else {
-						collectionEtudiant.add(new Etudiant(a[0], a[1], a[2]));
-					}
-				}
+				for(String[] a : r) {
+					tabCsv.add(a);
+				}			
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			} catch (CsvException e1) {
@@ -52,8 +47,75 @@ public interface chargementCSV {
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		}
+		return tabCsv;
+	}
+
+	/**
+	 * Cette méthode permet de charger entièrement une collection des étudiants en
+	 * chargeant les différentes données à partir du fichier CSV
+	 * 
+	 * @return
+	 * @throws FileNotFoundException
+	 */
+	public static ArrayList<Etudiant> collectionEtudiant() {
+		ArrayList<Etudiant> collectionEtudiant = new ArrayList<Etudiant>();
+		ArrayList<String[]> contenuFichier = returnTabCsv("etudiants");
+		boolean firstLine = true;
+		for (String[] colonne : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				Mention mentionEtudiant = rechercheMention(colonne[3]);
+				collectionEtudiant.add(new Etudiant(colonne[0], colonne[1], colonne[2], mentionEtudiant));
+			}
+		}
 
 		return collectionEtudiant;
+	}
+
+	/**
+	 * Méthode permettant de charger récupérer les parcours et mention auquel un
+	 * étudiant sera inscrits en chargeant les fichiers CSV correspondant
+	 * 
+	 * @param nomMention
+	 * @return
+	 */
+	private static Mention rechercheMention(String nomMention) {
+		Mention returnMention;
+		boolean firstLine = true;
+		ArrayList<String[]> contenuFichier = returnTabCsv("mention");
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				if (a[0].equals(nomMention)) {
+					return new Mention(a[0], rechercheParcours(a[1]));
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Cette méthode permet de retourner un parcours via le nom qui aura été fourni
+	 * en argumentf
+	 * 
+	 * @param nomParcours
+	 * @return
+	 */
+	private static Parcours rechercheParcours(String nomParcours) {
+		boolean firstLine = true;
+		ArrayList<String[]> contenuFichier = returnTabCsv("parcours");
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				if (a[0].equals(nomParcours)) {
+					return new Parcours(a[0], Integer.valueOf(a[1]), Integer.valueOf(a[2]));
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -64,30 +126,16 @@ public interface chargementCSV {
 	 * @throws FileNotFoundException
 	 */
 	public static ArrayList<Mention> collectionMention() throws FileNotFoundException {
-		ArrayList<Mention> collectionMention = null;
-		try {
-
-			URL resource = App.class.getResource(Main.PATH_DATA + "mention.csv");
-
-			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
-				List<String[]> r = reader.readAll();
-				boolean firstLine = true;
-				for (String[] a : r) {
-					if (firstLine) {
-						firstLine = !firstLine;
-					} else {
-						collectionMention.add(new Mention(a[0]));
-					}
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (CsvException e1) {
-				e1.printStackTrace();
+		ArrayList<Mention> collectionMention = new ArrayList<Mention>();
+		boolean firstLine = true;
+		ArrayList<String[]> contenuFichier = returnTabCsv("mention");
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				collectionMention.add(new Mention(a[0], rechercheParcours(a[1])));
 			}
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
 		}
-
 		return collectionMention;
 	}
 
@@ -99,29 +147,16 @@ public interface chargementCSV {
 	 * @throws FileNotFoundException
 	 */
 	private static void addMention_Parcours(ArrayList<Parcours> collectionParcours) throws FileNotFoundException {
-		try {
-
-			URL resource = App.class.getResource(Main.PATH_DATA + "mention.csv");
-
-			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
-				List<String[]> r = reader.readAll();
-				boolean firstLine = true;
-				for (String[] a : r) {
-					if (firstLine) {
-						firstLine = !firstLine;
-					} else {
-						for (Parcours p : collectionParcours) {
-							p.addMention(new Mention(a[0]));
-						}
-					}
+		boolean firstLine = true;
+		ArrayList<String[]> contenuFichier = returnTabCsv("mention");
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				for (Parcours p : collectionParcours) {
+					p.addMention(new Mention(a[0], p));
 				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (CsvException e1) {
-				e1.printStackTrace();
 			}
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -132,30 +167,16 @@ public interface chargementCSV {
 	 * @throws FileNotFoundException
 	 */
 	public static ArrayList<Parcours> collectionParcours() throws FileNotFoundException {
-		ArrayList<Parcours> collectionParcours = null;
-		try {
-
-			URL resource = App.class.getResource(Main.PATH_DATA + "parcours.csv");
-
-			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
-				List<String[]> r = reader.readAll();
-				boolean firstLine = true;
-				for (String[] a : r) {
-					if (firstLine) {
-						firstLine = !firstLine;
-					} else {
-						collectionParcours.add(new Parcours(a[0], Integer.valueOf(a[1]), Integer.valueOf(a[2])));
-					}
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (CsvException e1) {
-				e1.printStackTrace();
+		ArrayList<Parcours> collectionParcours = new ArrayList<Parcours>();
+		ArrayList<String[]> contenuFichier = returnTabCsv("parcours");
+		boolean firstLine = true;
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				collectionParcours.add(new Parcours(a[0], Integer.valueOf(a[1]), Integer.valueOf(a[2])));
 			}
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
 		}
-		addMention_Parcours(collectionParcours);
 		return collectionParcours;
 	}
 
@@ -167,28 +188,15 @@ public interface chargementCSV {
 	 * @throws FileNotFoundException
 	 */
 	public static ArrayList<Connexion> collectionRole() throws FileNotFoundException {
-		ArrayList<Connexion> collectionRole = null;
-		try {
-
-			URL resource = App.class.getResource(Main.PATH_DATA + "role.csv");
-
-			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
-				List<String[]> r = reader.readAll();
-				boolean firstLine = true;
-				for (String[] a : r) {
-					if (firstLine) {
-						firstLine = !firstLine;
-					} else {
-						collectionRole.add(new Connexion(a[0], a[1], a[2], a[3], a[4], a[5]));
-					}
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (CsvException e1) {
-				e1.printStackTrace();
+		ArrayList<Connexion> collectionRole = new ArrayList<Connexion>();
+		ArrayList<String[]> contenuFichier = returnTabCsv("role");
+		boolean firstLine = true;
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				collectionRole.add(new Connexion(a[0], a[1], a[2], a[3], a[4], a[5]));
 			}
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
 		}
 		return collectionRole;
 	}
@@ -201,29 +209,18 @@ public interface chargementCSV {
 	 * @throws FileNotFoundException
 	 */
 	public static ArrayList<UE> collectionUE() throws FileNotFoundException {
-		ArrayList<UE> collectionUE = null;
-		try {
+		ArrayList<UE> collectionUE = new ArrayList<UE>();
+		ArrayList<String[]> contenuFichier = returnTabCsv("ue");
 
-			URL resource = App.class.getResource(Main.PATH_DATA + "ue.csv");
-
-			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
-				List<String[]> r = reader.readAll();
-				boolean firstLine = true;
-				for (String[] a : r) {
-					if (firstLine) {
-						firstLine = !firstLine;
-					} else {
-						collectionUE.add(new UE(a[0], a[1], Integer.valueOf(a[2])));
-					}
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (CsvException e1) {
-				e1.printStackTrace();
+		boolean firstLine = true;
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				collectionUE.add(new UE(a[0], a[1], Integer.valueOf(a[2])));
 			}
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
 		}
+
 		getCollectionUEPrerequis(collectionUE);
 		return collectionUE;
 	}
@@ -236,41 +233,30 @@ public interface chargementCSV {
 	 * @throws FileNotFoundException
 	 */
 	private static void getCollectionUEPrerequis(ArrayList<UE> collectionUE) throws FileNotFoundException {
-		try {
+		ArrayList<String[]> contenuFichier = returnTabCsv("prerequis");
 
-			URL resource = App.class.getResource(Main.PATH_DATA + "prerequis.csv");
+		boolean firstLine = true;
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else {
+				UE UESup = null;
+				UE UEPre = null;
+				for (UE e : collectionUE) {
+					if (e.getCodeIdentification().equals(a[0])) {
+						UESup = e;
+					} else if (e.getCodeIdentification().equals(a[0])) {
+						UEPre = e;
+					}
 
-			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
-				List<String[]> r = reader.readAll();
-				boolean firstLine = true;
-				for (String[] a : r) {
-					if (firstLine) {
-						firstLine = !firstLine;
-					} else {
-						UE UESup = null;
-						UE UEPre = null;
-						for (UE e : collectionUE) {
-							if (e.getCodeIdentification().equals(a[0])) {
-								UESup = e;
-							} else if (e.getCodeIdentification().equals(a[0])) {
-								UEPre = e;
-							}
-
-							if (UESup != null && UEPre != null) {
-								break;
-							}
-						}
-						UESup.ajouterUEPrerequis(UEPre);
+					if (UESup != null && UEPre != null) {
+						break;
 					}
 				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (CsvException e1) {
-				e1.printStackTrace();
+				UESup.ajouterUEPrerequis(UEPre);
 			}
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
 		}
+
 	}
 
 	/**
@@ -281,17 +267,12 @@ public interface chargementCSV {
 	 * @throws FileNotFoundException
 	 */
 	public static ArrayList<UEValide> collectionUEValide() throws FileNotFoundException {
-		ArrayList<UEValide> collectionUEValide = null;
+		ArrayList<UEValide> collectionUEValide = new ArrayList<UEValide>();
 		ArrayList<Etudiant> collectionEtudiant = collectionEtudiant();
 		ArrayList<UE> collectionUE = collectionUE();
-		try {
-
-			URL resource = App.class.getResource(Main.PATH_DATA + "validationue.csv");
-
-			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
-				List<String[]> r = reader.readAll();
+		ArrayList<String[]> contenuFichier = returnTabCsv("validationue");
 				boolean firstLine = true;
-				for (String[] a : r) {
+				for (String[] a : contenuFichier) {
 					if (firstLine) {
 						firstLine = !firstLine;
 					} else {
@@ -319,14 +300,6 @@ public interface chargementCSV {
 								Boolean.valueOf(a[4]), Double.valueOf(a[5]), ueValide, etudiantValidation));
 					}
 				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (CsvException e1) {
-				e1.printStackTrace();
-			}
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		}
 		return collectionUEValide;
 	}
 }
