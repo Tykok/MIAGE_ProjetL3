@@ -21,7 +21,7 @@ public interface utilsFunction {
 	 * @param e
 	 * @return
 	 */
-	public static ArrayList<UEValide> ueValideEtudiant(Etudiant e) {
+	private static ArrayList<UEValide> ueValideEtudiant(Etudiant e) {
 		ArrayList<UEValide> collectionUEValide = chargementCSV.collectionUEValide();
 		ArrayList<UEValide> ueValideReturn = new ArrayList<UEValide>();
 
@@ -33,16 +33,16 @@ public interface utilsFunction {
 		return ueValideReturn;
 	}
 
-	public static ArrayList<UE> ueInscriptionPossible(UEValide ueValider) {
+	public static ArrayList<UE> ueInscriptionPossible(Etudiant e) {
 		ArrayList<UE> listUeReturn = new ArrayList<UE>();
 		ArrayList<UE> ensembleUE = chargementCSV.collectionUE();
+		ArrayList<UEValide> ensembleUEValider = ueValideEtudiant(e);
 
-		/**
-		 * for (UE UEValide : ueValider.getUEValidation()) {
-		 * 
-		 * }
-		 **/
 		return listUeReturn;
+	}
+
+	private static boolean inscriptionPossible(ArrayList<UE> uePrerequis, ArrayList<UE> UEValider) {
+		// TODO Méthode à construire !!!
 	}
 
 }
