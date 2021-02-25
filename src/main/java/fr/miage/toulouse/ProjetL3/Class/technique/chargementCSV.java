@@ -246,7 +246,7 @@ public interface chargementCSV {
 				for (UE e : collectionUE) {
 					if (e.getCodeIdentification().equals(a[0])) {
 						UESup = e;
-					} else if (e.getCodeIdentification().equals(a[0])) {
+					} else if (e.getCodeIdentification().equals(a[1])) {
 						UEPre = e;
 					}
 

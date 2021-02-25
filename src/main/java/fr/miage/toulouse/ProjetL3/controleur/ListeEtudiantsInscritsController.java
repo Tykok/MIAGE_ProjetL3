@@ -1,15 +1,14 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
-import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
 import fr.miage.toulouse.ProjetL3.Class.technique.appFonction;
-import fr.miage.toulouse.ProjetL3.Class.technique.chargementCSV;
 import fr.miage.toulouse.ProjetL3.Class.technique.utilsFunction;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,7 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 
 public class ListeEtudiantsInscritsController implements Initializable {
@@ -46,10 +45,14 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	 */
 	public static Etudiant etudiantUE;
 
+	// Liste des UE qui peuvent être validé par l'étudiant
+	private ObservableList<UE> listUE = FXCollections.observableArrayList();
+	
 	/**
 	 * On récupérer ici l'ensemble des UE Valide
 	 */
-	//private UEValide UEValideParEtudiant = utilsFunction.ueValideEtudiant(etudiantUE);
+	// private UEValide UEValideParEtudiant =
+	// utilsFunction.ueValideEtudiant(etudiantUE);
 
 	/**
 	 * 
@@ -92,6 +95,20 @@ public class ListeEtudiantsInscritsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		
+		for(UE ue : utilsFunction.ueInscriptionPossible(etudiantUE)) {
+		listUE.add(ue);	
+		}
+		
+		
+		column_codeIdentification.setCellValueFactory(new PropertyValueFactory<>("codeIdentification"));
+		column_nomUE.setCellValueFactory(new PropertyValueFactory<>("nomUE"));
+		column_creditETC.setCellValueFactory(new PropertyValueFactory<>("creditECT"));
+		/*
+		column_prerequisUE.setCellValueFactory(new PropertyValueFactory<>("nomParcours"));
+		column_checkBox.setCellValueFactory(new PropertyValueFactory<>("nomMention"));
+		*/
+		list_UE.setItems(listUE);
+		
 	}
 }
