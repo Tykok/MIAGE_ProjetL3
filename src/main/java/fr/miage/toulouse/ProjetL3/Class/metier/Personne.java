@@ -81,4 +81,9 @@ public abstract class Personne {
 		this.prenom = prenom;
 	}
 
+	@Override
+	public String toString() {
+		return "Personne [num=" + num + ", nom=" + nom + ", prenom=" + prenom + "]";
+	}
+
 }

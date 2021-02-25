@@ -1,9 +1,11 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.Mention;
 import fr.miage.toulouse.ProjetL3.Class.metier.Parcours;
@@ -20,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 
 public class ListeEtudiant_SecretariatController implements Initializable {
 	@FXML
@@ -72,6 +75,7 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 	 * ont bien été donné
 	 */
 	private void verifValide() {
+		// TODO Méthode à améliorer avec expression régulière
 		if (txtb_NumEtudiant.getText() != null && txtb_NomEtudiant.getText() != null
 				&& txtb_PrenomEtudiant.getText() != null && txtb_ParcoursEtudiant.getText() != null
 				&& txtb_MentionEtudiant.getText() != null) {
@@ -121,14 +125,14 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 	 * Méthode permettant d'ajouter un étudiant
 	 */
 	public void ajoutEtudiant() {
-		Etudiant e = new Etudiant(txtb_NumEtudiant.getText(), txtb_NomEtudiant.getText(),
-				txtb_PrenomEtudiant.getText(), mentionInsert);
+		Etudiant e = new Etudiant(txtb_NumEtudiant.getText(), txtb_NomEtudiant.getText(), txtb_PrenomEtudiant.getText(),
+				mentionInsert);
 		// On ajoute l'étudiant à notre observable
 		listEtudiant.add(e);
-		
+
 		// On ajoute note étudiant au fichier CSV
 		ajoutCSV.ajoutEtudiant(e);
-		
+
 		// On clear nos champds d'insertion
 		txtb_MentionEtudiant.setText(null);
 		txtb_NomEtudiant.setText(null);
@@ -200,6 +204,29 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 				// Si la valeur est modifier on repasse le bouton à false
 				btn_ajouter.setDisable(true);
 			}
+		});
+
+		// Listener sur la tableView permettant de détecter les doubles clics sur une
+		// ligne
+		tableView_listeEtudiant.setRowFactory(tv -> {
+			TableRow<Etudiant> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && (!row.isEmpty())) {
+					Etudiant rowData = row.getItem();
+
+					// Maintenant on l'envoi vers l'interface pour l'ajout des UE
+					try {
+						// On spécifie sur quelle étudiant on travail
+						ListeEtudiantsInscritsController.etudiantUE = rowData;
+						// On passe alors à la vue suivante
+						App.setRoot("ListeEtudiantsInscrits");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+			return row;
 		});
 
 		// TODO TextFields.bindAutoCompletion(txtb_PrenomEtudiant, "Test");

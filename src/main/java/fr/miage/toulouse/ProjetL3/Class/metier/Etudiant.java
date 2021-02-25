@@ -10,6 +10,12 @@ package fr.miage.toulouse.ProjetL3.Class.metier;
  */
 public class Etudiant extends Personne {
 
+	@Override
+	public String toString() {
+		return "Etudiant [MentionEtudiant=" + MentionEtudiant + ", nomMention=" + nomMention + ", nomParcours="
+				+ nomParcours + ", num=" + num + ", nom=" + nom + ", prenom=" + prenom + "]";
+	}
+
 	private Mention MentionEtudiant;
 
 	// Attribut privé de la classe qui seront nécessaires lors de la génération des
@@ -89,4 +95,6 @@ public class Etudiant extends Personne {
 		this.nomParcours = nomParcours;
 	}
 
+	
+	
 }

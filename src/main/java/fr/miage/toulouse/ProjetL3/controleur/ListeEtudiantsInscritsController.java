@@ -1,68 +1,88 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.miage.toulouse.ProjetL3.controleur;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
-import fr.miage.toulouse.ProjetL3.Class.technique.chargementCSV;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import fr.miage.toulouse.ProjetL3.Class.metier.UE;
+import fr.miage.toulouse.ProjetL3.Class.technique.appFonction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseEvent;
+
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- * FXML Controller class
- *
- * @author IndiraMonnier
- */
+import javafx.scene.control.TableColumn;
+
 public class ListeEtudiantsInscritsController implements Initializable {
-
-	// Différents éléments de la vue FXML
 	@FXML
-	private TableView<Etudiant> tableView_EtudiantInscrits;
+	private Button btn_sauvegarder;
 	@FXML
-	private TableColumn<Etudiant, String> column_numEtudiant;
+	private Button btn_annuler;
 	@FXML
-	private TableColumn<Etudiant, String> column_nomEtudiant;
+	private TableView<UE> list_UE;
 	@FXML
-	private TableColumn<Etudiant, Integer> column_prenomEtudiant;
-
-	// Observable permettant de remplir notre tableView
-	private ObservableList<Etudiant> listeEtudiant = FXCollections.observableArrayList(/*
-			new Etudiant("111", "Folvert", "Folvert"), new Etudiant("222", "Mercier", "Aline"),
-			new Etudiant("333", "Monnier", "Indira"), new Etudiant("444", "Treport", "Elie")*/);
+	private TableColumn<UE, String> column_codeIdentification;
+	@FXML
+	private TableColumn<UE, String> column_nomUE;
+	@FXML
+	private TableColumn<UE, Integer> column_creditETC;
+	@FXML
+	private TableColumn<UE, ComboBox<String>> column_prerequisUE;
+	@FXML
+	private TableColumn<UE, CheckBox> column_checkBox;
 
 	/**
-	 * Cette méthode permet de repartir sur l'écran de connexion
+	 * Notre objet Etudiant transmit par le contrôleur
+	 * ListeEtudiantsInscritsController nous permettant de récupérer les UE auquel
+	 * cet étudiant peut s'inscrire
+	 */
+	public static Etudiant etudiantUE;
+
+	/**
 	 * 
-	 * @throws IOException
+	 * Evenement lors de la déconnexion
+	 * 
+	 * @param event
 	 */
-	public void switchToConnexion() throws IOException {
-		App.setRoot("Connexion");
+	@FXML
+	public void deco(MouseEvent event) {
+		appFonction.deco();
 	}
 
 	/**
-	 * Initializes the controller class.
+	 * Evenement lors du clic sur le bouton retour
+	 * 
+	 * @param event
 	 */
-	@Override
-	public void initialize(URL url, ResourceBundle rb) {
-		// Définition des attributs qui seront acceuillis dans les colonnes
-		// (correspondant aux attributs de la classe Etudiant)
-		column_numEtudiant.setCellValueFactory(new PropertyValueFactory<>("num"));
-		column_nomEtudiant.setCellValueFactory(new PropertyValueFactory<>("nom"));
-		column_prenomEtudiant.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-		tableView_EtudiantInscrits.setItems(listeEtudiant); // Ajout des données dans la tableView définit dans notre
-		// ObservableF
+	@FXML
+	public void retour(MouseEvent event) {
+		appFonction.retour("ListeEtudiant_Secretariat");
 	}
 
+	/**
+	 * Permet de sauvegarder les UE auquels ont été inscrits létudiant
+	 * 
+	 * @param event
+	 */
+	@FXML
+	public void sauvegarderUEInscription(MouseEvent event) {
+	}
+
+	/**
+	 * Permet de reset le formulaire
+	 * 
+	 * @param event
+	 */
+	@FXML
+	public void resetForm(MouseEvent event) {
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+	}
 }
