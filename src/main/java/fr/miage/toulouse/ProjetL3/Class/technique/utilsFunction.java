@@ -65,12 +65,16 @@ public interface utilsFunction {
 		}
 
 		/*
-		 * Ensuite on reboucle les UE afin de supprimer ceux qu'il a déjà validé
+		 * Ensuite on reboucle les UE afin de supprimer ceux qu'il a déjà validé et ceux
+		 * ou l'étudiant est déjà inscrit
 		 */
 		listUeReturn = (ArrayList<UE>) allListeUePossible.clone();
 		for (UE a : allListeUePossible) {
 			for (UEValide b : allUEValiderEtudiant) {
 				if (a.getCodeIdentification().equals(b.getUEValidation().getCodeIdentification()) && b.isValider()) {
+					listUeReturn.remove(a);
+				} else if (a.getCodeIdentification().equals(b.getUEValidation().getCodeIdentification())
+						&& b.getMoyenne() == -1) {
 					listUeReturn.remove(a);
 				}
 			}

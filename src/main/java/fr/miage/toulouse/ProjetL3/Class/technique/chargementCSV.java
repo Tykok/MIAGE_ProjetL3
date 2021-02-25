@@ -261,6 +261,50 @@ public interface chargementCSV {
 	}
 
 	/**
+	 * Cette fonction permet de retourner une collection de l'ensemble des UE
+	 * prérequis pour un UE donné
+	 * 
+	 * @param ue
+	 * @return
+	 */
+	public static ArrayList<UE> getAllUEPrerequis(UE ue) {
+		ArrayList<String[]> contenuFichier = returnTabCsv("prerequis");
+		ArrayList<UE> listUE = new ArrayList<UE>();
+
+		boolean firstLine = true;
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else if (ue.getCodeIdentification().equals(a[0])) {
+				listUE.add(getUE(a[1]));
+			}
+		}
+
+		return listUE;
+	}
+
+	/**
+	 * Cette fonction permet de récupérer un UE en particulier et de retourner
+	 * l'objet après l'avoir instancier
+	 * 
+	 * @param nomUE
+	 * @return
+	 */
+	private static UE getUE(String nomUE) {
+		ArrayList<String[]> contenuFichier = returnTabCsv("ue");
+
+		boolean firstLine = true;
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else if (a[0].equals(nomUE)) {
+				return new UE(a[0], a[1], Integer.valueOf(a[2]));
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Cette méthode permet de renvoyer les différents validation effectué par
 	 * l'ensemble des étudiants que l'on possède dans notre fichier CSV
 	 * 

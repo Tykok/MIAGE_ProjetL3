@@ -4,10 +4,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Main;
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
+import fr.miage.toulouse.ProjetL3.Class.metier.UE;
+import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
 
 public interface ajoutCSV {
 
@@ -52,6 +55,27 @@ public interface ajoutCSV {
 		etudiant.add(e.getPrenom() + ",");
 		etudiant.add(e.getNomMention());
 		ajoutValeurCSV("etudiants", etudiant);
+	}
+
+	/**
+	 * Méthode permettant de rajotuer une ligne à notre fichier CSV validationue,
+	 * permettant donc d'inscrire un étudiant ou d'entrer la validation d'une
+	 * matière à un semestre d'un étudiant dans ce fichier CSV
+	 * 
+	 * @see UEValidation
+	 * 
+	 * @param u
+	 */
+	public static void ajoutUeValidation(UEValide u) {
+		ArrayList<String> ueInscrit = new ArrayList<String>();
+		ueInscrit.add("\n");
+		ueInscrit.add(u.getUEValidation().getCodeIdentification() + ",");
+		ueInscrit.add(u.getEtudiantValidation().getNum() + ",");
+		ueInscrit.add(String.valueOf(u.getAnnneeValidation()) + ",");
+		ueInscrit.add(String.valueOf(u.isSemestre()) + ",");
+		ueInscrit.add(String.valueOf(u.isValider()) + ",");
+		ueInscrit.add(String.valueOf(u.getMoyenne()));
+		ajoutValeurCSV("validationue", ueInscrit);
 	}
 
 }

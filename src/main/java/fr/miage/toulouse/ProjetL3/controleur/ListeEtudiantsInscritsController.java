@@ -1,10 +1,14 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
+import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
+import fr.miage.toulouse.ProjetL3.Class.technique.ajoutCSV;
 import fr.miage.toulouse.ProjetL3.Class.technique.appFonction;
 import fr.miage.toulouse.ProjetL3.Class.technique.utilsFunction;
 import javafx.collections.FXCollections;
@@ -47,7 +51,7 @@ public class ListeEtudiantsInscritsController implements Initializable {
 
 	// Liste des UE qui peuvent être validé par l'étudiant
 	private ObservableList<UE> listUE = FXCollections.observableArrayList();
-	
+
 	/**
 	 * On récupérer ici l'ensemble des UE Valide
 	 */
@@ -82,6 +86,26 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	 */
 	@FXML
 	public void sauvegarderUEInscription(MouseEvent event) {
+		ArrayList<UE> listUEClear = new ArrayList<UE>();
+		for (UE u : listUE) {
+			if (u.getCheckValide().isSelected()) {
+
+				/*
+				 * On ajoute au CSV les informations après avoir créer notre objet
+				 * 
+				 */
+				Date d = new Date();
+				if (d.getMonth() > 6) {
+					ajoutCSV.ajoutUeValidation(new UEValide(d.getYear(), false, false, -1, u, etudiantUE));
+				} else {
+					ajoutCSV.ajoutUeValidation(new UEValide(d.getYear(), true, false, -1, u, etudiantUE));
+				}
+
+				// On remove l'UE de notre liste car l'étudiant y est inscrits
+				listUEClear.add(u);
+			}
+		}
+		listUE.removeAll(listUEClear);
 	}
 
 	/**
@@ -91,24 +115,25 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	 */
 	@FXML
 	public void resetForm(MouseEvent event) {
+		for (UE u : listUE) {
+			u.getCheckValide().setSelected(false);
+		}
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		for(UE ue : utilsFunction.ueInscriptionPossible(etudiantUE)) {
-		listUE.add(ue);	
+
+		for (UE ue : utilsFunction.ueInscriptionPossible(etudiantUE)) {
+			listUE.add(ue);
 		}
-		
-		
+
 		column_codeIdentification.setCellValueFactory(new PropertyValueFactory<>("codeIdentification"));
 		column_nomUE.setCellValueFactory(new PropertyValueFactory<>("nomUE"));
 		column_creditETC.setCellValueFactory(new PropertyValueFactory<>("creditECT"));
-		/*
-		column_prerequisUE.setCellValueFactory(new PropertyValueFactory<>("nomParcours"));
-		column_checkBox.setCellValueFactory(new PropertyValueFactory<>("nomMention"));
-		*/
+		column_prerequisUE.setCellValueFactory(new PropertyValueFactory<>("cmb_prerequis"));
+		column_checkBox.setCellValueFactory(new PropertyValueFactory<>("checkValide"));
+
 		list_UE.setItems(listUE);
-		
+
 	}
 }

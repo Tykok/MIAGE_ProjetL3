@@ -2,6 +2,12 @@ package fr.miage.toulouse.ProjetL3.Class.metier;
 
 import java.util.ArrayList;
 
+import fr.miage.toulouse.ProjetL3.Class.technique.chargementCSV;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+
 /**
  * Classe UE, elle fait référence à l'ensemble des UE (Cours) contenues dans une
  * ou plusieurs Mentions. Un UE est suivi par un ou plusieurs étudiants qui
@@ -18,6 +24,10 @@ public class UE {
 	private int creditECT;
 	private ArrayList<UE> collectionUE_Prerequis;
 
+	// Attribut nécessaire à JavaFX
+	private ComboBox<String> cmb_prerequis;
+	private CheckBox checkValide;
+
 	/**
 	 * Constructeur de la classe UE
 	 * 
@@ -30,6 +40,8 @@ public class UE {
 		this.nomUE = nomUE;
 		this.creditECT = credit;
 		this.collectionUE_Prerequis = new ArrayList<UE>();
+		this.cmb_prerequis = new ComboBox<String>();
+		this.checkValide = new CheckBox();
 	}
 
 	/**
@@ -107,8 +119,7 @@ public class UE {
 	}
 
 	/**
-	 * Méthode qui permet d'enlever un UE qui ne sera plus prérequis pour cet
-	 * UE
+	 * Méthode qui permet d'enlever un UE qui ne sera plus prérequis pour cet UE
 	 * 
 	 * @param m
 	 */
@@ -132,6 +143,31 @@ public class UE {
 	 */
 	public void setNomUE(String nomUE) {
 		this.nomUE = nomUE;
+	}
+
+	/**
+	 * @return the cmb_prerequis
+	 */
+	public ComboBox<String> getCmb_prerequis() {
+		ObservableList<String> listUEPrerequis = FXCollections.observableArrayList();
+		ArrayList<UE> listUE = chargementCSV.getAllUEPrerequis(this);
+
+		if (listUE.size() > 0) {
+			for (UE u : listUE) {
+				listUEPrerequis.add(u.getCodeIdentification() + " - " + u.getNomUE());
+			}
+			cmb_prerequis.setItems(listUEPrerequis);
+			return cmb_prerequis;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * @return the checkValide
+	 */
+	public CheckBox getCheckValide() {
+		return checkValide;
 	}
 
 }
