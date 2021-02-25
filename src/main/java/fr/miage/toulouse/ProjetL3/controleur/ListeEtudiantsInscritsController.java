@@ -1,11 +1,15 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
+import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
 import fr.miage.toulouse.ProjetL3.Class.technique.appFonction;
+import fr.miage.toulouse.ProjetL3.Class.technique.chargementCSV;
+import fr.miage.toulouse.ProjetL3.Class.technique.utilsFunction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -41,6 +45,11 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	 * cet étudiant peut s'inscrire
 	 */
 	public static Etudiant etudiantUE;
+
+	/**
+	 * On récupérer ici l'ensemble des UE Valide
+	 */
+	//private UEValide UEValideParEtudiant = utilsFunction.ueValideEtudiant(etudiantUE);
 
 	/**
 	 * 

@@ -125,7 +125,7 @@ public interface chargementCSV {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-	public static ArrayList<Mention> collectionMention() throws FileNotFoundException {
+	public static ArrayList<Mention> collectionMention() {
 		ArrayList<Mention> collectionMention = new ArrayList<Mention>();
 		boolean firstLine = true;
 		ArrayList<String[]> contenuFichier = returnTabCsv("mention");
@@ -188,7 +188,7 @@ public interface chargementCSV {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-	public static ArrayList<Connexion> collectionRole() throws FileNotFoundException {
+	public static ArrayList<Connexion> collectionConnexion() {
 		ArrayList<Connexion> collectionRole = new ArrayList<Connexion>();
 		ArrayList<String[]> contenuFichier = returnTabCsv("role");
 		boolean firstLine = true;
@@ -209,7 +209,7 @@ public interface chargementCSV {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-	public static ArrayList<UE> collectionUE() throws FileNotFoundException {
+	public static ArrayList<UE> collectionUE() {
 		ArrayList<UE> collectionUE = new ArrayList<UE>();
 		ArrayList<String[]> contenuFichier = returnTabCsv("ue");
 
@@ -233,7 +233,7 @@ public interface chargementCSV {
 	 * @param collectionUE
 	 * @throws FileNotFoundException
 	 */
-	private static void getCollectionUEPrerequis(ArrayList<UE> collectionUE) throws FileNotFoundException {
+	private static void getCollectionUEPrerequis(ArrayList<UE> collectionUE) {
 		ArrayList<String[]> contenuFichier = returnTabCsv("prerequis");
 
 		boolean firstLine = true;
@@ -267,7 +267,7 @@ public interface chargementCSV {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-	public static ArrayList<UEValide> collectionUEValide() throws FileNotFoundException {
+	public static ArrayList<UEValide> collectionUEValide() {
 		ArrayList<UEValide> collectionUEValide = new ArrayList<UEValide>();
 		ArrayList<Etudiant> collectionEtudiant = collectionEtudiant();
 		ArrayList<UE> collectionUE = collectionUE();

@@ -1,2 +1,4 @@
 "num","nom","prenom", "identifiant", "mdp","role"
-"151","Admin","Admin", "Directeur", "Admin","Directeur"
+"151","Admin","Admin", "Directeur", "Admin","Directeur d'étude"
+"151","Admin","Admin", "Secretaire", "Admin","Secréteriat pédagogique"
+"151","Admin","Admin", "Bureau", "Admin","Bureau des examens"

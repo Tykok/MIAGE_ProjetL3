@@ -34,20 +34,6 @@ public class Connexion extends Personne {
 	}
 
 	/**
-	 * Cette méthode permet de vérifier que l'identifiant et le mot de passe fourni
-	 * sont bel et bien correct
-	 * 
-	 * @param identifiant Identifiant entré par l'utiliser
-	 * @param mdp         Mot de passe entré par l'utiliser
-	 * @return Une valeur booléenne
-	 */
-	public static boolean verifConnexion(String identifiant, String mdp) {
-		String idTest = "Test";
-		String mdpTest = "Test";
-		return (identifiant.equals(idTest) && mdp.equals(mdpTest));
-	}
-
-	/**
 	 * Fonction Get de l'identifiant
 	 * 
 	 * @return

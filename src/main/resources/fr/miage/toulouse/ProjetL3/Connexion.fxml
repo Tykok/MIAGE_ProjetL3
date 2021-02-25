@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -9,59 +17,50 @@
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="675.0"
-	prefWidth="896.0">
+<AnchorPane id="AnchorPane" prefHeight="675.0" prefWidth="896.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fr.miage.toulouse.ProjetL3.controleur.ConnexionController">
 	<children>
-		<ImageView fitHeight="696.0" fitWidth="1251.0"
-			layoutY="-2.0">
+		<ImageView fitHeight="696.0" fitWidth="1251.0" layoutY="-2.0">
 
 			<image>
 				<Image url="@Images/fondEcran.jpg" />
 			</image>
 
 		</ImageView>
-		<AnchorPane layoutX="264.0" layoutY="112.0"
-			prefHeight="494.0" prefWidth="723.0"
-			style="-fx-background-color: white; -fx-background-radius: 15;">
+		<AnchorPane layoutX="264.0" layoutY="112.0" prefHeight="494.0" prefWidth="723.0" style="-fx-background-color: white; -fx-background-radius: 15;">
 			<children>
-				<Label layoutX="116.0" layoutY="122.0" prefHeight="52.0"
-					prefWidth="214.0" text="Identifiant:">
+				<Label layoutX="116.0" layoutY="122.0" prefHeight="52.0" prefWidth="214.0" text="Identifiant:">
 					<font>
 						<Font name="Bell MT" size="35.0" />
 					</font>
 				</Label>
-				<Label layoutX="80.0" layoutY="186.0" prefHeight="43.0"
-					prefWidth="214.0" text="Mot de passe:">
+				<Label layoutX="80.0" layoutY="186.0" prefHeight="43.0" prefWidth="214.0" text="Mot de passe:">
 					<font>
 						<Font name="Bell MT" size="35.0" />
 					</font>
 				</Label>
-				<Button layoutX="302.0" layoutY="334.0"
-					mnemonicParsing="false" prefHeight="52.0" prefWidth="134.0"
-					text="Valider">
+				<Button layoutX="302.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#verifConnexion" prefHeight="52.0" prefWidth="134.0" text="Valider">
 					<font>
 						<Font name="Bell MT" size="25.0" />
 					</font>
 				</Button>
-				<Label layoutX="191.0" layoutY="237.0" prefHeight="25.0"
-					prefWidth="126.0" text="Droit:">
+				<Label layoutX="191.0" layoutY="237.0" prefHeight="25.0" prefWidth="126.0" text="Droit:">
 					<font>
 						<Font name="Bell MT" size="35.0" />
 					</font>
 				</Label>
-				<ComboBox layoutX="319.0" layoutY="240.0" prefHeight="40.0"
-					prefWidth="228.0" />
-				<TextField layoutX="318.0" layoutY="127.0"
-					prefHeight="40.0" prefWidth="228.0" />
-				<TextField layoutX="318.0" layoutY="182.0"
-					prefHeight="40.0" prefWidth="228.0" />
+				<ComboBox fx:id="cmb_droit" layoutX="319.0" layoutY="240.0" prefHeight="40.0" prefWidth="228.0" />
+				<TextField fx:id="txtBUserId" layoutX="318.0" layoutY="127.0" prefHeight="40.0" prefWidth="228.0" />
+				<TextField fx:id="txtBMotDePasse" layoutX="318.0" layoutY="182.0" prefHeight="40.0" prefWidth="228.0" />
+            <Text fx:id="infoConnexion" fill="#e82a09" layoutX="250.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Erreur lors de la tentative de connexion" visible="false" wrappingWidth="222.205078125">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
 			</children>
 		</AnchorPane>
-		<ImageView fitHeight="75.0" fitWidth="184.0" layoutX="7.0"
-			layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+		<ImageView fitHeight="75.0" fitWidth="184.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
 			<image>
 				<Image url="@Images/_logo.png" />
 			</image>
@@ -69,9 +68,7 @@
 				<DropShadow />
 			</effect>
 		</ImageView>
-		<Label alignment="TOP_LEFT" layoutX="210.0" layoutY="16.0"
-			prefHeight="52.0" prefWidth="250.0" text="Connexion" textFill="WHITE"
-			underline="true">
+		<Label alignment="TOP_LEFT" layoutX="210.0" layoutY="16.0" prefHeight="52.0" prefWidth="250.0" text="Connexion" textFill="WHITE" underline="true">
 			<font>
 				<Font name="Bell MT" size="43.0" />
 			</font>
@@ -83,4 +80,5 @@
 			</effect>
 		</Label>
 	</children>
+
 </AnchorPane>

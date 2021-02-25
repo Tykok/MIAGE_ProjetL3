@@ -2,10 +2,12 @@ package fr.miage.toulouse.ProjetL3.controleur;
 
 import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Class.metier.Connexion;
+import fr.miage.toulouse.ProjetL3.Class.technique.chargementCSV;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,7 +53,7 @@ public class ConnexionController implements Initializable {
 	private void verifConnexion() {
 		if (txtBUserId.getText().length() > 0 && txtBMotDePasse.getText().length() > 0
 				&& cmb_droit.getValue() != null) {
-			if (Connexion.verifConnexion(txtBUserId.getText(), txtBMotDePasse.getText())) {
+			if (verifConnexion(txtBUserId.getText(), txtBMotDePasse.getText(), cmb_droit.getValue())) {
 				switchVue(cmb_droit.getValue());
 			} else {
 				infoConnexion.setVisible(true);
@@ -61,6 +63,24 @@ public class ConnexionController implements Initializable {
 			infoConnexion.setVisible(true);
 			infoConnexion.setText("Veuillez renseigner l'ensemble des champs");
 		}
+	}
+
+	/**
+	 * Cette méthode permet de vérifier que l'identifiant et le mot de passe fourni
+	 * sont bel et bien correct
+	 * 
+	 * @param identifiant Identifiant entré par l'utiliser
+	 * @param mdp         Mot de passe entré par l'utiliser
+	 * @return Une valeur booléenne
+	 */
+	public static boolean verifConnexion(String identifiant, String mdp, String droit) {
+		ArrayList<Connexion> connexionPossible = chargementCSV.collectionConnexion();
+		for (Connexion a : connexionPossible) {
+			if (identifiant.equals(a.getIdentifiant()) && mdp.equals(a.getMdp()) && droit.equals(a.getDroit())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -76,11 +96,11 @@ public class ConnexionController implements Initializable {
 				App.setRoot("ListeEtudiant_DirecteurEtude");
 				break;
 			case "Secréteriat pédagogique":
-				App.setRoot("ListeEtudiant_Secreteriat");
+				App.setRoot("ListeEtudiant_Secretariat");
 				break;
 			case "Bureau des examens":
 
-				App.setRoot("ListeUEBureauExam");
+				App.setRoot("ListeEtudiant_BureauExam");
 				break;
 			default:
 				infoConnexion.setVisible(true);
