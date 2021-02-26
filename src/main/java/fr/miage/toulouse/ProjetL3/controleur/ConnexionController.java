@@ -100,7 +100,7 @@ public class ConnexionController implements Initializable {
 				break;
 			case "Bureau des examens":
 
-				App.setRoot("ListeEtudiant_BureauExam");
+				App.setRoot("ListeUEbureauExamen");
 				break;
 			default:
 				infoConnexion.setVisible(true);
