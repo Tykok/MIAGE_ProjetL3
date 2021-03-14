@@ -14,7 +14,7 @@ import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
  *
  */
 public class utilsFunction {
-	
+
 	/**
 	 * Cette fonction permet de récupérer l'ensemble des UE auquel un étudiant peut
 	 * être inscrits ou ré-inscrits
@@ -24,6 +24,19 @@ public class utilsFunction {
 	 */
 	public static ArrayList<UE> getAllInscriptionPossible(Etudiant e) {
 		ArrayList<UE> allUEInscription = ueNonEtudiant(e);
+		boolean dejaPresent;
+		for (UE a : getUeWithoutPrerequis(e)) {
+			dejaPresent = false;
+			for (UE b : allUEInscription) {
+				if (a.getCodeIdentification().equals(b.getCodeIdentification())) {
+					dejaPresent = true;
+					break;
+				}
+			}
+			if (!dejaPresent) {
+				allUEInscription.add(a);
+			}
+		}
 
 		for (UE a : ueEtudiant(e)) {
 			getUEPossible(a, allUEInscription);
@@ -62,6 +75,37 @@ public class utilsFunction {
 				listUePossible.add(b);
 			}
 		}
+	}
+
+	/**
+	 * Cette méthode permet de récupérer l'ensemble des UE qu'un étudiant peut
+	 * passer sans pour autant avoir besoin de prérequis
+	 * 
+	 * @param e
+	 * @return
+	 */
+	public static ArrayList<UE> getUeWithoutPrerequis(Etudiant e) {
+		ArrayList<UE> listUEValide = ueEtudiant(e);
+		ArrayList<UE> uePossible = chargementCSV.collectionUE();
+		ArrayList<UE> listUEReturn = new ArrayList<UE>();
+		boolean dejaValider;
+
+		for (UE a : uePossible) {
+			dejaValider = false;
+			if (a.getCollectionUE_Prerequis().size() <= 0) {
+				for (UE b : listUEValide) {
+					if (a.getCodeIdentification().equals(b.getCodeIdentification())) {
+						dejaValider = true;
+						break;
+					}
+				}
+				if (!dejaValider) {
+					listUEReturn.add(a);
+				}
+			}
+		}
+
+		return listUEReturn;
 	}
 
 	/**

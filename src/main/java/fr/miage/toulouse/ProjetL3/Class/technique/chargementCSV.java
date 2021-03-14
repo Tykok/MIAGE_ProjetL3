@@ -316,7 +316,7 @@ public class chargementCSV {
 			if (firstLine) {
 				firstLine = !firstLine;
 			} else if (u.getCodeIdentification().equals(a[1])) {
-				listUE.add(getUE(a[1]));
+				listUE.add(getUE(a[0]));
 			}
 		}
 

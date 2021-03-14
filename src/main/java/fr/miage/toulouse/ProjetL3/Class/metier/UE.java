@@ -40,8 +40,15 @@ public class UE {
 		this.nomUE = nomUE;
 		this.creditECT = credit;
 		this.collectionUE_Prerequis = new ArrayList<UE>();
+		/*
 		this.cmb_prerequis = new ComboBox<String>();
 		this.checkValide = new CheckBox();
+		*/
+	}
+
+	@Override
+	public String toString() {
+		return "UE [codeIdentification=" + codeIdentification + ", nomUE=" + nomUE + ", creditECT=" + creditECT + "]";
 	}
 
 	/**
