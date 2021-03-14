@@ -94,7 +94,7 @@
 		<dependency>
 			<groupId>org.controlsfx</groupId>
 			<artifactId>controlsfx</artifactId>
-			<version>11.0.0</version>
+			<version>11.1.0</version>
 		</dependency>
 
 
@@ -121,6 +121,10 @@
 				<version>0.0.5</version>
 				<configuration>
 					<mainClass>${main-class}</mainClass>
+					<options>
+						<option>--add-exports</option>
+						<option>javafx.base/com.sun.javafx.event=org.controlsfx.controls</option>
+					</options>
 				</configuration>
 			</plugin>
 

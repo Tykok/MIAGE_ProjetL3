@@ -13,102 +13,156 @@ import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
  * @author ElieTreport
  *
  */
-public interface utilsFunction {
+public class utilsFunction {
+	
+	/**
+	 * Cette fonction permet de récupérer l'ensemble des UE auquel un étudiant peut
+	 * être inscrits ou ré-inscrits
+	 * 
+	 * @param e
+	 * @return
+	 */
+	public static ArrayList<UE> getAllInscriptionPossible(Etudiant e) {
+		ArrayList<UE> allUEInscription = ueNonEtudiant(e);
+
+		for (UE a : ueEtudiant(e)) {
+			getUEPossible(a, allUEInscription);
+		}
+
+		return allUEInscription;
+	}
 
 	/**
-	 * Méthode qui permet de récupérer SEULEMENT les UE validés par un étudiant
-	 * qu'on aura renseigné dans le fichier CSV
+	 * Cette méthode void permet de récupérer l'ensemble des UE pouvant être passé
+	 * suite à l'UE qui aura été fourni en paaramètre. La liste qui est fournie en
+	 * second permet de regarder directement si cet UE n'a pas déjà été ajouté
+	 * (permet d'éviter les doublons)
 	 * 
+	 * @param u
+	 * @param listUePossible
+	 */
+	public static void getUEPossible(UE u, ArrayList<UE> listUePossible) {
+		// On récupére l'ensemble des UE pouvant être passé
+		ArrayList<UE> allUePossible = chargementCSV.getUEForThisUE(u);
+		boolean uePresent;
+
+		// On parcourt l'ensemble des UE ou l'étudiant peut étudier
+		for (UE b : allUePossible) {
+			uePresent = false;
+			// On regarde s'il n'est pas déjà présent dans notre ArrayList
+			for (UE a : listUePossible) {
+				if (a.getCodeIdentification().equals(b.getCodeIdentification())) {
+					uePresent = true;
+					break;
+				}
+			}
+
+			// Si il n'est pas présent, on l'ajoute
+			if (!uePresent) {
+				listUePossible.add(b);
+			}
+		}
+	}
+
+	/**
+	 * Cette méthode permet de retourner l'ensemble des UE qu'un étudiant à validé
+	 * 
+	 * @param listValide
+	 * @return
+	 */
+	public static ArrayList<UE> ueEtudiant(Etudiant e) {
+		ArrayList<UEValide> listValide = ueValideEtudiant(e);
+		ArrayList<UE> UEValideEtudiant = new ArrayList<UE>();
+		for (UEValide u : listValide) {
+			UEValideEtudiant.add(chargementCSV.getUE(u.getUEValidation().getCodeIdentification()));
+		}
+		return UEValideEtudiant;
+	}
+
+	/**
+	 * Cette fonction permet de récupérer l'ensemble des UE qui n'ont pas été validé
+	 * par un étudiant
+	 * 
+	 * @param e
+	 * @return
+	 */
+	public static ArrayList<UE> ueNonEtudiant(Etudiant e) {
+		ArrayList<UEValide> listValide = ueNonValideEtudiant(e);
+		ArrayList<UE> UEValideEtudiant = new ArrayList<UE>();
+		for (UEValide u : listValide) {
+			UEValideEtudiant.add(chargementCSV.getUE(u.getUEValidation().getCodeIdentification()));
+		}
+		return UEValideEtudiant;
+	}
+
+	/**
+	 * Cette méthode permet de retourner l'ensemble des UE en cours d'un étudiant
+	 * 
+	 * @param listValide
+	 * @return
+	 */
+	public static ArrayList<UE> ueEtudiantEnCours(Etudiant e) {
+		ArrayList<UEValide> listValide = ueEnCours(e);
+		ArrayList<UE> UEValideEtudiant = new ArrayList<UE>();
+		for (UEValide u : listValide) {
+			UEValideEtudiant.add(chargementCSV.getUE(u.getUEValidation().getCodeIdentification()));
+		}
+		return UEValideEtudiant;
+	}
+
+	/**
+	 * Cette fonction permet de retourner l'ensemble des UEValide qui n'ont pas été
+	 * validé par l'étudiant
+	 * 
+	 * @param e
+	 * @return
+	 */
+	private static ArrayList<UEValide> ueNonValideEtudiant(Etudiant e) {
+		ArrayList<UEValide> allValidation = chargementCSV.collectionUEValide();
+		ArrayList<UEValide> validationEtudiant = new ArrayList<UEValide>();
+		for (UEValide u : allValidation) {
+			if (u.getEtudiantValidation().getNum().equals(e.getNum()) && !u.isValider()) {
+				validationEtudiant.add(u);
+			}
+		}
+		return validationEtudiant;
+	}
+
+	/**
+	 * Cette méthode permet de retourner l'ensemble des UE validés par l'étudiant
+	 * passé en paramètre (UEValide) et renvoie une ArrayList d'UEValide
+	 * 
+	 * @see UEValide
 	 * @param e
 	 * @return
 	 */
 	private static ArrayList<UEValide> ueValideEtudiant(Etudiant e) {
-		ArrayList<UEValide> collectionUEValide = chargementCSV.collectionUEValide();
-		ArrayList<UEValide> ueReturn = new ArrayList<UEValide>();
-
-		for (UEValide a : collectionUEValide) {
-			/**
-			 * On vérifie que l'étudiant à bien valider cet UE et qu'il correspond bien à
-			 * notre étudiant
-			 */
-			if (a.getEtudiantValidation().getNum().equals(e.getNum()) && a.isValider()) {
-				ueReturn.add(a);
+		ArrayList<UEValide> allValidation = chargementCSV.collectionUEValide();
+		ArrayList<UEValide> validationEtudiant = new ArrayList<UEValide>();
+		for (UEValide u : allValidation) {
+			if (u.getEtudiantValidation().getNum().equals(e.getNum()) && u.isValider()) {
+				validationEtudiant.add(u);
 			}
 		}
-		return ueReturn;
+		return validationEtudiant;
 	}
 
 	/**
-	 * Cette fonction permet de retourner l'ensemble des UE ou un étudiant peut
-	 * s'inscrire. On exclue par ailleurs les UE qu'il a déjà validé ainsi que les
-	 * UE ou il n'aura pas les prérequis pour pouvoir s'y inscrire
+	 * Cette fonction permet de récupérer l'ensemble des UEValide en cours par
+	 * l'étudiant
 	 * 
 	 * @param e
 	 * @return
 	 */
-	public static ArrayList<UE> ueInscriptionPossible(Etudiant e) {
-		ArrayList<UE> listUeReturn = new ArrayList<UE>();
-		ArrayList<UE> allListeUePossible = new ArrayList<UE>();
-		ArrayList<UE> allUE = chargementCSV.collectionUE();
-		ArrayList<UEValide> allUEValiderEtudiant = ueValideEtudiant(e);
-
-		/*
-		 * Pour commencer on récupére TOUT les UE ou l'étudiant peut être inscrits (même
-		 * ceux qu'il a déjà validé)
-		 */
-		for (UE ueAValider : allUE) {
-			// On vérifie que pour cet UE l'étudiant possède tout les prérequis
-			if (inscriptionPossible(ueAValider, allUEValiderEtudiant)) {
-				// Si c'est le cas on l'ajoute à notre collection
-				allListeUePossible.add(ueAValider);
+	private static ArrayList<UEValide> ueEnCours(Etudiant e) {
+		ArrayList<UEValide> allValidation = chargementCSV.collectionUEValide();
+		ArrayList<UEValide> ueEnCours = new ArrayList<UEValide>();
+		for (UEValide u : allValidation) {
+			if (u.getEtudiantValidation().getNum().equals(e.getNum()) && u.getMoyenne() == -1) {
+				ueEnCours.add(u);
 			}
 		}
-
-		/*
-		 * Ensuite on reboucle les UE afin de supprimer ceux qu'il a déjà validé et ceux
-		 * ou l'étudiant est déjà inscrit
-		 */
-		listUeReturn = (ArrayList<UE>) allListeUePossible.clone();
-		for (UE a : allListeUePossible) {
-			for (UEValide b : allUEValiderEtudiant) {
-				if (a.getCodeIdentification().equals(b.getUEValidation().getCodeIdentification()) && b.isValider()) {
-					listUeReturn.remove(a);
-				} else if (a.getCodeIdentification().equals(b.getUEValidation().getCodeIdentification())
-						&& b.getMoyenne() == -1) {
-					listUeReturn.remove(a);
-				}
-			}
-		}
-
-		return listUeReturn;
-	}
-
-	/**
-	 * Méthode qui retourne VRAI ou FAUX si l'étudiant à ou non l'ensemble des
-	 * prérequis pour un UE
-	 * 
-	 * @param uePrerequis
-	 * @param UEValider
-	 * @return
-	 */
-	private static boolean inscriptionPossible(UE uePrerequis, ArrayList<UEValide> UEValider) {
-
-		// On initialise à true si aucun prérequis n'est nécessaire
-		boolean allPrerequis = true;
-		for (UE prerequis : uePrerequis.getCollectionUE_Prerequis()) {
-			allPrerequis = false;
-			for (UEValide valider : UEValider) {
-				if (valider.getUEValidation().getCodeIdentification().equals(prerequis.getCodeIdentification())) {
-					allPrerequis = true;
-					break;
-				}
-			}
-			if (!allPrerequis) {
-				return allPrerequis;
-			}
-		}
-
-		return allPrerequis;
+		return ueEnCours;
 	}
 
 }

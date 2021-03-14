@@ -19,7 +19,7 @@ import fr.miage.toulouse.ProjetL3.Class.metier.*;
  * d'avoir une collection d'objet pouvant être exploités
  *
  */
-public interface chargementCSV {
+public class chargementCSV {
 
 	/**
 	 * Cette méthode permet de charger un fichier CSV donné en argument et de
@@ -71,6 +71,23 @@ public interface chargementCSV {
 		}
 
 		return collectionEtudiant;
+	}
+
+	/**
+	 * Cette méthode permet de retourner un étudiant, en fonction du numéro
+	 * d'étudiant qui aura été fourni en paramètre
+	 * 
+	 * @param num
+	 * @return
+	 */
+	public static Etudiant getEtudiant(String num) {
+		ArrayList<Etudiant> collectionEtudiant = collectionEtudiant();
+		for (Etudiant a : collectionEtudiant) {
+			if (a.getNum().equals(num)) {
+				return a;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -284,13 +301,36 @@ public interface chargementCSV {
 	}
 
 	/**
+	 * Cette fonction, permet de récupérer l'ensemble des UE qui peuvent être passé
+	 * grâce à l'UE qui est donné en paramètre
+	 * 
+	 * @param u
+	 * @return
+	 */
+	public static ArrayList<UE> getUEForThisUE(UE u) {
+		ArrayList<String[]> contenuFichier = returnTabCsv("prerequis");
+		ArrayList<UE> listUE = new ArrayList<UE>();
+
+		boolean firstLine = true;
+		for (String[] a : contenuFichier) {
+			if (firstLine) {
+				firstLine = !firstLine;
+			} else if (u.getCodeIdentification().equals(a[1])) {
+				listUE.add(getUE(a[1]));
+			}
+		}
+
+		return listUE;
+	}
+
+	/**
 	 * Cette fonction permet de récupérer un UE en particulier et de retourner
 	 * l'objet après l'avoir instancier
 	 * 
 	 * @param nomUE
 	 * @return
 	 */
-	private static UE getUE(String nomUE) {
+	public static UE getUE(String nomUE) {
 		ArrayList<String[]> contenuFichier = returnTabCsv("ue");
 
 		boolean firstLine = true;

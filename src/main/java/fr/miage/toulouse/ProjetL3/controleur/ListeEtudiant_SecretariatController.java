@@ -5,6 +5,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+
 import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.Mention;
@@ -55,7 +58,7 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 	private TextField txtb_MentionEtudiant;
 
 	// TODO Permet l'auto-complétion de la zone de texte
-	// private AutoCompletionBinding<String> autoComplete;
+	private AutoCompletionBinding<String> autoComplete;
 
 	// Observable contenant la liste des différents étudiants
 	private ObservableList<Etudiant> listEtudiant = FXCollections.observableArrayList();
@@ -228,7 +231,5 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 			});
 			return row;
 		});
-
-		// TODO TextFields.bindAutoCompletion(txtb_PrenomEtudiant, "Test");
 	}
 }

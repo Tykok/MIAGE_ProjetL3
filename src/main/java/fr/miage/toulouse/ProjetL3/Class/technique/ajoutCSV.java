@@ -12,7 +12,7 @@ import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
 import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
 
-public interface ajoutCSV {
+public class ajoutCSV {
 
 	/**
 	 * Cette méthode permet d'ajouter les valeurs voulues à un fichier CSV

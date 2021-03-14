@@ -1,11 +1,13 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
+import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.Mention;
 import fr.miage.toulouse.ProjetL3.Class.metier.Parcours;
@@ -20,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 
 public class ListeEtudiant_DirecteurEtudeController implements Initializable {
 
@@ -41,10 +44,8 @@ public class ListeEtudiant_DirecteurEtudeController implements Initializable {
 	@FXML
 	private TableColumn<Mention, String> column_mention;
 
-
 	// Observable contenant la liste des différents étudiants
 	private ObservableList<Etudiant> listEtudiant = FXCollections.observableArrayList();
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -65,6 +66,28 @@ public class ListeEtudiant_DirecteurEtudeController implements Initializable {
 		column_mention.setCellValueFactory(new PropertyValueFactory<>("nomMention"));
 		tableView_listeEtudiant1.setItems(listEtudiant); // Ajout des données dans la tableView définit dans notre
 		// ObservableF
+
+		// Ecouteurs permettant de détecter les doubles clics sur la tableView
+		tableView_listeEtudiant1.setRowFactory(tv -> {
+			TableRow<Etudiant> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && (!row.isEmpty())) {
+					Etudiant rowData = row.getItem();
+
+					// Maintenant on l'envoi vers l'interface pour l'ajout des UE
+					try {
+						// On spécifie sur quelle étudiant on travail
+						ListeUEController.etudiantClic = rowData;
+						// On passe alors à la vue suivante
+						App.setRoot("ListeUE");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+			return row;
+		});
 	}
 
 	/**

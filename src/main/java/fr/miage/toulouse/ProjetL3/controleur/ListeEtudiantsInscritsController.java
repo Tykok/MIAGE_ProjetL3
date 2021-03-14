@@ -123,7 +123,7 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		for (UE ue : utilsFunction.ueInscriptionPossible(etudiantUE)) {
+		for (UE ue : utilsFunction.getAllInscriptionPossible(etudiantUE)) {
 			listUE.add(ue);
 		}
 
