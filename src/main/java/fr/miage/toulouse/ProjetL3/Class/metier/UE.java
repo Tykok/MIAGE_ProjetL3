@@ -40,6 +40,7 @@ public class UE {
 		this.nomUE = nomUE;
 		this.creditECT = credit;
 		this.collectionUE_Prerequis = new ArrayList<UE>();
+		// TODO Faire l'héirtage pour pouvoir avoir une classe PROPRE
 		/*
 		this.cmb_prerequis = new ComboBox<String>();
 		this.checkValide = new CheckBox();

@@ -39,6 +39,7 @@ public class utilsFunction {
 		}
 
 		for (UE a : ueEtudiant(e)) {
+			// TODO Il faut que la fonction vérifie l'ensemble des prérequis
 			getUEPossible(a, allUEInscription);
 		}
 
