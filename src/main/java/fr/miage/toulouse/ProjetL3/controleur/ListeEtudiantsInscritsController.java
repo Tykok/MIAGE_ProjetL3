@@ -8,9 +8,10 @@ import java.util.ResourceBundle;
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
 import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
-import fr.miage.toulouse.ProjetL3.Class.technique.ajoutCSV;
-import fr.miage.toulouse.ProjetL3.Class.technique.appFonction;
-import fr.miage.toulouse.ProjetL3.Class.technique.utilsFunction;
+import fr.miage.toulouse.ProjetL3.Class.technique.affichageUE;
+import fr.miage.toulouse.ProjetL3.Class.technique.csv.ajoutCSV;
+import fr.miage.toulouse.ProjetL3.Class.technique.fonction.appFonction;
+import fr.miage.toulouse.ProjetL3.Class.technique.fonction.utilsFunction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,17 +31,17 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	@FXML
 	private Button btn_annuler;
 	@FXML
-	private TableView<UE> list_UE;
+	private TableView<affichageUE> list_UE;
 	@FXML
-	private TableColumn<UE, String> column_codeIdentification;
+	private TableColumn<affichageUE, String> column_codeIdentification;
 	@FXML
-	private TableColumn<UE, String> column_nomUE;
+	private TableColumn<affichageUE, String> column_nomUE;
 	@FXML
-	private TableColumn<UE, Integer> column_creditETC;
+	private TableColumn<affichageUE, Integer> column_creditETC;
 	@FXML
-	private TableColumn<UE, ComboBox<String>> column_prerequisUE;
+	private TableColumn<affichageUE, ComboBox<String>> column_prerequisUE;
 	@FXML
-	private TableColumn<UE, CheckBox> column_checkBox;
+	private TableColumn<affichageUE, CheckBox> column_checkBox;
 
 	/**
 	 * Notre objet Etudiant transmit par le contrôleur
@@ -50,7 +51,7 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	public static Etudiant etudiantUE;
 
 	// Liste des UE qui peuvent être validé par l'étudiant
-	private ObservableList<UE> listUE = FXCollections.observableArrayList();
+	private ObservableList<affichageUE> listUE = FXCollections.observableArrayList();
 
 	/**
 	 * On récupérer ici l'ensemble des UE Valide
@@ -86,8 +87,8 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	 */
 	@FXML
 	public void sauvegarderUEInscription(MouseEvent event) {
-		ArrayList<UE> listUEClear = new ArrayList<UE>();
-		for (UE u : listUE) {
+		ArrayList<affichageUE> listUEClear = new ArrayList<affichageUE>();
+		for (affichageUE u : listUE) {
 			if (u.getCheckValide().isSelected()) {
 
 				/*
@@ -115,7 +116,7 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	 */
 	@FXML
 	public void resetForm(MouseEvent event) {
-		for (UE u : listUE) {
+		for (affichageUE u : listUE) {
 			u.getCheckValide().setSelected(false);
 		}
 	}
@@ -124,7 +125,7 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		for (UE ue : utilsFunction.getAllInscriptionPossible(etudiantUE)) {
-			listUE.add(ue);
+			listUE.add(new affichageUE(ue));
 		}
 
 		column_codeIdentification.setCellValueFactory(new PropertyValueFactory<>("codeIdentification"));

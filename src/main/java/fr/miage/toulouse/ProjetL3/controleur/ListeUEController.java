@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
-import fr.miage.toulouse.ProjetL3.Class.technique.appFonction;
+import fr.miage.toulouse.ProjetL3.Class.technique.fonction.appFonction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

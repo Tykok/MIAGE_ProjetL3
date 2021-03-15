@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
-import fr.miage.toulouse.ProjetL3.Class.technique.appFonction;
-import fr.miage.toulouse.ProjetL3.Class.technique.chargementCSV;
+import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
+import fr.miage.toulouse.ProjetL3.Class.technique.fonction.appFonction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

@@ -1,10 +1,11 @@
-package fr.miage.toulouse.ProjetL3.Class.technique;
+package fr.miage.toulouse.ProjetL3.Class.technique.fonction;
 
 import java.util.ArrayList;
 
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
 import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
+import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
 
 /**
  * Interface permettant d'utiliser des fonctions utiles pour les différents
@@ -38,10 +39,7 @@ public class utilsFunction {
 			}
 		}
 
-		for (UE a : ueEtudiant(e)) {
-			// TODO Il faut que la fonction vérifie l'ensemble des prérequis
-			getUEPossible(a, allUEInscription);
-		}
+		getUEPossible(ueEtudiant(e), allUEInscription, e);
 
 		return allUEInscription;
 	}
@@ -55,27 +53,73 @@ public class utilsFunction {
 	 * @param u
 	 * @param listUePossible
 	 */
-	public static void getUEPossible(UE u, ArrayList<UE> listUePossible) {
-		// On récupére l'ensemble des UE pouvant être passé
-		ArrayList<UE> allUePossible = chargementCSV.getUEForThisUE(u);
-		boolean uePresent;
-
-		// On parcourt l'ensemble des UE ou l'étudiant peut étudier
-		for (UE b : allUePossible) {
-			uePresent = false;
-			// On regarde s'il n'est pas déjà présent dans notre ArrayList
-			for (UE a : listUePossible) {
-				if (a.getCodeIdentification().equals(b.getCodeIdentification())) {
-					uePresent = true;
-					break;
-				}
-			}
-
-			// Si il n'est pas présent, on l'ajoute
-			if (!uePresent) {
-				listUePossible.add(b);
+	public static void getUEPossible(ArrayList<UE> listUeObtenu, ArrayList<UE> listUePossible, Etudiant e) {
+		// On récupére l'ensemble des UE
+		for (UE a : chargementCSV.collectionUE()) {
+			if (!ueDejaValide(a, listUePossible) && ueDejaValide(listUeObtenu, a.getCollectionUE_Prerequis()) && !ueDejaValide(a, e)) {
+				listUePossible.add(a);
 			}
 		}
+	}
+
+	/**
+	 * Cette méthode permet de vérifier qu'un étudiant n'a pas déjà validé l'UE que
+	 * l'on aura donné en paramètre
+	 * 
+	 * @param u
+	 * @param e
+	 * @return
+	 */
+	public static boolean ueDejaValide(UE u, Etudiant e) {
+		for (UE a : ueEtudiant(e)) {
+			if (a.getCodeIdentification().equals(u.getCodeIdentification())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Cette méthode permet à partir de deux listes d'UE, de savoir si tout les UE
+	 * requis ont été validé et sont bien présents
+	 * 
+	 * @param listUE
+	 * @param ueRequis
+	 * @return
+	 */
+	public static boolean ueDejaValide(ArrayList<UE> listUE, ArrayList<UE> ueRequis) {
+		boolean requis;
+		for (UE a : ueRequis) {
+			requis = false;
+			for (UE b : listUE) {
+				if (a.getCodeIdentification().equals(b.getCodeIdentification())) {
+					requis = true;
+				}
+			}
+			if (!requis) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Permet de retourner vrai ou faux en fonction de la présence de l'UE dans la
+	 * liste d'UE qu'on aura donné en paramètre
+	 * 
+	 * @param listUe
+	 * @return
+	 */
+	public static boolean ueDejaValide(UE ue, ArrayList<UE> listUe) {
+		boolean uePresent = false;
+		// On regarde s'il n'est pas déjà présent dans notre ArrayList
+		for (UE d : listUe) {
+			if (d.getCodeIdentification().equals(ue.getCodeIdentification())) {
+				uePresent = true;
+				break;
+			}
+		}
+		return uePresent;
 	}
 
 	/**

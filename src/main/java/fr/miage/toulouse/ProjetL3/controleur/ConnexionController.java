@@ -2,7 +2,7 @@ package fr.miage.toulouse.ProjetL3.controleur;
 
 import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Class.metier.Connexion;
-import fr.miage.toulouse.ProjetL3.Class.technique.chargementCSV;
+import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;

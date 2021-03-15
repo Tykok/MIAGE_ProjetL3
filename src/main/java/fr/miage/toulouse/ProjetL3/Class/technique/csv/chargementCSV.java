@@ -1,4 +1,4 @@
-package fr.miage.toulouse.ProjetL3.Class.technique;
+package fr.miage.toulouse.ProjetL3.Class.technique.csv;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -258,20 +258,12 @@ public class chargementCSV {
 			if (firstLine) {
 				firstLine = !firstLine;
 			} else {
-				UE UESup = null;
-				UE UEPre = null;
 				for (UE e : collectionUE) {
 					if (e.getCodeIdentification().equals(a[0])) {
-						UESup = e;
-					} else if (e.getCodeIdentification().equals(a[1])) {
-						UEPre = e;
-					}
-
-					if (UESup != null && UEPre != null) {
+						e.ajouterUEPrerequis(getUE(a[1]));
 						break;
 					}
 				}
-				UESup.ajouterUEPrerequis(UEPre);
 			}
 		}
 
@@ -315,8 +307,8 @@ public class chargementCSV {
 		for (String[] a : contenuFichier) {
 			if (firstLine) {
 				firstLine = !firstLine;
-			} else if (u.getCodeIdentification().equals(a[1])) {
-				listUE.add(getUE(a[0]));
+			} else if (u.getCodeIdentification().equals(a[0])) {
+				listUE.add(getUE(a[1]));
 			}
 		}
 

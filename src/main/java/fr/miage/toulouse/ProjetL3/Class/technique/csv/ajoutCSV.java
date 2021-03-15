@@ -1,4 +1,4 @@
-package fr.miage.toulouse.ProjetL3.Class.technique;
+package fr.miage.toulouse.ProjetL3.Class.technique.csv;
 
 import java.io.FileWriter;
 import java.io.IOException;
