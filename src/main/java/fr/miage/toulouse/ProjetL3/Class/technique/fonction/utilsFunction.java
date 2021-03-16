@@ -24,11 +24,16 @@ public class utilsFunction {
 	 * @return
 	 */
 	public static ArrayList<UE> getAllInscriptionPossible(Etudiant e) {
-		ArrayList<UE> allUEInscription = ueNonEtudiant(e);
+
+		/**
+		 * Ici on commence par récupérer l'ensemble UE sans prérequis que la personne
+		 * peut potentiellement passé
+		 */
+		ArrayList<UE> allUEInscription = new ArrayList<UE>();
 		boolean dejaPresent;
 		for (UE a : getUeWithoutPrerequis(e)) {
 			dejaPresent = false;
-			for (UE b : allUEInscription) {
+			for (UE b : ueNonEtudiant(e)) {
 				if (a.getCodeIdentification().equals(b.getCodeIdentification())) {
 					dejaPresent = true;
 					break;
@@ -39,6 +44,9 @@ public class utilsFunction {
 			}
 		}
 
+		/**
+		 * Par la suite, on récupère les UE avec prérequis que la personne peut passer
+		 */
 		getUEPossible(ueEtudiant(e), allUEInscription, e);
 
 		return allUEInscription;
@@ -57,7 +65,8 @@ public class utilsFunction {
 		// On récupére l'ensemble des UE
 		for (UE a : chargementCSV.collectionUE()) {
 			// TODO Vérifier que l'UE que l'on va ajouter n'est pas en cours
-			if (!ueDejaValide(a, listUePossible) && ueDejaValide(listUeObtenu, a.getCollectionUE_Prerequis()) && !ueDejaValide(a, e)) {
+			if (!ueDejaValide(a, listUePossible) && ueDejaValide(listUeObtenu, a.getCollectionUE_Prerequis())
+					&& !ueDejaValide(a, e)) {
 				listUePossible.add(a);
 			}
 		}
@@ -65,15 +74,15 @@ public class utilsFunction {
 
 	/**
 	 * Cette méthode permet de vérifier qu'un étudiant n'a pas déjà validé l'UE que
-	 * l'on aura donné en paramètre
+	 * l'on aura donné en paramètre mais aussi de savoir si l'étudiant n'est pas en cours d'inscription dans cet UE
 	 * 
 	 * @param u
 	 * @param e
 	 * @return
 	 */
 	public static boolean ueDejaValide(UE u, Etudiant e) {
-		for (UE a : ueEtudiant(e)) {
-			if (a.getCodeIdentification().equals(u.getCodeIdentification())) {
+		for (UEValide a : allPassageUeEtudiant(e)) {
+			if (a.getUEValidation().getCodeIdentification().equals(u.getCodeIdentification())) {
 				return true;
 			}
 		}
@@ -238,6 +247,24 @@ public class utilsFunction {
 	}
 
 	/**
+	 * Cette méthode permet de récupérer l'ensemble des UEValide, même si l'étudiant
+	 * ne l'a pas validé Elle permet de faire des vérifications par la sutie
+	 * 
+	 * @param e
+	 * @return
+	 */
+	private static ArrayList<UEValide> allPassageUeEtudiant(Etudiant e) {
+		ArrayList<UEValide> allValidation = chargementCSV.collectionUEValide();
+		ArrayList<UEValide> validationEtudiant = new ArrayList<UEValide>();
+		for (UEValide u : allValidation) {
+			if (u.getEtudiantValidation().getNum().equals(e.getNum())) {
+				validationEtudiant.add(u);
+			}
+		}
+		return validationEtudiant;
+	}
+
+	/**
 	 * Cette fonction permet de récupérer l'ensemble des UEValide en cours par
 	 * l'étudiant
 	 * 
@@ -254,8 +281,8 @@ public class utilsFunction {
 		}
 		return ueEnCours;
 	}
-	
-	public static ArrayList<UE> getPrerequisForThisUe(UE u){
+
+	public static ArrayList<UE> getPrerequisForThisUe(UE u) {
 		return chargementCSV.getAllUEPrerequis(u);
 	}
 
