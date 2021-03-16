@@ -21,19 +21,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0"
-	prefWidth="863.0" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="fr.miage.toulouse.ProjetL3.controleur.ListeEtudiantsInscritsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.ProjetL3.controleur.ListeEtudiantsInscritsController">
 	<children>
-		<ImageView fitHeight="696.0" fitWidth="1251.0"
-			layoutY="-2.0">
+		<ImageView fitHeight="696.0" fitWidth="1251.0" layoutY="-2.0">
 			<image>
 				<Image url="@Images/fondEcran.jpg" />
 			</image>
 		</ImageView>
-		<ImageView fitHeight="75.0" fitWidth="184.0" layoutX="7.0"
-			layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+		<ImageView fitHeight="75.0" fitWidth="184.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
 			<image>
 				<Image url="@Images/_logo.png" />
 			</image>
@@ -41,9 +36,7 @@
 				<DropShadow />
 			</effect>
 		</ImageView>
-		<Label alignment="TOP_LEFT" layoutX="210.0" layoutY="16.0"
-			prefHeight="52.0" prefWidth="442.0" text="Secrétariat pédagogique"
-			textFill="WHITE" underline="true">
+		<Label alignment="TOP_LEFT" layoutX="210.0" layoutY="16.0" prefHeight="52.0" prefWidth="442.0" text="Secrétariat pédagogique" textFill="WHITE" underline="true">
 			<font>
 				<Font name="Bell MT" size="43.0" />
 			</font>
@@ -54,71 +47,56 @@
 				<Glow level="0.6" />
 			</effect>
 		</Label>
-		<Button layoutX="1134.0" layoutY="4.0" mnemonicParsing="false"
-			onMouseClicked="#deco" prefHeight="25.0" prefWidth="112.0"
-			style="-fx-background-color: red;" text="Déconnexion"
-			textFill="WHITE">
+		<Button layoutX="1134.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#deco" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: red;" text="Déconnexion" textFill="WHITE">
 			<font>
 				<Font name="System Bold" size="13.0" />
 			</font>
 		</Button>
-		<Button layoutX="7.0" layoutY="657.0" mnemonicParsing="false"
-			onMouseClicked="#retour" style="-fx-background-color: blue;"
-			text="Retour" textFill="WHITE">
+		<Button layoutX="7.0" layoutY="657.0" mnemonicParsing="false" onMouseClicked="#retour" style="-fx-background-color: blue;" text="Retour" textFill="WHITE">
 			<font>
 				<Font name="System Bold" size="13.0" />
 			</font>
 		</Button>
-		<AnchorPane layoutX="195.0" layoutY="122.0"
-			prefHeight="500.0" prefWidth="858.0"
-			style="-fx-background-color: white; -fx-background-radius: 15;">
+		<AnchorPane layoutX="195.0" layoutY="122.0" prefHeight="500.0" prefWidth="858.0" style="-fx-background-color: white; -fx-background-radius: 15;">
 			<children>
-				<Label alignment="TOP_LEFT" layoutX="6.0" text="Etudiant :"
-					underline="true">
+				<Label alignment="TOP_LEFT" layoutX="6.0" text="Etudiant :" underline="true">
 					<font>
 						<Font name="Bell MT" size="27.0" />
 					</font>
 				</Label>
-				<Button fx:id="btn_sauvegarder" layoutX="324.0"
-					layoutY="447.0" mnemonicParsing="false"
-					onMouseClicked="#sauvegarderUEInscription" text="Sauvegarder">
+				<Button fx:id="btn_sauvegarder" layoutX="324.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#sauvegarderUEInscription" text="Sauvegarder">
 					<font>
 						<Font name="Bell MT" size="15.0" />
 					</font>
 				</Button>
-				<Button fx:id="btn_annuler" layoutX="452.0" layoutY="447.0"
-					mnemonicParsing="false" onMouseClicked="#resetForm" text="Annuler">
+				<Button fx:id="btn_annuler" layoutX="452.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#resetForm" text="Annuler">
 					<font>
 						<Font name="Bell MT" size="15.0" />
 					</font>
 				</Button>
-				<SplitPane layoutX="11.0" layoutY="36.0"
-					orientation="VERTICAL" prefHeight="391.0" prefWidth="838.0">
+				<SplitPane layoutX="11.0" layoutY="36.0" orientation="VERTICAL" prefHeight="391.0" prefWidth="838.0">
 					<items>
-						<AnchorPane minHeight="0.0" minWidth="0.0"
-							prefHeight="40.0" prefWidth="697.0"
-							style="-fx-background-color: white;">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="697.0" style="-fx-background-color: white;">
 							<children>
-								<Label layoutX="5.0" layoutY="2.0"
-									text="Liste des UE où l'étudiant peut être inscrit :">
+								<Label layoutX="5.0" layoutY="2.0" text="Liste des UE où l'étudiant peut être inscrit :">
 									<font>
 										<Font name="Bell MT" size="20.0" />
 									</font>
 								</Label>
-								<TableView fx:id="list_UE" layoutX="-2.0"
-									layoutY="30.0" prefHeight="360.0" prefWidth="838.0">
+								<TableView fx:id="list_UE" layoutX="-2.0" layoutY="30.0" prefHeight="360.0" prefWidth="838.0">
 									<columns>
-										<TableColumn fx:id="column_codeIdentification"
-											prefWidth="139.0" text="C1" />
-										<TableColumn fx:id="column_nomUE"
-											prefWidth="475.0" text="C2" />
-										<TableColumn fx:id="column_creditETC"
-											prefWidth="56.0" text="C1" />
-										<TableColumn fx:id="column_prerequisUE"
-											prefWidth="136.0" text="C1" />
-										<TableColumn fx:id="column_checkBox"
-											prefWidth="31.0" text="C1" />
+										<TableColumn fx:id="column_codeIdentification" prefWidth="139.0" text="Code de l'UE" />
+										<TableColumn fx:id="column_nomUE" prefWidth="461.0" text="UE" />
+										<TableColumn fx:id="column_creditETC" prefWidth="37.0" text="ECT" />
+										<TableColumn fx:id="column_checkBox" prefWidth="120.0" text="Inscrire" />
 									</columns>
+                           <contextMenu>
+                              <ContextMenu fx:id="menu">
+                                 <items>
+                                    <MenuItem fx:id="menuItemNamePrerequis" mnemonicParsing="false" text="Prérequis" />
+                                    <SeparatorMenuItem mnemonicParsing="false" />
+                                 </items></ContextMenu>
+                           </contextMenu>
 								</TableView>
 							</children>
 						</AnchorPane>

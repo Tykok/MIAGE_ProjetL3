@@ -56,6 +56,7 @@ public class utilsFunction {
 	public static void getUEPossible(ArrayList<UE> listUeObtenu, ArrayList<UE> listUePossible, Etudiant e) {
 		// On récupére l'ensemble des UE
 		for (UE a : chargementCSV.collectionUE()) {
+			// TODO Vérifier que l'UE que l'on va ajouter n'est pas en cours
 			if (!ueDejaValide(a, listUePossible) && ueDejaValide(listUeObtenu, a.getCollectionUE_Prerequis()) && !ueDejaValide(a, e)) {
 				listUePossible.add(a);
 			}
@@ -252,6 +253,10 @@ public class utilsFunction {
 			}
 		}
 		return ueEnCours;
+	}
+	
+	public static ArrayList<UE> getPrerequisForThisUe(UE u){
+		return chargementCSV.getAllUEPrerequis(u);
 	}
 
 }

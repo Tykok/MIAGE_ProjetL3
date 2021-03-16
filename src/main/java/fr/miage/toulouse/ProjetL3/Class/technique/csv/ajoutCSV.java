@@ -1,10 +1,16 @@
 package fr.miage.toulouse.ProjetL3.Class.technique.csv;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 
 import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Main;
@@ -20,19 +26,19 @@ public class ajoutCSV {
 	 * @param nomFichier
 	 * @param valeur
 	 */
-	private static void ajoutValeurCSV(String nomFichier, ArrayList<String> valeur) {
+	private static void ajoutValeurCSV(String nomFichier, String[] valeur) {
 
 		// On récupére le fichier contenu dans nos ressources
 		URL resource = App.class.getResource(Main.PATH_DATA + nomFichier + ".csv");
 
 		try {
-			FileWriter myWriter = new FileWriter(resource.getPath(), true);
-			for (String a : valeur) {
-				myWriter.write(a);
-			}
-			myWriter.close();
+			CSVWriter writer = new CSVWriter(new FileWriter(resource.getPath(), true), CSVWriter.DEFAULT_SEPARATOR,
+					CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+
+			writer.writeNext(valeur);
+			writer.flush();
+			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -48,12 +54,7 @@ public class ajoutCSV {
 	 * @param e
 	 */
 	public static void ajoutEtudiant(Etudiant e) {
-		ArrayList<String> etudiant = new ArrayList<String>();
-		etudiant.add("\n");
-		etudiant.add(e.getNum() + ",");
-		etudiant.add(e.getNom() + ",");
-		etudiant.add(e.getPrenom() + ",");
-		etudiant.add(e.getNomMention());
+		String[] etudiant = { e.getNum(), e.getNom(), e.getPrenom(), e.getNomMention() };
 		ajoutValeurCSV("etudiants", etudiant);
 	}
 
@@ -67,15 +68,30 @@ public class ajoutCSV {
 	 * @param u
 	 */
 	public static void ajoutUeValidation(UEValide u) {
-		ArrayList<String> ueInscrit = new ArrayList<String>();
-		ueInscrit.add("\n");
-		ueInscrit.add(u.getUEValidation().getCodeIdentification() + ",");
-		ueInscrit.add(u.getEtudiantValidation().getNum() + ",");
-		ueInscrit.add(String.valueOf(u.getAnnneeValidation()) + ",");
-		ueInscrit.add(String.valueOf(u.isSemestre()) + ",");
-		ueInscrit.add(String.valueOf(u.isValider()) + ",");
-		ueInscrit.add(String.valueOf(u.getMoyenne()));
+		String[] ueInscrit = { u.getUEValidation().getCodeIdentification(), u.getEtudiantValidation().getNum(),
+				String.valueOf(u.getAnnneeValidation()), String.valueOf(u.isSemestre()), String.valueOf(u.isValider()),
+				String.valueOf(u.getMoyenne()) };
 		ajoutValeurCSV("validationue", ueInscrit);
+
+		try {
+			URL resource = App.class.getResource(Main.PATH_DATA + "validationue" + ".csv");
+
+			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
+				List<String[]> r = reader.readAll();
+				for (String[] a : r) {
+					for (String b : a) {
+						System.out.println(b);
+					}
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (CsvException e1) {
+				e1.printStackTrace();
+			}
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
