@@ -85,6 +85,14 @@
                                                 <TableColumn fx:id="tableColumn_nomUEValide" prefWidth="350.0" text="Nom UE" />
                                                 <TableColumn fx:id="tableColumn_creditUEValide" minWidth="0.0" prefWidth="311.0" text="Crédit UE" />
                                              </columns>
+                                             <contextMenu>
+                                                <ContextMenu fx:id="contextMenu_ueValide">
+                                                  <items>
+                                                    <MenuItem fx:id="menuItem_ueValide" mnemonicParsing="false" text="Liste des prérequis" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                  </items>
+                                                </ContextMenu>
+                                             </contextMenu>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
@@ -100,6 +108,14 @@
                                                 <TableColumn fx:id="tableColumn_nomUECours" prefWidth="350.0" text="Nom UE" />
                                                 <TableColumn fx:id="tableColumn_creditUECours" minWidth="0.0" prefWidth="313.0" text="Crédit UE" />
                                              </columns>
+                                             <contextMenu>
+                                                <ContextMenu fx:id="contextMenu_ueEnCours">
+                                                  <items>
+                                                    <MenuItem fx:id="menuItem_ueEnCours" mnemonicParsing="false" text="Unspecified Action" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                  </items>
+                                                </ContextMenu>
+                                             </contextMenu>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
@@ -115,6 +131,14 @@
                                                 <TableColumn fx:id="tableColumn_nomUEPrerequis" prefWidth="352.0" text="Nom UE" />
                                                 <TableColumn fx:id="tableColumn_creditUEPrerequis" minWidth="0.0" prefWidth="312.0" text="Crédit UE" />
                                              </columns>
+                                             <contextMenu>
+                                                <ContextMenu fx:id="contextMenu_uePrerequis">
+                                                  <items>
+                                                    <MenuItem fx:id="menuItem_uePrerequis" mnemonicParsing="false" text="Unspecified Action" />
+                                                      <SeparatorMenuItem mnemonicParsing="false" />
+                                                  </items>
+                                                </ContextMenu>
+                                             </contextMenu>
                                           </TableView>
                                        </children>
                                     </AnchorPane>
