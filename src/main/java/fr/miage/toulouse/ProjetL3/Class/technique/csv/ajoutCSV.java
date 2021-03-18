@@ -38,6 +38,39 @@ public class ajoutCSV {
 	}
 
 	/**
+	 * Cette méthode permet de réécrire un fichier depuis le début
+	 * 
+	 * @param nomFichier
+	 * @param valeur
+	 */
+	private static void reecritureCSV(String nomFichier, String[] valeur) {
+
+		// On récupére le fichier contenu dans nos ressources
+		URL resource = App.class.getResource(Main.PATH_DATA + nomFichier + ".csv");
+
+		try {
+			CSVWriter writer = new CSVWriter(new FileWriter(resource.getPath()), CSVWriter.DEFAULT_SEPARATOR,
+					CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+
+			writer.writeNext(valeur);
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Cette méthode permet simplement de réécrire le fichier CSV validationue, afin
+	 * de repartir sur un fichier vierge ne comportant que le nom des colonnes
+	 */
+	public static void reecritureUEValide() {
+		String[] colonneReecriture = { "codeUE", "numEtudiant", "Annnee", "Semestre", "Valider", "EnCours" };
+		reecritureCSV("validationue", colonneReecriture);
+	}
+
+	/**
 	 * Méthode appelé en passant en paramètre l'objet Etudiant, elle permet de ne
 	 * pas avoir à refaire la manipulation de "rangement" des différentes valeurs à
 	 * implémenter dans le fichier CSV dans un tableau
@@ -47,7 +80,7 @@ public class ajoutCSV {
 	 * @param e
 	 */
 	public static void ajoutEtudiant(Etudiant e) {
-		String[] etudiant = { e.getNum(), e.getNom(), e.getPrenom(), e.getNomMention() };
+		String[] etudiant = { e.getNum(), e.getNom(), e.getPrenom(), e.getMention().getNomMention() };
 		ajoutValeurCSV("etudiants", etudiant);
 	}
 
@@ -63,7 +96,7 @@ public class ajoutCSV {
 	public static void ajoutUeValidation(UEValide u) {
 		String[] ueInscrit = { u.getUEValidation().getCodeIdentification(), u.getEtudiantValidation().getNum(),
 				String.valueOf(u.getAnnneeValidation()), String.valueOf(u.isSemestre()), String.valueOf(u.isValider()),
-				String.valueOf(u.getMoyenne()) };
+				String.valueOf(u.isEnCours()) };
 		ajoutValeurCSV("validationue", ueInscrit);
 	}
 

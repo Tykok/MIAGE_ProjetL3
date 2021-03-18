@@ -374,7 +374,7 @@ public class chargementCSV {
 
 				// On crée enfin notre objet UEValide
 				collectionUEValide.add(new UEValide(Integer.valueOf(a[2]), Boolean.valueOf(a[3]), Boolean.valueOf(a[4]),
-						Double.valueOf(a[5]), ueValide, etudiantValidation));
+						Boolean.valueOf(a[5]), ueValide, etudiantValidation));
 			}
 		}
 		return collectionUEValide;

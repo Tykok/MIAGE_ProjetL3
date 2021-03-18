@@ -10,18 +10,9 @@ package fr.miage.toulouse.ProjetL3.Class.metier;
  */
 public class Etudiant extends Personne {
 
-	@Override
-	public String toString() {
-		return "Etudiant [MentionEtudiant=" + MentionEtudiant + ", nomMention=" + nomMention + ", nomParcours="
-				+ nomParcours + ", num=" + num + ", nom=" + nom + ", prenom=" + prenom + "]";
-	}
-
 	private Mention MentionEtudiant;
 
-	// Attribut privé de la classe qui seront nécessaires lors de la génération des
-	// liste en JavaFX
-	private String nomMention;
-	private String nomParcours;
+
 
 	/**
 	 * Constructeur de la classe Etudiant
@@ -35,8 +26,6 @@ public class Etudiant extends Personne {
 	public Etudiant(String numEtudiant, String nom, String prenom, Mention nomM) {
 		super(numEtudiant, nom, prenom);
 		this.MentionEtudiant = nomM;
-		this.nomMention = nomM.getNomMention();
-		this.nomParcours = nomM.getParcoursMention().getNomParcours();
 	}
 
 	/**
@@ -67,34 +56,7 @@ public class Etudiant extends Personne {
 		MentionEtudiant = mentionEtudiant;
 	}
 
-	/**
-	 * @return the nomMention
-	 */
-	public String getNomMention() {
-		return nomMention;
-	}
 
-	/**
-	 * @param nomMention the nomMention to set
-	 */
-	public void setNomMention(String nomMention) {
-		this.nomMention = nomMention;
-	}
 
-	/**
-	 * @return the nomParcours
-	 */
-	public String getNomParcours() {
-		return nomParcours;
-	}
 
-	/**
-	 * @param nomParcours the nomParcours to set
-	 */
-	public void setNomParcours(String nomParcours) {
-		this.nomParcours = nomParcours;
-	}
-
-	
-	
 }

@@ -13,7 +13,7 @@ public class UEValide {
 	private int annneeValidation;
 	private boolean semestre;
 	private boolean valider;
-	private double moyenne;
+	private boolean enCours;
 	private UE UEValidation;
 	private Etudiant EtudiantValidation;
 
@@ -29,12 +29,12 @@ public class UEValide {
 	 * @param UEValidation
 	 * @param EtudiantValidation
 	 */
-	public UEValide(int anneeValidation, boolean semestre, boolean valider, double moyenne, UE UEValidation,
+	public UEValide(int anneeValidation, boolean semestre, boolean valider, boolean enCours, UE UEValidation,
 			Etudiant EtudiantValidation) {
 		this.annneeValidation = anneeValidation;
 		this.setSemestre(semestre);
 		this.setValider(valider);
-		this.setMoyenne(moyenne);
+		this.setEnCours(enCours);
 		this.setUEValidation(UEValidation);
 		this.setEtudiantValidation(EtudiantValidation);
 	}
@@ -102,8 +102,8 @@ public class UEValide {
 	 * 
 	 * @return
 	 */
-	public double getMoyenne() {
-		return moyenne;
+	public boolean isEnCours() {
+		return this.enCours;
 	}
 
 	/**
@@ -112,8 +112,8 @@ public class UEValide {
 	 * 
 	 * @param moyenne
 	 */
-	public void setMoyenne(double moyenne) {
-		this.moyenne = moyenne;
+	public void setEnCours(boolean enCours) {
+		this.enCours = enCours;
 	}
 
 	/**

@@ -74,7 +74,8 @@ public class utilsFunctionUe {
 
 	/**
 	 * Cette méthode permet de vérifier qu'un étudiant n'a pas déjà validé l'UE que
-	 * l'on aura donné en paramètre mais aussi de savoir si l'étudiant n'est pas en cours d'inscription dans cet UE
+	 * l'on aura donné en paramètre mais aussi de savoir si l'étudiant n'est pas en
+	 * cours d'inscription dans cet UE
 	 * 
 	 * @param u
 	 * @param e
@@ -210,6 +211,28 @@ public class utilsFunctionUe {
 	}
 
 	/**
+	 * Cette méthode permet avec un étudiant de savoir si l'UE est toujours en cours
+	 * 
+	 * @param e
+	 * @param ue
+	 * @return
+	 */
+	public static boolean verifThisUeEncCours(Etudiant e, UE ue) {
+		ArrayList<UEValide> listValide = ueEnCours(e);
+		for (UEValide u : listValide) {
+			if (u.getEtudiantValidation().getNum().equals(e.getNum())
+					&& u.getUEValidation().getCodeIdentification().equals(ue.getCodeIdentification())) {
+				if (!u.isEnCours()) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Cette fonction permet de retourner l'ensemble des UEValide qui n'ont pas été
 	 * validé par l'étudiant
 	 * 
@@ -275,7 +298,7 @@ public class utilsFunctionUe {
 		ArrayList<UEValide> allValidation = chargementCSV.collectionUEValide();
 		ArrayList<UEValide> ueEnCours = new ArrayList<UEValide>();
 		for (UEValide u : allValidation) {
-			if (u.getEtudiantValidation().getNum().equals(e.getNum()) && u.getMoyenne() == -1) {
+			if (u.getEtudiantValidation().getNum().equals(e.getNum()) && u.isEnCours()) {
 				ueEnCours.add(u);
 			}
 		}

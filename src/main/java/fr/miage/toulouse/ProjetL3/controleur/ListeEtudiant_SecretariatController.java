@@ -12,6 +12,7 @@ import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.Mention;
 import fr.miage.toulouse.ProjetL3.Class.metier.Parcours;
+import fr.miage.toulouse.ProjetL3.Class.technique.affichageEtudiant;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.ajoutCSV;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
 import fr.miage.toulouse.ProjetL3.Class.technique.fonction.appFonction;
@@ -33,17 +34,17 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 	@FXML
 	private Button btn_retour;
 	@FXML
-	private TableView<Etudiant> tableView_listeEtudiant;
+	private TableView<affichageEtudiant> tableView_listeEtudiant;
 	@FXML
-	private TableColumn<Etudiant, String> column_numEtudiant;
+	private TableColumn<affichageEtudiant, String> column_numEtudiant;
 	@FXML
-	private TableColumn<Etudiant, String> column_nom;
+	private TableColumn<affichageEtudiant, String> column_nom;
 	@FXML
-	private TableColumn<Etudiant, String> column_prenom;
+	private TableColumn<affichageEtudiant, String> column_prenom;
 	@FXML
-	private TableColumn<Etudiant, String> column_parcours;
+	private TableColumn<affichageEtudiant, String> column_parcours;
 	@FXML
-	private TableColumn<Etudiant, String> column_mention;
+	private TableColumn<affichageEtudiant, String> column_mention;
 	@FXML
 	private Button btn_ajouter;
 	@FXML
@@ -61,7 +62,7 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 	private AutoCompletionBinding<String> autoComplete;
 
 	// Observable contenant la liste des différents étudiants
-	private ObservableList<Etudiant> listEtudiant = FXCollections.observableArrayList();
+	private ObservableList<affichageEtudiant> listEtudiant = FXCollections.observableArrayList();
 
 	// ArrayList des différents Parcours, elle est nécessaire aux fonctionnement de
 	// certaines méthodes
@@ -128,8 +129,8 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 	 * Méthode permettant d'ajouter un étudiant
 	 */
 	public void ajoutEtudiant() {
-		Etudiant e = new Etudiant(txtb_NumEtudiant.getText(), txtb_NomEtudiant.getText(), txtb_PrenomEtudiant.getText(),
-				mentionInsert);
+		affichageEtudiant e = new affichageEtudiant(new Etudiant(txtb_NumEtudiant.getText(), txtb_NomEtudiant.getText(), txtb_PrenomEtudiant.getText(),
+				mentionInsert));
 		// On ajoute l'étudiant à notre observable
 		listEtudiant.add(e);
 
@@ -164,7 +165,7 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 
 		// On ajoute chaque étudiant du fichier CSV à notre Observable
 		for (Etudiant e : etudiantArray) {
-			listEtudiant.add(e);
+			listEtudiant.add(new affichageEtudiant(e));
 		}
 
 		// Définition des attributs qui seront acceuillis dans les colonnes
@@ -212,7 +213,7 @@ public class ListeEtudiant_SecretariatController implements Initializable {
 		// Listener sur la tableView permettant de détecter les doubles clics sur une
 		// ligne
 		tableView_listeEtudiant.setRowFactory(tv -> {
-			TableRow<Etudiant> row = new TableRow<>();
+			TableRow<affichageEtudiant> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				if (event.getClickCount() == 2 && (!row.isEmpty())) {
 					Etudiant rowData = row.getItem();

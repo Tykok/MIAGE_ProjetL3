@@ -102,9 +102,9 @@ public class ListeEtudiantsInscritsController implements Initializable {
 				 */
 				Date d = new Date();
 				if (d.getMonth() > 6) {
-					ajoutCSV.ajoutUeValidation(new UEValide(d.getYear(), false, false, -1, u, etudiantUE));
+					ajoutCSV.ajoutUeValidation(new UEValide(d.getYear(), false, false, true, u, etudiantUE));
 				} else {
-					ajoutCSV.ajoutUeValidation(new UEValide(d.getYear(), true, false, -1, u, etudiantUE));
+					ajoutCSV.ajoutUeValidation(new UEValide(d.getYear(), true, false, true, u, etudiantUE));
 				}
 
 				// On remove l'UE de notre liste car l'étudiant y est inscrits
