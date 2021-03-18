@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
-import fr.miage.toulouse.ProjetL3.Class.technique.fonction.utilsFunction;
+import fr.miage.toulouse.ProjetL3.Class.technique.fonction.utilsFunctionUe;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.CheckBox;
@@ -18,7 +18,7 @@ public class affichageUE extends UE {
 
 	public affichageUE(UE a) {
 		super(a.getCodeIdentification(), a.getNomUE(), a.getCreditECT());
-		this.list_prerequis = utilsFunction.getPrerequisForThisUe(a);
+		this.list_prerequis = utilsFunctionUe.getPrerequisForThisUe(a);
 		this.checkValide = new CheckBox();
 	}
 

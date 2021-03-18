@@ -11,7 +11,7 @@ import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
 import fr.miage.toulouse.ProjetL3.Class.technique.affichageUE;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.ajoutCSV;
 import fr.miage.toulouse.ProjetL3.Class.technique.fonction.appFonction;
-import fr.miage.toulouse.ProjetL3.Class.technique.fonction.utilsFunction;
+import fr.miage.toulouse.ProjetL3.Class.technique.fonction.utilsFunctionUe;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -129,7 +129,7 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		for (UE ue : utilsFunction.getAllInscriptionPossible(etudiantUE)) {
+		for (UE ue : utilsFunctionUe.getAllInscriptionPossible(etudiantUE)) {
 			listUE.add(new affichageUE(ue));
 		}
 

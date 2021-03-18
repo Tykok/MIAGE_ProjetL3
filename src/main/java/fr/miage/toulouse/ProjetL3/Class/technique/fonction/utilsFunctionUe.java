@@ -14,7 +14,7 @@ import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
  * @author ElieTreport
  *
  */
-public class utilsFunction {
+public class utilsFunctionUe {
 
 	/**
 	 * Cette fonction permet de récupérer l'ensemble des UE auquel un étudiant peut

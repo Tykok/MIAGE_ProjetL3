@@ -1,8 +1,11 @@
 package fr.miage.toulouse.ProjetL3.controleur;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import fr.miage.toulouse.ProjetL3.App;
+import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
 import fr.miage.toulouse.ProjetL3.Class.technique.fonction.appFonction;
@@ -14,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 
 public class ListeUEbureauExamenController implements Initializable {
 	@FXML
@@ -61,6 +65,31 @@ public class ListeUEbureauExamenController implements Initializable {
 
 		tableView_listeUE.setItems(listUE);
 
+		initializeForTableView();
+	}
+
+	private void initializeForTableView() {
+		// Ecouteurs permettant de détecter les doubles clics sur la tableView
+		tableView_listeUE.setRowFactory(tv -> {
+			TableRow<UE> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && (!row.isEmpty())) {
+					UE rowData = row.getItem();
+
+					// Maintenant on l'envoi vers l'interface en question
+					try {
+						// On spécifie sur quelle UE on travail
+						ListeEtudiant_BureauExamController.ueClic = rowData;
+						// On passe alors à la vue suivante
+						App.setRoot("ListeEtudiant_BureauExam");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+			return row;
+		});
 	}
 
 }

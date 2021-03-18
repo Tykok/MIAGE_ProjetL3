@@ -7,7 +7,7 @@ import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
 import fr.miage.toulouse.ProjetL3.Class.technique.affichageUE;
 import fr.miage.toulouse.ProjetL3.Class.technique.fonction.appFonction;
-import fr.miage.toulouse.ProjetL3.Class.technique.fonction.utilsFunction;
+import fr.miage.toulouse.ProjetL3.Class.technique.fonction.utilsFunctionUe;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -112,17 +112,17 @@ public class ListeUEController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 // On remplit l'observable des UE validé par l'étudiant
-		for (UE a : utilsFunction.ueEtudiant(etudiantClic)) {
+		for (UE a : utilsFunctionUe.ueEtudiant(etudiantClic)) {
 			listUEValide.add(a);
 		}
 
 		// On remplit l'observable des UE en cours de l'étudiant
-		for (UE a : utilsFunction.ueEtudiantEnCours(etudiantClic)) {
+		for (UE a : utilsFunctionUe.ueEtudiantEnCours(etudiantClic)) {
 			listUEEnCours.add(a);
 		}
 
 		// On remplit l'observable des UE avec possibilité d'inscription
-		for (UE a : utilsFunction.getAllInscriptionPossible(etudiantClic)) {
+		for (UE a : utilsFunctionUe.getAllInscriptionPossible(etudiantClic)) {
 			listUeInscription.add(a);
 		}
 
