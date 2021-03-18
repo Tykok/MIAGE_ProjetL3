@@ -8,22 +8,19 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
 
-
-
 	// Attribut privé qui définit notre interface (fenêtre)
 	private static Scene scene;
 
 	@Override
 	public void start(Stage stage) throws IOException {
-		
-		scene = new Scene(loadFXML("ListeUEbureauExamen"));
+
+		scene = new Scene(loadFXML("Connexion"));
 
 		stage.setScene(scene);
 		stage.setResizable(false);
@@ -61,5 +58,4 @@ public class App extends Application {
 	public static void launchApp() {
 		launch();
 	}
-
 }

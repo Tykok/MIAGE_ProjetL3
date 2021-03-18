@@ -33,7 +33,6 @@ public class chargementCSV {
 		ArrayList<String[]> tabCsv = new ArrayList<>();
 		try {
 			URL resource = App.class.getResource(Main.PATH_DATA + nomFichier + ".csv");
-
 			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
 				List<String[]> r = reader.readAll();
 				for (String[] a : r) {

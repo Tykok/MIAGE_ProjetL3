@@ -23,4 +23,5 @@ module fr.miage.toulouse.ProjetL3 {
 	opens fr.miage.toulouse.ProjetL3.Class.technique to javafx.fxml;
 
 	exports fr.miage.toulouse.ProjetL3.Class.technique;
+
 }

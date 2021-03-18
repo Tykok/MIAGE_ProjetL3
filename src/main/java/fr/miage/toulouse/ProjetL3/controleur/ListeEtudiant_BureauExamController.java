@@ -73,7 +73,7 @@ public class ListeEtudiant_BureauExamController implements Initializable {
 	@FXML
 	public void save(MouseEvent event) {
 		for (affichageEtudiant e : listEtudiantSelection) {
-			utilsFunctionEtudiant.inscriptionEtudiant(e, ueClic);
+			utilsFunctionEtudiant.validationUeEtudiant(e, ueClic);
 		}
 	}
 

@@ -20,7 +20,6 @@ public class ajoutCSV {
 	 * @param valeur
 	 */
 	private static void ajoutValeurCSV(String nomFichier, String[] valeur) {
-
 		// On récupére le fichier contenu dans nos ressources
 		URL resource = App.class.getResource(Main.PATH_DATA + nomFichier + ".csv");
 
