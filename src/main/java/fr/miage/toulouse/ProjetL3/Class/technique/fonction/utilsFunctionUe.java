@@ -8,11 +8,8 @@ import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
 
 /**
- * Interface permettant d'utiliser des fonctions utiles pour les différents
+ * Classe permettant d'utiliser des fonctions utiles pour les différents
  * contrôleurs
- * 
- * @author ElieTreport
- *
  */
 public class utilsFunctionUe {
 
@@ -20,7 +17,10 @@ public class utilsFunctionUe {
 	 * Cette fonction permet de récupérer l'ensemble des UE auquel un étudiant peut
 	 * être inscrits ou ré-inscrits
 	 * 
-	 * @param e
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param e Etudiant sur lequel on effectue les tests
 	 * @return
 	 */
 	public static ArrayList<UE> getAllInscriptionPossible(Etudiant e) {
@@ -53,13 +53,18 @@ public class utilsFunctionUe {
 	}
 
 	/**
-	 * Cette méthode void permet de récupérer l'ensemble des UE pouvant être passé
-	 * suite à l'UE qui aura été fourni en paaramètre. La liste qui est fournie en
-	 * second permet de regarder directement si cet UE n'a pas déjà été ajouté
-	 * (permet d'éviter les doublons)
+	 * Cette fonction void permet de <i>récupérer l'ensemble des UE pouvant être
+	 * passé</i> suite à l'UE qui aura été fourni en paaramètre. La liste qui est
+	 * fournie en second permet de regarder directement si cet UE n'a pas déjà été
+	 * ajouté (permet d'éviter les doublons)
 	 * 
-	 * @param u
-	 * @param listUePossible
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param listUeObtenu   Liste des UE obtenu par l'étudiant
+	 * @param listUePossible Liste des UE ou l'étudiant peut potentiellement
+	 *                       prétendre
+	 * @param e              Etudiant qui souhaite être inscrits à certains UE
 	 */
 	public static void getUEPossible(ArrayList<UE> listUeObtenu, ArrayList<UE> listUePossible, Etudiant e) {
 		// On récupére l'ensemble des UE
@@ -73,13 +78,17 @@ public class utilsFunctionUe {
 	}
 
 	/**
-	 * Cette méthode permet de vérifier qu'un étudiant n'a pas déjà validé l'UE que
+	 * Cette fonction permet de vérifier qu'un étudiant n'a pas déjà validé l'UE que
 	 * l'on aura donné en paramètre mais aussi de savoir si l'étudiant n'est pas en
 	 * cours d'inscription dans cet UE
 	 * 
-	 * @param u
-	 * @param e
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param u Correspond un l'objet UE de la classe UE
+	 * @param e Correspond un l'objet Etudiant de la classe Etudiant
+	 * @return Booléen permettant de savoir si oui ou non l'étudiant n'a pas déjà
+	 *         validé cet UE
 	 */
 	public static boolean ueDejaValide(UE u, Etudiant e) {
 		for (UEValide a : allPassageUeEtudiant(e)) {
@@ -91,12 +100,16 @@ public class utilsFunctionUe {
 	}
 
 	/**
-	 * Cette méthode permet à partir de deux listes d'UE, de savoir si tout les UE
+	 * Cette fonction permet à partir de deux listes d'UE, de savoir si tout les UE
 	 * requis ont été validé et sont bien présents
 	 * 
-	 * @param listUE
-	 * @param ueRequis
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param listUE   Liste des UE qu'un étudiant à validé
+	 * @param ueRequis Liste des UE Requis pour validé un UE
+	 * @return Booléen permettant de savoir si oui ou non un étudiant à la
+	 *         possibilité de passer cet UE
 	 */
 	public static boolean ueDejaValide(ArrayList<UE> listUE, ArrayList<UE> ueRequis) {
 		boolean requis;
@@ -118,8 +131,13 @@ public class utilsFunctionUe {
 	 * Permet de retourner vrai ou faux en fonction de la présence de l'UE dans la
 	 * liste d'UE qu'on aura donné en paramètre
 	 * 
-	 * @param listUe
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param ue     Objet UE qui permet de vérifier si l'UE a ou non été ajouté
+	 * @param listUe Liste des UE que l'on aura mit dans notre la liste des UE
+	 *               Possible
+	 * @return Booléen correspondant à la présence ou non de l'UE
 	 */
 	public static boolean ueDejaValide(UE ue, ArrayList<UE> listUe) {
 		boolean uePresent = false;
@@ -134,11 +152,14 @@ public class utilsFunctionUe {
 	}
 
 	/**
-	 * Cette méthode permet de récupérer l'ensemble des UE qu'un étudiant peut
+	 * Cette fonction permet de récupérer l'ensemble des UE qu'un étudiant peut
 	 * passer sans pour autant avoir besoin de prérequis
 	 * 
-	 * @param e
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param e Objet Etudiant de la classe Etudiant
+	 * @return Une liste d'objet UE
 	 */
 	public static ArrayList<UE> getUeWithoutPrerequis(Etudiant e) {
 		ArrayList<UE> listUEValide = ueEtudiant(e);
@@ -165,10 +186,13 @@ public class utilsFunctionUe {
 	}
 
 	/**
-	 * Cette méthode permet de retourner l'ensemble des UE qu'un étudiant à validé
+	 * Cette fonction permet de retourner l'ensemble des UE qu'un étudiant à validé
 	 * 
-	 * @param listValide
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param e Correspond à l'objet
+	 * @return Une liste d'objet UE
 	 */
 	public static ArrayList<UE> ueEtudiant(Etudiant e) {
 		ArrayList<UEValide> listValide = ueValideEtudiant(e);
@@ -183,8 +207,11 @@ public class utilsFunctionUe {
 	 * Cette fonction permet de récupérer l'ensemble des UE qui n'ont pas été validé
 	 * par un étudiant
 	 * 
-	 * @param e
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param e Objet Etudiant
+	 * @return Une liste d'UE
 	 */
 	public static ArrayList<UE> ueNonEtudiant(Etudiant e) {
 		ArrayList<UEValide> listValide = ueNonValideEtudiant(e);
@@ -196,10 +223,13 @@ public class utilsFunctionUe {
 	}
 
 	/**
-	 * Cette méthode permet de retourner l'ensemble des UE en cours d'un étudiant
+	 * Cette fonction permet de retourner l'ensemble des UE en cours d'un étudiant
 	 * 
-	 * @param listValide
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param e Objet Etudiant de la classe Etudiant
+	 * @return Liste d'objets UE
 	 */
 	public static ArrayList<UE> ueEtudiantEnCours(Etudiant e) {
 		ArrayList<UEValide> listValide = ueEnCours(e);
@@ -211,11 +241,15 @@ public class utilsFunctionUe {
 	}
 
 	/**
-	 * Cette méthode permet avec un étudiant de savoir si l'UE est toujours en cours
+	 * Cette fonction permet avec un étudiant de savoir si l'UE est toujours en
+	 * cours
 	 * 
-	 * @param e
-	 * @param ue
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param e  Objet Etudiant de la classe Etudiant
+	 * @param ue Objet UE de la classe UE
+	 * @return Vrai ou faux si l'ue est en cours ou non pour cet étudiant
 	 */
 	public static boolean verifThisUeEncCours(Etudiant e, UE ue) {
 		ArrayList<UEValide> listValide = ueEnCours(e);
@@ -236,8 +270,11 @@ public class utilsFunctionUe {
 	 * Cette fonction permet de retourner l'ensemble des UEValide qui n'ont pas été
 	 * validé par l'étudiant
 	 * 
-	 * @param e
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param e Etudiant de la classe Etudiant
+	 * @return Une liste d'objet UEValide
 	 */
 	private static ArrayList<UEValide> ueNonValideEtudiant(Etudiant e) {
 		ArrayList<UEValide> allValidation = chargementCSV.collectionUEValide();
@@ -251,12 +288,14 @@ public class utilsFunctionUe {
 	}
 
 	/**
-	 * Cette méthode permet de retourner l'ensemble des UE validés par l'étudiant
+	 * Cette fonction permet de retourner l'ensemble des UE validés par l'étudiant
 	 * passé en paramètre (UEValide) et renvoie une ArrayList d'UEValide
 	 * 
 	 * @see UEValide
-	 * @param e
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @param e Etudiant sur lequel on travail
+	 * @return Une liste d'objet UEValide
 	 */
 	private static ArrayList<UEValide> ueValideEtudiant(Etudiant e) {
 		ArrayList<UEValide> allValidation = chargementCSV.collectionUEValide();
@@ -270,11 +309,15 @@ public class utilsFunctionUe {
 	}
 
 	/**
-	 * Cette méthode permet de récupérer l'ensemble des UEValide, même si l'étudiant
-	 * ne l'a pas validé Elle permet de faire des vérifications par la sutie
+	 * Cette fonction permet de récupérer l'ensemble des UEValide, même si
+	 * l'étudiant ne l'a pas validé Elle permet de faire des vérifications par la
+	 * sutie
 	 * 
-	 * @param e
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param e Objet Etudiant sur lequel on travail
+	 * @return Une liste d'objets UEValide
 	 */
 	private static ArrayList<UEValide> allPassageUeEtudiant(Etudiant e) {
 		ArrayList<UEValide> allValidation = chargementCSV.collectionUEValide();
@@ -291,8 +334,11 @@ public class utilsFunctionUe {
 	 * Cette fonction permet de récupérer l'ensemble des UEValide en cours par
 	 * l'étudiant
 	 * 
-	 * @param e
-	 * @return
+	 * @see UE
+	 * @see Etudiant
+	 * @see UEValide
+	 * @param e Objet Etudiant sur lequel on travail
+	 * @return Une liste d'objet UEValide
 	 */
 	private static ArrayList<UEValide> ueEnCours(Etudiant e) {
 		ArrayList<UEValide> allValidation = chargementCSV.collectionUEValide();

@@ -19,6 +19,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 
+/**
+ * Contrôleur ListeUEbureauExamenController de la <i>vue ListeUEbureauExamen</i>
+ *
+ */
 public class ListeUEbureauExamenController implements Initializable {
 	@FXML
 	private TableView<UE> tableView_listeUE;

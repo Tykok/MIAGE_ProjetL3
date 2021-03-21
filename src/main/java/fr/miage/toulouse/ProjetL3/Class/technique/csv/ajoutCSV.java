@@ -11,21 +11,29 @@ import fr.miage.toulouse.ProjetL3.Main;
 import fr.miage.toulouse.ProjetL3.Class.metier.Etudiant;
 import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
 
+/**
+ * Classe ajoutCSV, elle permet d'avoir accès à différentes méthodes qui
+ * permettent l'écriture au sein d'un fichier CSV
+ *
+ * @see CSVWriter
+ * @see FileWriter
+ */
 public class ajoutCSV {
 
 	/**
-	 * Cette méthode permet d'ajouter les valeurs voulues à un fichier CSV
+	 * Cette méthode permet d'<i>ajouter les valeurs</i> voulues à un fichier CSV
 	 * 
-	 * @param nomFichier
-	 * @param valeur
+	 * @param nomFichier Nom du fichier ou l'on souhaite écrire
+	 * @param valeur     Ensemble des valeurs (sous formes de tableau) qui seront
+	 *                   insérer
 	 */
 	private static void ajoutValeurCSV(String nomFichier, String[] valeur) {
 		// On récupére le fichier contenu dans nos ressources
-		URL resource = App.class.getResource(Main.PATH_DATA + nomFichier + ".csv");
 
 		try {
-			CSVWriter writer = new CSVWriter(new FileWriter(resource.getPath(), true), CSVWriter.DEFAULT_SEPARATOR,
-					CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+			CSVWriter writer = new CSVWriter(new FileWriter(Main.PATH_DATA + "\\" + nomFichier + ".csv", true),
+					CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+					CSVWriter.DEFAULT_LINE_END);
 
 			writer.writeNext(valeur);
 			writer.flush();
@@ -37,19 +45,18 @@ public class ajoutCSV {
 	}
 
 	/**
-	 * Cette méthode permet de réécrire un fichier depuis le début
+	 * Cette méthode permet de <i>réécrire un fichier</i> depuis le début, elle
+	 * écrase le contenu du fichier pour pouvoir réécrire les valeurs
 	 * 
-	 * @param nomFichier
-	 * @param valeur
+	 * @param nomFichier Nom du fichier ou l'on souhaite écrire
+	 * @param valeur     Ensemble des valeurs (sous formes de tableau) qui seront
+	 *                   insérer
 	 */
 	private static void reecritureCSV(String nomFichier, String[] valeur) {
-
-		// On récupére le fichier contenu dans nos ressources
-		URL resource = App.class.getResource(Main.PATH_DATA + nomFichier + ".csv");
-
 		try {
-			CSVWriter writer = new CSVWriter(new FileWriter(resource.getPath()), CSVWriter.DEFAULT_SEPARATOR,
-					CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+			CSVWriter writer = new CSVWriter(new FileWriter(Main.PATH_DATA + "\\" + nomFichier + ".csv"),
+					CSVWriter.DEFAULT_SEPARATOR, CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+					CSVWriter.DEFAULT_LINE_END);
 
 			writer.writeNext(valeur);
 			writer.flush();
@@ -61,8 +68,9 @@ public class ajoutCSV {
 	}
 
 	/**
-	 * Cette méthode permet simplement de réécrire le fichier CSV validationue, afin
-	 * de repartir sur un fichier vierge ne comportant que le nom des colonnes
+	 * Cette méthode permet simplement de <i>réécrire le fichier CSV
+	 * validationue</i>, afin de repartir sur un fichier vierge ne comportant que le
+	 * nom des colonnes
 	 */
 	public static void reecritureUEValide() {
 		String[] colonneReecriture = { "codeUE", "numEtudiant", "Annnee", "Semestre", "Valider", "EnCours" };
@@ -70,13 +78,13 @@ public class ajoutCSV {
 	}
 
 	/**
-	 * Méthode appelé en passant en paramètre l'objet Etudiant, elle permet de ne
-	 * pas avoir à refaire la manipulation de "rangement" des différentes valeurs à
-	 * implémenter dans le fichier CSV dans un tableau
+	 * Méthode appelé en passant en paramètre l'objet <i>Etudiant</i>, elle permet
+	 * de ne pas avoir à refaire la manipulation de "rangement" des différentes
+	 * valeurs à implémenter dans le fichier CSV dans un tableau
 	 * 
 	 * @see Etudiant
 	 * 
-	 * @param e
+	 * @param e Objet Etudiant
 	 */
 	public static void ajoutEtudiant(Etudiant e) {
 		String[] etudiant = { e.getNum(), e.getNom(), e.getPrenom(), e.getMention().getNomMention() };
@@ -84,13 +92,13 @@ public class ajoutCSV {
 	}
 
 	/**
-	 * Méthode permettant de rajotuer une ligne à notre fichier CSV validationue,
-	 * permettant donc d'inscrire un étudiant ou d'entrer la validation d'une
-	 * matière à un semestre d'un étudiant dans ce fichier CSV
+	 * Méthode permettant de <i>rajotuer une ligne à notre fichier CSV
+	 * validationue</i>, permettant donc d'inscrire un étudiant ou d'entrer la
+	 * validation d'une matière à un semestre d'un étudiant dans ce fichier CSV
 	 * 
 	 * @see UEValidation
 	 * 
-	 * @param u
+	 * @param u Objet UEValide
 	 */
 	public static void ajoutUeValidation(UEValide u) {
 		String[] ueInscrit = { u.getUEValidation().getCodeIdentification(), u.getEtudiantValidation().getNum(),

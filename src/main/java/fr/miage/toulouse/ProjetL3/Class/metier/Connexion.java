@@ -1,11 +1,12 @@
 package fr.miage.toulouse.ProjetL3.Class.metier;
 
 /**
- * Classe Connexion, permet d'instancier les différentes personnes qui auront le
- * droit de ce connecter à l'application
+ * Classe Connexion, permet d'instancier les différentes <i>personnes</i> qui
+ * auront le droit de ce connecter à l'application. <br/>
+ * <br/>
+ * Cette classe hérite de la classe <b>Personne</b>
  * 
  * @see Personne
- * @author ElieTreport
  *
  */
 public class Connexion extends Personne {
@@ -18,13 +19,16 @@ public class Connexion extends Personne {
 	 * Constructeur de la classe Connexion
 	 * 
 	 * @see Personne
-	 * @param num
-	 * @param nom
-	 * @param prenom
-	 * @param numP
-	 * @param identifiant
-	 * @param mdp
-	 * @param droit
+	 * @param num         Numéro permettant d'<i>identifier</i> de manière distincte
+	 *                    la personne qui souhaite ce connecter
+	 * @param nom         Nom de la personne qui ce connecte
+	 * @param prenom      Prénom de la personne qui ce connecte
+	 * @param identifiant Identifiant (login) de la personne, cet identifiant lui
+	 *                    permet de ce connecter
+	 * @param mdp         Mot de passe de la personne, lui permettant de
+	 *                    s'authentifier
+	 * @param droit       Droit d'accès à l'application, une personne n'a le droit
+	 *                    d'accèder qu'à une partie des vues
 	 */
 	public Connexion(String num, String nom, String prenom, String identifiant, String mdp, String droit) {
 		super(num, nom, prenom);
@@ -34,54 +38,56 @@ public class Connexion extends Personne {
 	}
 
 	/**
-	 * Fonction Get de l'identifiant
+	 * Fonction <i>Get</i> de l'identifiant
 	 * 
-	 * @return
+	 * @return L'dientifiant de la personne
 	 */
 	public String getIdentifiant() {
 		return identifiant;
 	}
 
 	/**
-	 * Méthode Set de l'identifiant
+	 * Méthode <i>Set</i> de l'identifiant
 	 * 
-	 * @param identifiant
+	 * @param identifiant Prend en compte le nouvel identifiant afin de le mettre à
+	 *                    jour
 	 */
 	public void setIdentifiant(String identifiant) {
 		this.identifiant = identifiant;
 	}
 
 	/**
-	 * Fonction Get du Mot de Passe
+	 * Fonction <i>Get</i> du Mot de Passe
 	 * 
-	 * @return
+	 * @return Le mot de passe de l'objet appelant cette méthode
 	 */
 	public String getMdp() {
 		return mdp;
 	}
 
 	/**
-	 * Méthode Set du Mot de Passe
+	 * Méthode <i>Set</i> du Mot de Passe
 	 * 
-	 * @param mdp
+	 * @param mdp Prend en compte le nouveau mot de passe pour écraser l'ancien mot
+	 *            de passe
 	 */
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
 
 	/**
-	 * Fonction Get du rôle (droit) de la personne
+	 * Fonction <i>Get</i> du rôle (droit) de la personne qui souhaite ce connecter
 	 * 
-	 * @return
+	 * @return Retourne le droit que la personne a obtenu sur l'application
 	 */
 	public String getDroit() {
 		return droit;
 	}
 
 	/**
-	 * Méthode Set du rôle (droit) de la personne
+	 * Méthode <i>Set</i> du rôle (droit) de la personne qui souhaite ce connecter
 	 * 
-	 * @param droit
+	 * @param droit Permet de mettre à jour le droit de cette personne
 	 */
 	public void setDroit(String droit) {
 		this.droit = droit;

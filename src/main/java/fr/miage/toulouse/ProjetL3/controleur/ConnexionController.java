@@ -17,7 +17,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 
 /**
- * FXML Controller class
+ * Contrôleur FXML ConnexionController de la <i>Vue Connexion</i>. <br/>
+ * Ce contrôleur permet de vérifier et de contrôler l'accès à l'application
  *
  */
 public class ConnexionController implements Initializable {
@@ -34,12 +35,6 @@ public class ConnexionController implements Initializable {
 	private ObservableList<String> listRole = FXCollections.observableArrayList("Directeur d'étude",
 			"Secréteriat pédagogique", "Bureau des examens");
 
-	/**
-	 * Permet d'initialiser le contrôleur de la classe
-	 * 
-	 * @param url
-	 * @param rb
-	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		cmb_droit.setItems(listRole);
@@ -67,7 +62,7 @@ public class ConnexionController implements Initializable {
 
 	/**
 	 * Cette méthode permet de vérifier que l'identifiant et le mot de passe fourni
-	 * sont bel et bien correct
+	 * sont bel et bien correcte
 	 * 
 	 * @param identifiant Identifiant entré par l'utiliser
 	 * @param mdp         Mot de passe entré par l'utiliser
@@ -87,7 +82,8 @@ public class ConnexionController implements Initializable {
 	 * Méthode qui permet de changer de vue en fontion du rôle que la personne aura
 	 * choisi
 	 * 
-	 * @param value
+	 * @param value Correspond à la valeur qu'aura choisi l'utilisateur, et donc la
+	 *              vue sur laquel il sera redirigé
 	 */
 	private void switchVue(String value) {
 		try {

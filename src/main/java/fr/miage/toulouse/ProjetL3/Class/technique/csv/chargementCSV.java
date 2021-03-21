@@ -1,39 +1,45 @@
 package fr.miage.toulouse.ProjetL3.Class.technique.csv;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 
-import fr.miage.toulouse.ProjetL3.App;
 import fr.miage.toulouse.ProjetL3.Main;
 import fr.miage.toulouse.ProjetL3.Class.metier.*;
 
 /**
- * Cette interface pouvant être implémenter par les contrôleurs, leurs permet
- * d'avoir une collection d'objet pouvant être exploités
+ * Cette classe permet d'avoir à porté de main différentes méthodes qui
+ * permettent d'instancier des objets, des collections d'objets de différentes
+ * classes en chargeant les fichiers CSV qui correspondent
  *
  */
 public class chargementCSV {
 
 	/**
-	 * Cette méthode permet de charger un fichier CSV donné en argument et de
-	 * retourner par la suite une ArrayList contenant chacune des lignes de ce même
-	 * fichier
+	 * Cette fonction permet de <i>charger un fichier CSV</i> donné en argument et
+	 * de retourner par la suite une ArrayList contenant chacune des lignes de ce
+	 * même fichier
 	 * 
-	 * @param nomFichier
-	 * @return
+	 * @param nomFichier Nom du fichier qui devra être lue
+	 * @return Un tableau à deux dimensions, la première dimension correspond au
+	 *         ligne, et la seconde au colonne de cette ligne
 	 */
 	private static ArrayList<String[]> returnTabCsv(String nomFichier) {
 		ArrayList<String[]> tabCsv = new ArrayList<>();
 		try {
-			URL resource = App.class.getResource(Main.PATH_DATA + nomFichier + ".csv");
-			try (CSVReader reader = new CSVReader(new FileReader(resource.getPath()))) {
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(new FileInputStream(Main.PATH_DATA + "\\" + nomFichier + ".csv"), "UTF-8"));
+			try (CSVReader reader = new CSVReader(in)) {
 				List<String[]> r = reader.readAll();
 				for (String[] a : r) {
 					tabCsv.add(a);
@@ -43,18 +49,19 @@ public class chargementCSV {
 			} catch (CsvException e1) {
 				e1.printStackTrace();
 			}
-		} catch (IllegalStateException e) {
+		} catch (IllegalStateException | UnsupportedEncodingException | FileNotFoundException e) {
 			e.printStackTrace();
+		} finally {
 		}
 		return tabCsv;
 	}
 
 	/**
-	 * Cette méthode permet de charger entièrement une collection des étudiants en
+	 * Cette fonctin permet de charger entièrement une collection des étudiants en
 	 * chargeant les différentes données à partir du fichier CSV
 	 * 
-	 * @return
-	 * @throws FileNotFoundException
+	 * @see Etudiant
+	 * @return Une liste d'objet Etudiant
 	 */
 	public static ArrayList<Etudiant> collectionEtudiant() {
 		ArrayList<Etudiant> collectionEtudiant = new ArrayList<Etudiant>();
@@ -73,11 +80,12 @@ public class chargementCSV {
 	}
 
 	/**
-	 * Cette méthode permet de retourner un étudiant, en fonction du numéro
+	 * Cette fonction permet de retourner un étudiant, en fonction du numéro
 	 * d'étudiant qui aura été fourni en paramètre
 	 * 
-	 * @param num
-	 * @return
+	 * @see Etudiant
+	 * @param num Numéro d'étudiant recherché
+	 * @return Objet Etudiant correspondant à l'étudiant recherché
 	 */
 	public static Etudiant getEtudiant(String num) {
 		ArrayList<Etudiant> collectionEtudiant = collectionEtudiant();
@@ -90,11 +98,12 @@ public class chargementCSV {
 	}
 
 	/**
-	 * Méthode permettant de charger récupérer les parcours et mention auquel un
+	 * Fonction permettant de charger récupérer les parcours et mention auquel un
 	 * étudiant sera inscrits en chargeant les fichiers CSV correspondant
 	 * 
-	 * @param nomMention
-	 * @return
+	 * @see Mention
+	 * @param nomMention Correspond au nom de la mention recherché
+	 * @return Objet Mention recherché
 	 */
 	private static Mention rechercheMention(String nomMention) {
 		Mention returnMention;
@@ -113,11 +122,12 @@ public class chargementCSV {
 	}
 
 	/**
-	 * Cette méthode permet de retourner un parcours via le nom qui aura été fourni
-	 * en argumentf
+	 * Cette fonction permet de retourner un parcours via le nom qui aura été fourni
+	 * lors de l'appel de cette fonction
 	 * 
-	 * @param nomParcours
-	 * @return
+	 * @see Parcours
+	 * @param nomParcours Correspond au nom du parcours recherché
+	 * @return Objet Parcours de la classe Parcours
 	 */
 	private static Parcours rechercheParcours(String nomParcours) {
 		boolean firstLine = true;
@@ -135,11 +145,11 @@ public class chargementCSV {
 	}
 
 	/**
-	 * Méthode permettant de retourner une collection des différentes mentions
+	 * Fonction permettant de retourner une collection des différentes mentions
 	 * présent dans le fichier CSV
 	 * 
-	 * @return
-	 * @throws FileNotFoundException
+	 * @see Mention
+	 * @return Une liste d'objet Mention
 	 */
 	public static ArrayList<Mention> collectionMention() {
 		ArrayList<Mention> collectionMention = new ArrayList<Mention>();
@@ -159,8 +169,7 @@ public class chargementCSV {
 	 * Cette méthode permet grâce à la collection donner en paramètre, ajouter à
 	 * chacun des parcours les mentions qui lui correspondent
 	 * 
-	 * @param collectionParcours
-	 * @throws FileNotFoundException
+	 * @param collectionParcours Correspond à l'ensemble des parcours
 	 */
 	private static void addMention_Parcours(ArrayList<Parcours> collectionParcours) {
 		boolean firstLine = true;
@@ -179,8 +188,8 @@ public class chargementCSV {
 	/**
 	 * Cette méthode permet de retourner une collection de parcours
 	 * 
-	 * @return
-	 * @throws FileNotFoundException
+	 * @see Parcours
+	 * @return Une liste de Parcours
 	 */
 	public static ArrayList<Parcours> collectionParcours() {
 		ArrayList<Parcours> collectionParcours = new ArrayList<Parcours>();
@@ -198,11 +207,11 @@ public class chargementCSV {
 	}
 
 	/**
-	 * Cette méthode permet d'instancier une collection des différents personnes
+	 * Cette fonction permet d'instancier une collection des différents personnes
 	 * ayant accès à l'application
 	 * 
-	 * @return
-	 * @throws FileNotFoundException
+	 * @see Connexion
+	 * @return Une liste d'objets connexion
 	 */
 	public static ArrayList<Connexion> collectionConnexion() {
 		ArrayList<Connexion> collectionRole = new ArrayList<Connexion>();
@@ -219,11 +228,11 @@ public class chargementCSV {
 	}
 
 	/**
-	 * Cette méthode permet de retourner les différentes UE contenues au sein du
+	 * Cette fonction permet de retourner les différentes UE contenues au sein du
 	 * fichiers collectionUE_Prerequiss
 	 * 
-	 * @return
-	 * @throws FileNotFoundException
+	 * @see UE
+	 * @return Une liste d'objet UE
 	 */
 	public static ArrayList<UE> collectionUE() {
 		ArrayList<UE> collectionUE = new ArrayList<UE>();
@@ -246,8 +255,8 @@ public class chargementCSV {
 	 * Cette méthode permet d'ajouter à la collection donné, les UE qui sont
 	 * prérequis aux différentes UE donné dans cette collection
 	 * 
-	 * @param collectionUE
-	 * @throws FileNotFoundException
+	 * @see UE
+	 * @param collectionUE Ensemble des UE nécessitant d'avoir des prérequis
 	 */
 	private static void getCollectionUEPrerequis(ArrayList<UE> collectionUE) {
 		ArrayList<String[]> contenuFichier = returnTabCsv("prerequis");
@@ -272,8 +281,9 @@ public class chargementCSV {
 	 * Cette fonction permet de retourner une collection de l'ensemble des UE
 	 * prérequis pour un UE donné
 	 * 
-	 * @param ue
-	 * @return
+	 * @see UE
+	 * @param ue Objet UE ou l'on sougaite obtenir l'ensemble des prérequis
+	 * @return Une liste d'objet prérequis
 	 */
 	public static ArrayList<UE> getAllUEPrerequis(UE ue) {
 		ArrayList<String[]> contenuFichier = returnTabCsv("prerequis");
@@ -295,6 +305,7 @@ public class chargementCSV {
 	 * Cette fonction, permet de récupérer l'ensemble des UE qui peuvent être passé
 	 * grâce à l'UE qui est donné en paramètre
 	 * 
+	 * @see UE
 	 * @param u
 	 * @return
 	 */
@@ -318,8 +329,9 @@ public class chargementCSV {
 	 * Cette fonction permet de récupérer un UE en particulier et de retourner
 	 * l'objet après l'avoir instancier
 	 * 
-	 * @param nomUE
-	 * @return
+	 * @see UE
+	 * @param nomUE Nom de l'UE que l'on recherche
+	 * @return Objet UE de la classe UE
 	 */
 	public static UE getUE(String nomUE) {
 		ArrayList<String[]> contenuFichier = returnTabCsv("ue");
@@ -339,8 +351,8 @@ public class chargementCSV {
 	 * Cette méthode permet de renvoyer les différents validation effectué par
 	 * l'ensemble des étudiants que l'on possède dans notre fichier CSV
 	 * 
-	 * @return
-	 * @throws FileNotFoundException
+	 * @see UEValide
+	 * @return Une liste d'objets UEValide de la classe UEValide
 	 */
 	public static ArrayList<UEValide> collectionUEValide() {
 		ArrayList<UEValide> collectionUEValide = new ArrayList<UEValide>();

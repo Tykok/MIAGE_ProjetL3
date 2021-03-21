@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import fr.miage.toulouse.ProjetL3.Class.metier.UE;
 import fr.miage.toulouse.ProjetL3.Class.technique.affichageEtudiant;
+import fr.miage.toulouse.ProjetL3.Class.technique.csv.ajoutCSV;
+import fr.miage.toulouse.ProjetL3.Class.technique.fonction.appFonction;
 import fr.miage.toulouse.ProjetL3.Class.technique.fonction.utilsFunctionEtudiant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +21,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 
+/**
+ * 
+ * Contrôleur ListeEtudiant_BureauExamController de la <i> vue
+ * ListeEtudiant_BureauExam</i>
+ *
+ */
 public class ListeEtudiant_BureauExamController implements Initializable {
 	@FXML
 	private TableView<affichageEtudiant> tableView_EtudiantInscrits;
@@ -65,6 +73,25 @@ public class ListeEtudiant_BureauExamController implements Initializable {
 	}
 
 	/**
+	 * Appel de la méthode permettant d'effectuer la déconnexion
+	 * 
+	 * @see appFonction
+	 */
+	public void deco() {
+		appFonction.deco();
+	}
+
+	/**
+	 * Méthode permettant de faire appel à la fonction Retour de la classe
+	 * appFonction
+	 * 
+	 * @see appFonction
+	 */
+	public void retour() {
+		appFonction.retour("ListeUEbureauExamen");
+	}
+
+	/**
 	 * Cette méthode permet de sauvegarder l'ensemble des modifications qui ont été
 	 * effectués
 	 * 
@@ -72,6 +99,10 @@ public class ListeEtudiant_BureauExamController implements Initializable {
 	 */
 	@FXML
 	public void save(MouseEvent event) {
+		// On remet le fichier à 0
+		ajoutCSV.reecritureUEValide();
+
+		// ensuite on parcourt l'ensemble des étudiants
 		for (affichageEtudiant e : listEtudiantSelection) {
 			utilsFunctionEtudiant.validationUeEtudiant(e, ueClic);
 		}

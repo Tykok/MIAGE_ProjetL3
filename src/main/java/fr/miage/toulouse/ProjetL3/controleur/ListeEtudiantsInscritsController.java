@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +29,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 
+/**
+ * Contrôleur ListeEtudiantsInscritsController de la <i>vue
+ * ListeEtudiantsInscrits</i>
+ *
+ */
 public class ListeEtudiantsInscritsController implements Initializable {
 	@FXML
 	private Button btn_sauvegarder;
@@ -47,6 +53,8 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	private ContextMenu menu;
 	@FXML
 	private MenuItem menuItemNamePrerequis;
+	@FXML
+	private Label label_UEInscrit;
 
 	/**
 	 * Notre objet Etudiant transmit par le contrôleur
@@ -129,6 +137,8 @@ public class ListeEtudiantsInscritsController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		label_UEInscrit.setText("Liste des UE où l'étudiant " + etudiantUE.getNom() + " " + etudiantUE.getPrenom()
+				+ " peut être inscrit :");
 		for (UE ue : utilsFunctionUe.getAllInscriptionPossible(etudiantUE)) {
 			listUE.add(new affichageUE(ue));
 		}

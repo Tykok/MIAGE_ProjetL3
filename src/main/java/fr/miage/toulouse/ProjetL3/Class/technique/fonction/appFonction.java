@@ -4,6 +4,11 @@ import java.io.IOException;
 
 import fr.miage.toulouse.ProjetL3.App;
 
+/**
+ * Classe contenant l'ensemble des fonctions qui sont essentielles à l'ensemble
+ * des vues
+ *
+ */
 public class appFonction {
 
 	/**
@@ -22,7 +27,7 @@ public class appFonction {
 	 * Méthode qui permet d'effectuer un retour vers la page qui aura été donné en
 	 * argument
 	 * 
-	 * @param fxml
+	 * @param fxml correspond à la vue ou l'on souhaite aller
 	 */
 	public final static void retour(String fxml) {
 		try {

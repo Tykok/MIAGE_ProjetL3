@@ -103,12 +103,12 @@
 				</SplitPane>
 			</children>
 		</AnchorPane>
-		<Button id="btn_deco" layoutX="1134.0" layoutY="4.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: red;" text="Déconnexion" textFill="WHITE">
+		<Button id="btn_deco" layoutX="1134.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#deco" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: red;" text="Déconnexion" textFill="WHITE">
 			<font>
 				<Font name="System Bold" size="13.0" />
 			</font>
 		</Button>
-		<Button id="btn_retour" layoutX="7.0" layoutY="657.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Retour" textFill="WHITE">
+		<Button id="btn_retour" layoutX="7.0" layoutY="657.0" mnemonicParsing="false" onMouseClicked="#retour" style="-fx-background-color: blue;" text="Retour" textFill="WHITE">
 			<font>
 				<Font name="System Bold" size="13.0" />
 			</font>

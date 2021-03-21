@@ -10,14 +10,22 @@ import fr.miage.toulouse.ProjetL3.Class.technique.affichageEtudiant;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.ajoutCSV;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
 
+/**
+ * Classe technique, elle permet d'avoir des fonctions nécessaires à la
+ * manipulation des objets et collection de la classe Etudiant
+ * 
+ * @see Etudiant
+ */
 public class utilsFunctionEtudiant {
 
 	/**
-	 * Cette méthode permet de retourner l'ensemble des étudiants qui ont l'UE en
-	 * cours
+	 * Cette fonction permet de <i>retourner l'ensemble des étudiants qui ont l'UE
+	 * en cours</i>
 	 * 
-	 * @param ue
-	 * @return
+	 * @see Etudiant
+	 * @see UE
+	 * @param ue Objet UE qu'on souhaite retrouver
+	 * @return Une liste d'étudiants ayant l'UE en cours
 	 */
 	public static ArrayList<affichageEtudiant> etudiantInscrit(UE ue) {
 		ArrayList<affichageEtudiant> etudiantListe = new ArrayList<affichageEtudiant>();
@@ -31,9 +39,12 @@ public class utilsFunctionEtudiant {
 
 	/**
 	 * Cette méthode permet aux contrôleurs ListeEtudiant_BureauExamController
+	 * d'inscrire un étudiant et de le sauvegarder au sein du fichier CSV respectif
 	 * 
-	 * @param e
-	 * @param ueClic
+	 * @see ajoutCSV
+	 * 
+	 * @param e      Correspond à l'étudiant qui doit être enregistrer
+	 * @param ueClic Correspond à l'UE ou l'on souhaite inscrire l'étudiant
 	 */
 	public static void inscriptionEtudiant(affichageEtudiant e, UE ueClic) {
 		Etudiant a = new Etudiant(e.getNum(), e.getNom(), e.getPrenom(), e.getMention());
@@ -48,11 +59,12 @@ public class utilsFunctionEtudiant {
 	}
 
 	/**
-	 * Cette méthode permet de passer l'UE ou l'étudiant est inscrit à un UE qu'il a
-	 * validé
+	 * Cette méthode permet de passer l'UE qu'un étudiant passé à un état "validé"
 	 * 
-	 * @param e
-	 * @param ueClic
+	 * @see Etudiant
+	 * @see UE
+	 * @param e      Correspond à l'étudiant qui aura validé l'UE
+	 * @param ueClic Correspond à l'UE qu'aura validé l'étudiant
 	 */
 	public static void validationUeEtudiant(affichageEtudiant e, UE ueClic) {
 		ArrayList<UEValide> listUeValide = chargementCSV.collectionUEValide();
@@ -63,9 +75,6 @@ public class utilsFunctionEtudiant {
 				a.setEnCours(false);
 			}
 		}
-
-		// On remet le fichier à 0
-		ajoutCSV.reecritureUEValide();
 
 		// On réécrit maintenant l'ensemble des UE
 		for (UEValide u : listUeValide) {

@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 
@@ -25,6 +26,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 
+/**
+ * Contrôleur ListeUEController de la <i>vue ListeUE</i>
+ *
+ */
 public class ListeUEController implements Initializable {
 	@FXML
 	private Button btn_deco;
@@ -74,6 +79,8 @@ public class ListeUEController implements Initializable {
 	private MenuItem menuItem_ueValide;
 	@FXML
 	private MenuItem menuItem_ueEnCours;
+	@FXML
+	private Label label_etudiant;
 
 	/**
 	 * Attribut privé nécessaire pour le controleur
@@ -111,6 +118,8 @@ public class ListeUEController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		label_etudiant
+				.setText(label_etudiant.getText() + " : " + etudiantClic.getNom() + " " + etudiantClic.getPrenom());
 // On remplit l'observable des UE validé par l'étudiant
 		for (UE a : utilsFunctionUe.ueEtudiant(etudiantClic)) {
 			listUEValide.add(a);

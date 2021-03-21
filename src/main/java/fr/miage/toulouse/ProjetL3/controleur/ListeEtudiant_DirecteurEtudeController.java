@@ -25,6 +25,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 
+/**
+ * Contrôleur ListeEtudiant_DirecteurEtudeController de la <i>vue
+ * ListeEtudiant_DirecteurEtude</i>
+ *
+ */
 public class ListeEtudiant_DirecteurEtudeController implements Initializable {
 
 	// Différents objets de l'interface FXML

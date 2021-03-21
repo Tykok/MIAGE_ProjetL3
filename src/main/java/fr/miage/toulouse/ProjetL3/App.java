@@ -8,9 +8,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-
 /**
- * JavaFX App
+ * Cette classe App, est la classse centrale permettant de changer et lancer une
+ * vue
+ *
  */
 public class App extends Application {
 
@@ -20,7 +21,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 
-		scene = new Scene(loadFXML("Connexion"));
+		scene = new Scene(loadFXML("choixCSV"));
 
 		stage.setScene(scene);
 		stage.setResizable(false);
@@ -33,7 +34,7 @@ public class App extends Application {
 	 * Méthode qui permet de charger l'interface avec un nouveau fichier fxml
 	 * 
 	 * @param fxml Nom du fichier fxml sans extension
-	 * @throws IOException
+	 * @throws IOException Si le fichier est introuvable, une erreur est générer
 	 */
 	public static void setRoot(String fxml) throws IOException {
 		scene.setRoot(loadFXML(fxml));
@@ -43,7 +44,7 @@ public class App extends Application {
 	 * Fonction qui permet de charger un fichier .fxml donné et de le retourner
 	 * 
 	 * @param fxml Nom du fichier fxml sans extension
-	 * @return
+	 * @return Le fichier fxml, chargé est retourné
 	 * @throws IOException
 	 */
 	private static Parent loadFXML(String fxml) throws IOException {

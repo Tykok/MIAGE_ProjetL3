@@ -14,7 +14,7 @@ fr\miage\toulouse\ProjetL3\controleur\ListeUEbureauExamenController.class
 fr\miage\toulouse\ProjetL3\Class\metier\Etudiant.class
 fr\miage\toulouse\ProjetL3\controleur\ConnexionController.class
 fr\miage\toulouse\ProjetL3\Main.class
-module-info.class
+fr\miage\toulouse\ProjetL3\controleur\ChoiCsvController.class
 fr\miage\toulouse\ProjetL3\controleur\ListeEtudiant_BureauExamController.class
 fr\miage\toulouse\ProjetL3\Class\technique\fonction\utilsFunctionUe.class
 fr\miage\toulouse\ProjetL3\Class\technique\affichageUE.class

@@ -64,7 +64,7 @@
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="33.0" prefWidth="780.0">
                      <children>
-                        <Label alignment="TOP_LEFT" layoutX="7.0" layoutY="-6.0" text="Etudiant :" underline="true">
+                        <Label fx:id="label_etudiant" alignment="TOP_LEFT" layoutX="7.0" layoutY="-6.0" text="Etudiant" underline="true">
                            <font>
                               <Font name="Bell MT" size="27.0" />
                            </font>
