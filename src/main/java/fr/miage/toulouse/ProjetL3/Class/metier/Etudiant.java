@@ -1,7 +1,7 @@
 package fr.miage.toulouse.ProjetL3.Class.metier;
 
 /**
- * Classe <i>Etudiant</i> héritant de la classe abstraite <i>Personne<i> <br/>
+ * Classe <i>Etudiant</i> héritant de la classe abstraite <i>Personne</i> <br/>
  * Cette classe permet d'instancier un <b>étudiant</b>
  * 
  * @see Personne
@@ -9,6 +9,10 @@ package fr.miage.toulouse.ProjetL3.Class.metier;
  */
 public class Etudiant extends Personne {
 
+	/**
+	 * Mention de l'étudiant
+	 * @see Mention
+	 */
 	private Mention MentionEtudiant;
 
 	/**

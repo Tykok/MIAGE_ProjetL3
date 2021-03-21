@@ -28,6 +28,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 
+/**
+ * Contrôleur de la vue  ListeEtudiant_Secretariat
+ *
+ */
 public class ListeEtudiant_SecretariatController implements Initializable {
 	@FXML
 	private Button btn_deco;

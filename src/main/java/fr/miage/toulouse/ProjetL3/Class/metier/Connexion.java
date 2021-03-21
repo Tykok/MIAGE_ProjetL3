@@ -11,8 +11,17 @@ package fr.miage.toulouse.ProjetL3.Class.metier;
  */
 public class Connexion extends Personne {
 
+	/**
+	 * Identifiant de la personne qui ce connecte
+	 */
 	private String identifiant;
+	/**
+	 * Mot de passe de la personne qui ce connecte
+	 */
 	private String mdp;
+	/**
+	 * Droit de la personne qui ce connecte
+	 */
 	private String droit;
 
 	/**

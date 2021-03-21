@@ -15,8 +15,19 @@ import java.util.ArrayList;
  */
 public class Mention {
 
+	/**
+	 * Nom de la mention
+	 */
 	private String nomMention;
+	/**
+	 * Liste des UE possible dans cette mention
+	 * @see UE
+	 */
 	private ArrayList<UE> UEMention;
+	/**
+	 * Objet parcours auquel appartient la mention
+	 * @see Parcours
+	 */
 	private Parcours parcoursMention;
 
 	/**

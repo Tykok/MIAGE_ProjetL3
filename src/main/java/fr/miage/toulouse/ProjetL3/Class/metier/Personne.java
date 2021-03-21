@@ -10,8 +10,17 @@ package fr.miage.toulouse.ProjetL3.Class.metier;
  */
 public abstract class Personne {
 
+	/**
+	 * Numéro de la personne 
+	 */
 	protected String num;
+	/**
+	 * Nom de la personne
+	 */
 	protected String nom;
+	/**
+	 * Prénom de la personne
+	 */
 	protected String prenom;
 
 	/**

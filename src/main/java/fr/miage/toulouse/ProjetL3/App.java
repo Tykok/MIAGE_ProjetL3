@@ -15,7 +15,9 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-	// Attribut privé qui définit notre interface (fenêtre)
+	/**
+	 * Attribut privé qui définit notre interface (fenêtre)
+	 */
 	private static Scene scene;
 
 	@Override
@@ -45,7 +47,7 @@ public class App extends Application {
 	 * 
 	 * @param fxml Nom du fichier fxml sans extension
 	 * @return Le fichier fxml, chargé est retourné
-	 * @throws IOException
+	 * @throws IOException Fichier FXML non trouvé
 	 */
 	private static Parent loadFXML(String fxml) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
