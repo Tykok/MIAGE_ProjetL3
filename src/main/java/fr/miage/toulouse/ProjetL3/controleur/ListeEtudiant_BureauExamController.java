@@ -99,13 +99,10 @@ public class ListeEtudiant_BureauExamController implements Initializable {
 	 */
 	@FXML
 	public void save(MouseEvent event) {
-		// On remet le fichier à 0
-		ajoutCSV.reecritureUEValide();
+		// ensuite on fait appel à une méthode qui tout réécrire
+		utilsFunctionEtudiant.validationUeEtudiant(listEtudiantSelection, ueClic);
 
-		// ensuite on parcourt l'ensemble des étudiants
-		for (affichageEtudiant e : listEtudiantSelection) {
-			utilsFunctionEtudiant.validationUeEtudiant(e, ueClic);
-		}
+		retour();
 	}
 
 	@Override

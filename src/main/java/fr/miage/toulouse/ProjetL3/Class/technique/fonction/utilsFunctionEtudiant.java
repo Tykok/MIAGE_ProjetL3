@@ -9,6 +9,7 @@ import fr.miage.toulouse.ProjetL3.Class.metier.UEValide;
 import fr.miage.toulouse.ProjetL3.Class.technique.affichageEtudiant;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.ajoutCSV;
 import fr.miage.toulouse.ProjetL3.Class.technique.csv.chargementCSV;
+import javafx.collections.ObservableList;
 
 /**
  * Classe technique, elle permet d'avoir des fonctions nécessaires à la
@@ -63,15 +64,48 @@ public class utilsFunctionEtudiant {
 	 * 
 	 * @see Etudiant
 	 * @see UE
-	 * @param e      Correspond à l'étudiant qui aura validé l'UE
-	 * @param ueClic Correspond à l'UE qu'aura validé l'étudiant
+	 * @param listEtudiantSelection Correspond à l'étudiant qui aura validé l'UE
+	 * @param ueClic                Correspond à l'UE qu'aura validé l'étudiant
 	 */
-	public static void validationUeEtudiant(affichageEtudiant e, UE ueClic) {
+	public static void validationUeEtudiant(ObservableList<affichageEtudiant> listEtudiantSelection, UE ueClic) {
+		ArrayList<UEValide> listUeValide = chargementCSV.collectionUEValide();
+		// On remet le fichier à 0
+		ajoutCSV.reecritureUEValide();
+		
+		
+		
+		for (affichageEtudiant b : listEtudiantSelection) {
+			for (UEValide a : listUeValide) {
+				if (a.getEtudiantValidation().getNum().equals(b.getNum())
+						&& a.getUEValidation().getCodeIdentification().equals(ueClic.getCodeIdentification())) {
+					a.setValider(true);
+					a.setEnCours(false);
+				}
+			}
+		}
+
+		// On réécrit maintenant l'ensemble des UE
+		for (UEValide u : listUeValide) {
+			ajoutCSV.ajoutUeValidation(u);
+		}
+
+	}
+
+	/**
+	 * Cette méthode permet de passer l'UE qu'un étudiant passé à un état
+	 * "non-validé"
+	 * 
+	 * @see Etudiant
+	 * @see UE
+	 * @param e      Correspond à l'étudiant qui n'aura pas validé l'UE
+	 * @param ueClic Correspond à l'UE qu'un étudiant n'aura pas validé
+	 */
+	public static void nonValidationUeEtudiant(affichageEtudiant e, UE ueClic) {
 		ArrayList<UEValide> listUeValide = chargementCSV.collectionUEValide();
 		for (UEValide a : listUeValide) {
 			if (a.getEtudiantValidation().getNum().equals(e.getNum())
 					&& a.getUEValidation().getCodeIdentification().equals(ueClic.getCodeIdentification())) {
-				a.setValider(true);
+				a.setValider(false);
 				a.setEnCours(false);
 			}
 		}

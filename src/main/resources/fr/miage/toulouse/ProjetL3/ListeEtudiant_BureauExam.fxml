@@ -77,7 +77,7 @@
 										<TableColumn fx:id="column_parcoursEtudiantSelection" prefWidth="128.0" text="Parcours" />
 									</columns>
 								</TableView>
-								<Label layoutX="24.0" layoutY="5.0" text="Séléctionner les étudiants qui ont terminés l'UE">
+								<Label layoutX="24.0" layoutY="5.0" text="Séléctionner les étudiants qui ont validés l'UE">
 									<font>
 										<Font name="Bell MT" size="20.0" />
 									</font>

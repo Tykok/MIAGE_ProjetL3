@@ -47,6 +47,11 @@
 					</font>
 				</Text>
 				<Button fx:id="choixDossier" layoutX="684.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#dossierChoice" prefHeight="40.0" prefWidth="25.0" text="..." />
+            <Label layoutX="66.0" layoutY="14.0" prefHeight="52.0" prefWidth="597.0" text="Choisir un des fichiers CSV du dossier">
+               <font>
+                  <Font name="Bell MT" size="35.0" />
+               </font>
+            </Label>
 			</children>
 		</AnchorPane>
 		<ImageView fitHeight="75.0" fitWidth="184.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">

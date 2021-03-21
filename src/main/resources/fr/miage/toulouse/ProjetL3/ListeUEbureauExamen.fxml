@@ -21,19 +21,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0"
-	prefWidth="863.0" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="fr.miage.toulouse.ProjetL3.controleur.ListeUEbureauExamenController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.miage.toulouse.ProjetL3.controleur.ListeUEbureauExamenController">
 	<children>
-		<ImageView fitHeight="696.0" fitWidth="1251.0"
-			layoutY="-2.0">
+		<ImageView fitHeight="696.0" fitWidth="1251.0" layoutY="-2.0">
 			<image>
 				<Image url="@Images/fondEcran.jpg" />
 			</image>
 		</ImageView>
-		<ImageView fitHeight="75.0" fitWidth="184.0" layoutX="7.0"
-			layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+		<ImageView fitHeight="75.0" fitWidth="184.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
 			<image>
 				<Image url="@Images/_logo.png" />
 			</image>
@@ -41,9 +36,7 @@
 				<DropShadow />
 			</effect>
 		</ImageView>
-		<Label alignment="TOP_LEFT" layoutX="210.0" layoutY="16.0"
-			prefHeight="52.0" prefWidth="388.0" text="Bureau des examens"
-			textFill="WHITE" underline="true">
+		<Label alignment="TOP_LEFT" layoutX="210.0" layoutY="16.0" prefHeight="52.0" prefWidth="388.0" text="Bureau des examens" textFill="WHITE" underline="true">
 			<font>
 				<Font name="Bell MT" size="43.0" />
 			</font>
@@ -54,32 +47,21 @@
 				<Glow level="0.6" />
 			</effect>
 		</Label>
-		<Button layoutX="1134.0" layoutY="4.0" mnemonicParsing="false"
-			onMouseClicked="#deco" prefHeight="25.0" prefWidth="112.0"
-			style="-fx-background-color: red;" text="Déconnexion"
-			textFill="WHITE">
+		<Button layoutX="1134.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#deco" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: red;" text="Déconnexion" textFill="WHITE">
 			<font>
 				<Font name="System Bold" size="13.0" />
 			</font>
 		</Button>
-		<Button layoutX="7.0" layoutY="657.0" mnemonicParsing="false"
-			onMouseClicked="#retour" style="-fx-background-color: blue;"
-			text="Retour" textFill="WHITE">
+		<Button layoutX="7.0" layoutY="657.0" mnemonicParsing="false" onMouseClicked="#retour" style="-fx-background-color: blue;" text="Retour" textFill="WHITE">
 			<font>
 				<Font name="System Bold" size="13.0" />
 			</font>
 		</Button>
-		<AnchorPane layoutX="195.0" layoutY="122.0"
-			prefHeight="498.0" prefWidth="858.0"
-			style="-fx-background-color: white; -fx-background-radius: 15;">
+		<AnchorPane layoutX="195.0" layoutY="122.0" prefHeight="498.0" prefWidth="858.0" style="-fx-background-color: white; -fx-background-radius: 15;">
 			<children>
-				<SplitPane dividerPositions="0.06652806652806653"
-					layoutX="11.0" layoutY="6.0" orientation="VERTICAL"
-					prefHeight="483.0" prefWidth="840.0">
+				<SplitPane dividerPositions="0.06652806652806653" layoutX="11.0" layoutY="6.0" orientation="VERTICAL" prefHeight="483.0" prefWidth="840.0">
 					<items>
-						<AnchorPane minHeight="0.0" minWidth="0.0"
-							prefHeight="64.0" prefWidth="703.0"
-							style="-fx-background-color: white;">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="64.0" prefWidth="703.0" style="-fx-background-color: white;">
 							<children>
 								<Label layoutX="5.0" layoutY="1.0" text="Liste des UE :">
 									<font>
@@ -88,19 +70,22 @@
 								</Label>
 							</children>
 						</AnchorPane>
-						<AnchorPane minHeight="0.0" minWidth="0.0"
-							prefHeight="365.0" prefWidth="650.0">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="365.0" prefWidth="650.0">
 							<children>
-								<TableView fx:id="tableView_listeUE" layoutY="1.0"
-									prefHeight="446.0" prefWidth="838.0">
+								<TableView fx:id="tableView_listeUE" layoutY="1.0" prefHeight="446.0" prefWidth="838.0">
 									<columns>
-										<TableColumn fx:id="tableColumn_codeUE"
-											prefWidth="224.0" text="Code UE" />
-										<TableColumn fx:id="tableColumn_nomUE"
-											prefWidth="316.0" text="Nom UE" />
-										<TableColumn fx:id="tableColumn_creditUE"
-											minWidth="0.0" prefWidth="297.0" text="Crédit UE" />
+										<TableColumn fx:id="tableColumn_codeUE" prefWidth="224.0" text="Code UE" />
+										<TableColumn fx:id="tableColumn_nomUE" prefWidth="316.0" text="Nom UE" />
+										<TableColumn fx:id="tableColumn_creditUE" minWidth="0.0" prefWidth="297.0" text="Crédit UE" />
 									</columns>
+                           <contextMenu>
+                              <ContextMenu fx:id="contextMenu_ChoixUE">
+                                <items>
+                                  <MenuItem fx:id="menuItemValide" mnemonicParsing="false" text="Choisir les étudiants qui ont validé cet UE" />
+                                    <MenuItem fx:id="menuItemNonValide" mnemonicParsing="false" text="Choisir les étudiants qui n'ont pas validé cet UE" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
 								</TableView>
 							</children>
 						</AnchorPane>
